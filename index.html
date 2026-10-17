@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1B3B6F">
+<title>سجل العمل</title>
+<style>
+:root{--navy:#1B3B6F;--blue:#1E6FD9;--g:#2EB872;--g2:#1E824C;--o:#F39C12;--r:#E74C3C;--bg:#EEF2F7;--cd:#fff;--fg:#1B2433;--mu:#6B7587;--ln:#DDE3EC;--sb:#E6EAF0}
+.dark{--bg:#0F1624;--cd:#1A2333;--fg:#E8EEF8;--mu:#9AA6BC;--ln:#2A3550;--sb:#252F45}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:#cfd6e0;font-family:Tahoma,"Segoe UI",Arial,sans-serif;color:var(--fg)}
+#app{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;overflow:hidden}
+.scr{display:none;min-height:100vh;padding-bottom:80px}
+.scr.on{display:block}
+.hd{background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 12px;position:sticky;top:0;z-index:5}
+.hd h1{font-size:17px;margin:0;flex:1;text-align:center}
+.ib{width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;font-size:15px;cursor:pointer;flex:0 0 auto}
+.bd{padding:12px}
+.sky{background:linear-gradient(180deg,#1B3B6F 0%,#2E4F86 45%,#8C6A8C 70%,#E9A25B 90%,#F5C98A 100%);color:#fff;text-align:center;padding:22px 14px 40px;border-radius:0 0 26px 26px}
+.helmet{font-size:44px;line-height:1}
+.sky h2{font-size:26px;margin:6px 0 2px}
+.sky p{margin:0;font-size:13px;opacity:.95}
+.greet{display:flex;align-items:center;gap:10px;background:var(--cd);border:1px solid var(--ln);border-radius:14px;padding:10px 12px;margin:-22px 12px 10px;position:relative}
+.greet .av{width:40px;height:40px;border-radius:50%;background:#E8F0FB;display:flex;align-items:center;justify-content:center;font-size:20px}
+.greet small{display:block;color:var(--mu);font-size:11.5px}
+.greet b{font-size:15px}
+.mbar{display:flex;align-items:center;justify-content:space-between;background:var(--cd);border:1px solid var(--ln);border-radius:12px;padding:8px 10px;margin:10px 12px;font-weight:700;color:var(--navy)}
+.dark .mbar{color:#CFE0FF}
+.mbar .mlbl{flex:1;text-align:center;font-size:15px}
+.mbar .sh{width:34px;height:32px;border:1px solid var(--ln);background:var(--sb);color:var(--fg);border-radius:9px;font-size:17px;cursor:pointer}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 12px 12px}
+.tile{border-radius:16px;padding:16px 10px;color:#fff;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,.1)}
+.tile span{font-size:24px;display:block}
+.tile b{font-size:22px;display:block;margin-top:4px}
+.tile small{font-size:12px;opacity:.95}
+.t-g{background:linear-gradient(160deg,#34C57E,#1E824C)}
+.t-o{background:linear-gradient(160deg,#F5A623,#E67E22)}
+.t-p{background:linear-gradient(160deg,#8E6CD8,#6A4BB5)}
+.t-b{background:linear-gradient(160deg,#4A9AE8,#1E6FD9)}
+.btn{display:block;width:100%;border:0;border-radius:12px;padding:13px;font:700 15px Tahoma,Arial;cursor:pointer;margin:8px 0;text-align:center;color:#fff;background:var(--blue)}
+.btn.o{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+.btn.gr{background:var(--sb);color:var(--mu)}
+.btn.g{background:var(--g)}
+.btn.dng{background:transparent;color:var(--r);border:1.5px solid var(--r)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.card{background:var(--cd);border:1px solid var(--ln);border-radius:14px;padding:12px;margin-bottom:10px}
+.card h3{margin:0 0 6px;font-size:14.5px}
+.muted{color:var(--mu);font-size:12px}
+.li{display:flex;align-items:center;gap:10px;background:var(--cd);border:1px solid var(--ln);border-radius:13px;padding:12px;margin-bottom:9px;cursor:pointer}
+.li .ii{width:38px;height:38px;border-radius:11px;background:#E8F0FB;display:flex;align-items:center;justify-content:center;font-size:18px;flex:0 0 auto}
+.li .tx{flex:1}
+.li .tx b{display:block;font-size:14px}
+.li .tx small{color:var(--mu);font-size:11.5px}
+.li.dng{background:#FDECEA;border-color:#F5B7B1}
+.li.dng b{color:var(--r)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
+.seg button{padding:12px;border-radius:11px;border:1px solid var(--ln);background:var(--sb);color:var(--mu);font:700 14px Tahoma,Arial;cursor:pointer}
+.seg button.on[data-v="نعم"]{background:var(--g);color:#fff;border-color:var(--g)}
+.seg button.on[data-v="لا"]{background:var(--r);color:#fff;border-color:var(--r)}
+.seg button.on[data-v=""]{background:#8B95A8;color:#fff}
+label{display:block;font-size:13px;color:var(--mu);margin:12px 0 6px;font-weight:700}
+input,select{width:100%;padding:12px;border-radius:11px;border:1px solid var(--ln);background:var(--cd);color:var(--fg);font:15px Tahoma,Arial;outline:none}
+.hint{display:block;font-size:11px;color:var(--mu);margin-top:6px;line-height:1.6}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--cd);border:1px solid var(--ln);border-radius:12px;padding:4px;margin:10px 12px}
+.tabs button{padding:9px;border:0;border-radius:9px;background:transparent;color:var(--mu);font:700 13px Tahoma,Arial;cursor:pointer}
+.tabs button.on{background:var(--blue);color:#fff}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 12px 8px}
+.chip{border-radius:12px;padding:9px;color:#fff;text-align:center;font-weight:700;font-size:13px}
+.chip b{font-size:16px;display:block}
+.c-g{background:linear-gradient(160deg,#34C57E,#1E824C)}
+.c-o{background:linear-gradient(160deg,#F5A623,#E67E22)}
+.c-p{background:linear-gradient(160deg,#8E6CD8,#6A4BB5)}
+.c-b{background:linear-gradient(160deg,#4A9AE8,#1E6FD9)}
+.tw{margin:0 12px;background:var(--cd);border:1px solid var(--ln);border-radius:13px;overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:12px;text-align:center}
+th{background:var(--navy);color:#fff;padding:8px 2px;font-size:12px}
+td{padding:7px 2px;border-top:1px solid var(--ln)}
+tbody tr{cursor:pointer}
+tr.off td{background:rgba(243,156,18,.18)}
+.yes{color:var(--g2);font-weight:700}
+.no{color:var(--r);font-weight:700}
+.wx-now{text-align:center;padding:6px 0}
+.wx-now .big{font-size:40px;font-weight:700}
+.wx-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;text-align:center;margin-top:8px}
+.wx-stats small{display:block;color:var(--mu);font-size:11px}
+.wx-stats b{font-size:14px}
+.fc{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.fc div{background:var(--sb);border-radius:12px;padding:8px;text-align:center}
+.fc small{color:var(--mu);font-size:11px;display:block}
+.sw{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--ln);font-size:14px}
+.sw:last-child{border:0}
+.tg{width:46px;height:26px;border-radius:13px;background:#C8CFDB;position:relative;cursor:pointer;flex:0 0 auto}
+.tg:after{content:"";position:absolute;width:22px;height:22px;border-radius:50%;background:#fff;top:2px;right:2px;transition:.2s}
+.tg.on{background:var(--g)}
+.tg.on:after{right:22px}
+.pr{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--ln);font-size:13.5px}
+.pr:last-child{border:0}
+.pr em{font-style:normal;color:var(--mu)}
+.ring{width:170px;height:170px;border-radius:50%;margin:10px auto;display:flex;align-items:center;justify-content:center}
+.ring div{width:120px;height:120px;border-radius:50%;background:var(--cd);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;color:var(--mu)}
+.ring b{font-size:20px;color:var(--fg)}
+.bar{margin:8px 0;font-size:12px}
+.bar div{height:9px;border-radius:5px;margin-top:4px;background:var(--blue)}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--cd);border-top:1px solid var(--ln);display:flex;justify-content:space-around;padding:8px 0 12px;z-index:9}
+.nav.hide{display:none}
+.nav button{flex:1;background:none;border:0;color:var(--mu);font-size:11.5px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+.nav button i{font-style:normal;font-size:19px}
+.nav button.on{color:var(--blue);font-weight:700}
+.tw2{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:99;display:flex;flex-direction:column;gap:6px;align-items:center}
+.tst{background:#1B2433;color:#fff;padding:9px 16px;border-radius:11px;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.lg{min-height:100vh;background:linear-gradient(180deg,#1B3B6F 0%,#2E4F86 40%,#8C6A8C 70%,#E9A25B 92%,#F5C98A 100%);color:#fff;text-align:center;padding:60px 22px 30px;display:flex;flex-direction:column;align-items:center}
+.lg h1{font-size:30px;margin:10px 0 4px}
+.lgc{background:#fff;color:#1B2433;border-radius:18px;padding:20px;margin-top:40px;width:100%}
+.lgc h2{margin:0;font-size:20px}
+.lgc b{color:var(--blue);font-size:18px}
+.sth{background:#1F3A66;color:#fff;text-align:center;padding:16px 10px;font-weight:700;font-size:15px}
+.sgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 10px}
+.sc{border-radius:12px;padding:12px 4px;text-align:center;font-weight:700;font-size:12.5px;border:1px solid}
+.sc b{display:block;font-size:15px;margin-top:2px}
+.s-w{background:#E8F6EE;border-color:#A8DDBE;color:#1E824C}
+.s-o{background:#FDF3E6;border-color:#F0C48A;color:#D9822B}
+.s-av{background:#F3E9FB;border-color:#CDB4EC;color:#7B3FB5}
+.s-d{background:#EAEDF5;border-color:#B8C0D8;color:#2E3F7A}
+.s-r{background:#EAF5FC;border-color:#A9D3EE;color:#1E6FD9}
+.s-m{background:#E3F6EF;border-color:#A8DDBE;color:#1E824C}
+.s-t{background:#FDECEA;border-color:#F0B8B0;color:#C0392B}
+.snote{grid-column:span 2;align-self:center;font-size:12px;color:#6B7587;text-align:center}
+.stw{margin:0 10px;overflow:auto;border:1px solid var(--ln);border-radius:6px}
+.stb{width:100%;border-collapse:collapse;font-size:13px;text-align:center;min-width:560px}
+.stb th{background:#2F5597;color:#fff;padding:8px 2px;font-weight:700}
+.stb th.rn{background:#fff}
+.stb td{padding:8px 2px;border-bottom:1px solid #DDE3EC}
+.stb td.rn{background:#E6EBF3;color:#444;width:34px}
+.sf{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;display:flex;gap:6px;padding:10px;background:var(--cd);border-top:1px solid var(--ln);z-index:9}
+.sf button{flex:1;padding:12px 2px;border:1px solid var(--ln);border-radius:12px;background:var(--cd);font:700 12.5px Tahoma,Arial;color:var(--fg);cursor:pointer}
+.sf .pm{background:#2C5EA8;color:#fff;border:0}
+.thd{background:#1F3A66;color:#fff;border-radius:18px;margin:10px;padding:14px 12px;display:flex;align-items:center;justify-content:space-between}
+.thd h2{margin:0;font-size:17px;flex:1;text-align:center}
+.thd .lg2{font-weight:700;font-size:14px;white-space:nowrap}
+.thd .ibs{display:flex;gap:4px}
+.thd .ibs button{background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer;padding:4px}
+.tmon{display:flex;gap:8px;margin:0 10px 10px;align-items:center}
+.tmon .nb{width:58px;height:48px;border-radius:14px;border:1px solid var(--ln);background:var(--cd);color:var(--fg);font-size:22px;cursor:pointer}
+.tmon .mlab{flex:1;height:48px;border-radius:14px;border:1px solid var(--ln);background:var(--cd);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+.tloc{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 10px 12px;border:1px solid var(--ln);background:var(--cd);border-radius:16px;padding:12px;font-weight:700;color:#1E6FD9}
+.tloc button{background:#2C5EA8;color:#fff;border:0;border-radius:12px;padding:12px;font:700 13.5px Tahoma,Arial;cursor:pointer;white-space:nowrap}
+.tgr{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:0 10px 12px}
+.tc{border-radius:14px;padding:12px 4px;text-align:center;font-weight:700;font-size:13px;border:1px solid;min-height:62px;display:flex;align-items:center;justify-content:center;line-height:1.6}
+.tc b{font-size:16px;margin-inline-start:4px}
+.tnote{grid-column:span 2;align-self:center;font-size:12.5px;color:#8A93A6;text-align:center;line-height:1.7}
+.tbig{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 10px 12px}
+.tbig button{border:0;border-radius:14px;padding:20px 6px;color:#fff;font:700 15px Tahoma,Arial;cursor:pointer}
+#bigY{background:#2D8A56}
+#bigN{background:#E07F25}
+.ttw{margin:0 10px 30px;background:var(--cd);border:1px solid var(--ln);border-radius:4px;overflow:auto}
+.ttb{width:100%;border-collapse:collapse;font-size:13.5px;text-align:center;min-width:560px}
+.ttb th{background:#2F5597;color:#fff;padding:9px 2px;font-weight:700}
+.ttb th.rn{background:#fff}
+.ttb td{padding:9px 2px;border-bottom:1px solid #DDE3EC}
+.ttb td.rn{background:#E6EBF3;color:#444;width:36px;cursor:pointer}
+.ttb tr.off td:not(.rn){background:#FCE3D3}
+.ttb .yes{color:#1E824C;font-weight:700}
+.ttb .no{color:#C0392B;font-weight:700}
+@media print{.scr,.nav,.sf,.tw2{display:none!important}#s-stmt{display:block!important}#app{max-width:none}}
+/* ===== تثبيت الشاشة داخل الهاتف ===== */
+html,body{height:100%;margin:0;overflow:hidden;overscroll-behavior:none;background:#0b1220}
+#app{height:100vh;height:100dvh;max-width:430px;margin:0 auto;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.scr{display:none;flex:1;min-height:0;height:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:84px}
+.scr.on{display:flex;flex-direction:column}
+.scr>*{flex-shrink:0}
+.hd{flex-shrink:0}
+.ttw,.stw,.tw{overflow-x:auto}
+input,select,textarea,button{font-size:16px}
+.nav{max-width:430px}
+.sf{max-width:430px}
+.hd,.sky,.thd{padding-top:calc(12px + env(safe-area-inset-top))}
+.nav{padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+.sf{padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- 1) تسجيل الدخول / البداية -->
+<section class="scr" id="s-login">
+  <div class="lg">
+    <div class="helmet">⛑️</div>
+    <h1>سجل العمل</h1>
+    <p style="margin:0;opacity:.95">نظم عملك بسهولة</p>
+    <div class="lgc">
+      <h2>مرحباً بك</h2>
+      <b id="lgName"></b>
+      <button class="btn" id="lgIn">تسجيل الدخول ←</button>
+      <button class="btn o" id="lgNew">إنشاء حساب جديد</button>
+    </div>
+    <p style="margin-top:30px;font-size:13px;opacity:.95">معا نحو مستقبل أفضل</p>
+  </div>
+</section>
+
+<!-- 2) الواجهة الرئيسية -->
+<section class="scr" id="s-main">
+  <div class="sky">
+    <div class="helmet">⛑️</div>
+    <h2>سجل العمل</h2>
+    <p>تنظيم عملك .. لراحة بالك</p>
+  </div>
+  <div class="greet"><div class="av">👤</div><div><small>أهلاً بك</small><b id="mName"></b></div></div>
+  <div class="mbar"><button class="sh" data-n="-1">‹</button><span class="mlbl"></span><button class="sh" data-n="1">›</button></div>
+  <div class="tiles">
+    <div class="tile t-g"><span>👷</span><b id="mW">0</b><small>يوم عمل</small></div>
+    <div class="tile t-o"><span>🏖️</span><b id="mO">0</b><small>أيام عطلة</small></div>
+    <div class="tile t-p"><b id="mDue">0</b><small>دج المستحق هذا الشهر</small></div>
+    <div class="tile t-b"><b id="mRec">0</b><small>دج المقبوض</small></div>
+  </div>
+  <div class="bd"><button class="btn" data-go="table">ابدأ ←</button></div>
+</section>
+
+<!-- 3) جدول العمل -->
+<section class="scr" id="s-table">
+  <div class="thd">
+    <div class="lg2">🛡️ شعار</div>
+    <h2>BENKACI ABBES</h2>
+    <div class="ibs"><button data-go="stmt">🧾</button><button data-go="set">⚙️</button></div>
+  </div>
+  <div class="tmon"><button class="nb" data-n="1">›</button><div class="mlab" id="tMon"></div><button class="nb" data-n="-1">‹</button></div>
+  <div class="tloc"><span id="tLoc"></span><button id="tWx">🌤️ تحديث الطقس</button></div>
+  <div class="tgr">
+    <div class="tc s-w">عمل: <b id="tW">0</b></div>
+    <div class="tc s-o">عطلة: <b id="tO">0</b></div>
+    <div class="tc s-av">أفونس: <b id="tAv">0 دج</b></div>
+    <div class="tc s-d">المستحق: <b id="tDue">0 دج</b></div>
+    <div class="tc s-r">المقبوض: <b id="tCol">0 دج</b></div>
+    <div class="tc s-m">المجموع المقبوض: <b id="tTot">0 دج</b></div>
+    <div class="tc s-t">المتبقي: <b id="tRem">0 دج</b></div>
+    <div class="tnote">المتبقي = المستحق − (أفونس + مدفوعات)</div>
+  </div>
+  <div class="tbig"><button id="bigY">✔ نعم، عملت اليوم</button><button id="bigN">✗ لا، عطلة اليوم</button></div>
+  <div class="ttw">
+    <table class="ttb">
+      <thead><tr><th class="rn"></th><th>الأيام</th><th>العمل</th><th>المكان</th><th>أفونس</th><th>ديبلاصمو</th><th>مدفوعات</th></tr></thead>
+      <tbody id="tBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 4) إضافة / تعديل يوم -->
+<section class="scr" id="s-form">
+  <div class="hd"><button class="ib" data-go="table">›</button><h1>اضافة يوم عمل</h1><button class="ib" data-go="set">⚙</button></div>
+  <div class="bd">
+    <label>التاريخ</label>
+    <input type="date" id="fDate">
+    <label>العمل</label>
+    <div class="seg" id="fSeg"><button data-v="">—</button><button data-v="لا">لا</button><button data-v="نعم">نعم</button></div>
+    <label>المكان</label>
+    <select id="fPlace"></select>
+    <button class="btn" id="fGps">📍 تحديد الموقع عبر GPS</button>
+    <label>أفونس (دج)</label>
+    <input type="number" id="fAv" min="0">
+    <label>ديبلاصمو (مسار أو ملاحظة)</label>
+    <input id="fDp" placeholder="مثال: البرج_الحاسي">
+    <span class="hint">ديبلاصمو: إذا كتبت فيه أي نص تُضاف قيمته اليومية (50 دج) إلى المستحق، حتى في يوم العطلة.</span>
+    <label>مدفوعات (دج)</label>
+    <input type="number" id="fPy" min="0">
+    <div class="row2" style="margin-top:16px"><button class="btn g" id="fSave">حفظ</button><button class="btn gr" data-go="table">إلغاء</button></div>
+    <button class="btn dng" id="fDel">🗑️ مسح بيانات هذا اليوم</button>
+  </div>
+</section>
+
+<!-- 5) أدوات التطبيق -->
+<section class="scr" id="s-tools">
+  <div class="hd"><span style="width:34px"></span><h1>أدوات التطبيق</h1><button class="ib" data-go="set">⚙</button></div>
+  <div class="bd">
+    <div class="li" data-a="copy"><div class="ii">📋</div><div class="tx"><b>نسخ الجدول</b><small>لإرساله أو لصقه في إكسل</small></div></div>
+    <div class="li" data-a="addm"><div class="ii">➕</div><div class="tx"><b>إضافة ستة جديدة</b><small>إضافة ستة تقويمية جديدة</small></div></div>
+    <div class="li" data-go="mv"><div class="ii">🔁</div><div class="tx"><b>نقل الجدول لشهر آخر</b><small>نقل البيانات إلى شهر آخر</small></div></div>
+    <div class="li" data-go="stmt"><div class="ii">🧾</div><div class="tx"><b>كشف الحساب</b><small>كشف الشهر للطباعة والإرسال</small></div></div>
+    <div class="li" data-go="bak"><div class="ii">🛡️</div><div class="tx"><b>حفظ احتياطي</b><small>إدارة البيانات على السحابة</small></div></div>
+    <div class="li" data-go="xls"><div class="ii">🗂️</div><div class="tx"><b>تصدير البيانات</b><small>ملف CSV لبرنامج Excel</small></div></div>
+    <div class="li dng" data-a="clear"><div class="ii" style="background:#F9D6D2">🗑️</div><div class="tx"><b>مسح بيانات هذا الشهر</b><small>سيتم حذف جميع البيانات</small></div></div>
+    <button class="btn gr" data-go="main">إغلاق</button>
+  </div>
+</section>
+
+<!-- 6) الموقع والطقس -->
+<section class="scr" id="s-wx">
+  <div class="hd"><button class="ib" data-go="set">›</button><h1>الموقع والطقس</h1><span style="width:34px">📍</span></div>
+  <div class="bd">
+    <div class="card" style="text-align:center">
+      <h3>موقعك الحالي</h3>
+      <div style="font-weight:700;font-size:16px;margin:6px 0" id="wxN"></div>
+      <div class="muted" id="wxC"></div>
+      <button class="btn" id="wxUpd">تحديث الموقع</button>
+      <button class="btn o" id="wxSave">حفظ هذا المكان</button>
+    </div>
+    <div class="card">
+      <h3 style="text-align:center">الطقس الآن</h3>
+      <div class="wx-now"><div style="font-size:38px" id="wxI">☀️</div><div class="big" id="wxT">--°</div><div id="wxD">—</div></div>
+      <div class="wx-stats">
+        <div><small>الرطوبة</small><b id="wxH">—</b></div>
+        <div><small>الرياح</small><b id="wxW">—</b></div>
+        <div><small>الضغط</small><b id="wxP">—</b></div>
+      </div>
+      <div class="fc" id="wxF"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7) الإعدادات -->
+<section class="scr" id="s-set">
+  <div class="hd"><button class="ib" data-go="main">✕</button><h1>الإعدادات</h1><span style="width:34px"></span></div>
+  <div class="bd">
+    <div class="card">
+      <div class="sw" id="stName" style="cursor:pointer"><span>بياناتي الشخصية</span><span class="muted" id="stNameV"></span></div>
+      <div class="sw" data-go="wx" style="cursor:pointer"><span>الموقع والطقس</span><span class="muted">‹</span></div>
+      <div class="sw" data-go="places" style="cursor:pointer"><span>أماكن العمل</span><span class="muted">‹</span></div>
+    </div>
+    <div class="card">
+      <h3>أسعار اليوميات</h3>
+      <div class="pr"><span>🏜️ الصحراء</span><span><input type="number" id="pS" style="width:110px;display:inline-block;padding:6px"> دج</span></div>
+      <div class="pr"><span>⛰️ التل</span><span><input type="number" id="pT" style="width:110px;display:inline-block;padding:6px"> دج</span></div>
+      <div class="pr"><span>🚚 ديبلاصمو</span><span><input type="number" id="pD" style="width:110px;display:inline-block;padding:6px"> دج</span></div>
+    </div>
+    <div class="card">
+      <div class="sw"><span>🔔 إشعارات</span><div class="tg" id="tgNt"></div></div>
+      <div class="sw"><span>🌙 الوضع الليلي</span><div class="tg" id="tgDk"></div></div>
+      <div class="sw" id="stLang" style="cursor:pointer"><span>🌐 اللغة</span><span class="muted">العربية</span></div>
+      <div class="sw" id="stAbout" style="cursor:pointer"><span>ⓘ حول التطبيق</span><span class="muted">‹</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8) النسخ الاحتياطي -->
+<section class="scr" id="s-bak">
+  <div class="hd"><button class="ib" data-go="tools">›</button><h1>النسخ الاحتياطي</h1><span style="width:34px"></span></div>
+  <div class="bd">
+    <div class="card"><h3>📤 تصدير البيانات</h3><div class="muted" style="margin-bottom:8px">احفظ بياناتك كملف على جهازك</div><button class="btn" id="bkExp">تصدير (JSON)</button></div>
+    <div class="card"><h3>📥 استيراد البيانات</h3><div class="muted" style="margin-bottom:8px">استعادة البيانات من ملف النسخ الاحتياطي</div><button class="btn" id="bkImp">استيراد (JSON)</button></div>
+    <div class="card"><h3>☁️ نسخ إلى Google Drive</h3><div class="muted" style="margin-bottom:8px">احفظ نسخة على حساب Google</div><button class="btn" id="bkGd">ربط حساب Google</button></div>
+    <input type="file" id="bkFile" accept="application/json" style="display:none">
+  </div>
+</section>
+
+<!-- 9) معلومات النسخة الاحتياطية -->
+<section class="scr" id="s-bki">
+  <div class="hd"><button class="ib" data-go="bak">›</button><h1>معلومات النسخة الاحتياطية</h1><span style="width:34px"></span></div>
+  <div class="bd" style="text-align:center">
+    <div style="font-size:54px;margin:14px 0">⬇️</div>
+    <b style="font-size:16px">تم حفظ نسخة احتياطية بنجاح</b>
+    <div class="card" style="margin-top:14px;text-align:right">
+      <div class="pr"><span>آخر نسخة</span><em id="bkWhen">—</em></div>
+      <div class="pr"><span>الحجم</span><em id="bkSize">—</em></div>
+      <div class="pr"><span>نوع الملف</span><em>JSON</em></div>
+      <div class="pr"><span>عدد الأشهر</span><em id="bkM">—</em></div>
+    </div>
+    <button class="btn" id="bkGd2">حفظ على Google Drive</button>
+    <button class="btn gr" data-go="bak">إغلاق</button>
+  </div>
+</section>
+
+<!-- 10) تصدير إلى Excel -->
+<section class="scr" id="s-xls">
+  <div class="hd"><button class="ib" data-go="tools">›</button><h1>تصدير إلى Excel</h1><span style="width:34px"></span></div>
+  <div class="bd">
+    <div class="muted" style="margin-bottom:10px">سيتم تصدير بيانات الشهر الحالي بصيغة CSV</div>
+    <div class="card" id="xCols">
+      <div class="sw"><label style="margin:0"><input type="checkbox" checked data-c="d" style="width:auto"> الأيام</label></div>
+      <div class="sw"><label style="margin:0"><input type="checkbox" checked data-c="w" style="width:auto"> العمل</label></div>
+      <div class="sw"><label style="margin:0"><input type="checkbox" checked data-c="p" style="width:auto"> المكان</label></div>
+      <div class="sw"><label style="margin:0"><input type="checkbox" checked data-c="av" style="width:auto"> أفونس</label></div>
+      <div class="sw"><label style="margin:0"><input type="checkbox" checked data-c="dp" style="width:auto"> ديبلاصمو</label></div>
+      <div class="sw"><label style="margin:0"><input type="checkbox" checked data-c="py" style="width:auto"> مدفوعات</label></div>
+    </div>
+    <button class="btn g" id="xGo">⬇ تصدير CSV</button>
+    <button class="btn gr" data-go="tools">إلغاء</button>
+  </div>
+</section>
+
+<!-- 11) أماكن العمل -->
+<section class="scr" id="s-places">
+  <div class="hd"><button class="ib" data-go="set">›</button><h1>أماكن العمل</h1><span style="width:34px"></span></div>
+  <div class="tabs" id="plTabs"><button data-t="saved">أماكن المحفوظة</button><button data-t="desert" class="on">المناطق الصحراوية</button></div>
+  <div class="bd" id="plList"></div>
+  <div class="bd"><button class="btn" id="plAdd">📍 اضافة مكان جديد</button></div>
+</section>
+
+<!-- 12) نقل الجدول -->
+<section class="scr" id="s-mv">
+  <div class="hd"><button class="ib" data-go="tools">›</button><h1>نقل الجدول إلى شهر آخر</h1><span style="width:34px"></span></div>
+  <div class="bd">
+    <div class="muted" style="margin-bottom:6px">اختر الشهر الذي تريد نقل بياناته إليه</div>
+    <label>الشهر المستهدف</label>
+    <select id="mvSel"></select>
+    <div class="card" style="background:#FFF6E0;border-color:#F0D9A0;color:#8A5A00;font-size:13px;margin-top:14px">
+      سيتم نقل جميع بيانات الشهر الحالي إلى الشهر المحدد، وسيُمسح الشهر الحالي بعد النقل.
+    </div>
+    <button class="btn" id="mvGo">نقل</button>
+    <button class="btn gr" data-go="tools">إلغاء</button>
+  </div>
+</section>
+
+<!-- 13) الإحصائيات والتقارير -->
+<section class="scr" id="s-st">
+  <div class="hd"><button class="ib" data-go="tools">›</button><h1>الإحصائيات والتقارير</h1><span style="width:34px"></span></div>
+  <div class="tabs" id="stTabs"><button data-t="all">العام</button><button data-t="m" class="on">هذا الشهر</button></div>
+  <div class="bd">
+    <div class="ring" id="stRing"><div><span>إجمالي المستحق</span><b id="stDue">0</b><span>دج</span></div></div>
+    <div class="chips" style="margin:8px 0 10px;padding:0">
+      <div class="chip c-g">أيام العمل <b id="stW">0</b></div>
+      <div class="chip c-o">أيام العطلة <b id="stO">0</b></div>
+    </div>
+    <div class="chips" style="margin:0 0 12px;padding:0">
+      <div class="chip c-b">المقبوض <b id="stRec">0</b></div>
+      <div class="chip c-p">المتبقي <b id="stRem">0</b></div>
+    </div>
+    <div class="card"><h3>توزيع أماكن العمل</h3><div id="stDist"></div></div>
+  </div>
+</section>
+
+<!-- 14) كشف الحساب -->
+<section class="scr" id="s-stmt">
+  <div class="sth">🧾 كشف الحساب — BENKACI ABBES — <span id="stmM"></span></div>
+  <div class="sgrid">
+    <div class="sc s-w">عمل: <b id="sW">0</b></div>
+    <div class="sc s-o">عطلة: <b id="sO">0</b></div>
+    <div class="sc s-av">أفونس: <b id="sAv">0 دج</b></div>
+    <div class="sc s-d">المستحق: <b id="sDue">0 دج</b></div>
+    <div class="sc s-r">المقبوض: <b id="sCol">0 دج</b></div>
+    <div class="sc s-m">المجموع المقبوض: <b id="sRec">0 دج</b></div>
+    <div class="sc s-t">المتبقي: <b id="sRem">0 دج</b></div>
+    <div class="snote">المتبقي = المستحق − (أفونس + مدفوعات)</div>
+  </div>
+  <div class="stw">
+    <table class="stb">
+      <thead><tr><th class="rn"></th><th>الأيام</th><th>العمل</th><th>المكان</th><th>أفونس</th><th>ديبلاصمو</th><th>مدفوعات</th></tr></thead>
+      <tbody id="stBody"></tbody>
+    </table>
+  </div>
+  <div style="height:86px"></div>
+  <div class="sf">
+    <button class="pm" id="sImg">🖼️ كصورة</button>
+    <button id="sPrint">🖨️ طباعة</button>
+    <button id="sShare">📤 إرسال</button>
+    <button id="sCopy">📋 نسخ</button>
+    <button id="sX">✕</button>
+  </div>
+</section>
+
+<!-- الشريط السفلي -->
+<nav class="nav" id="nav">
+  <button data-go="main"><i>🏠</i>الرئيسية</button>
+  <button data-go="table"><i>📊</i>الجدول</button>
+  <button data-go="tools"><i>🧰</i>الأدوات</button>
+</nav>
+
+<div class="tw2" id="tw"></div>
+</div>
+
+<script>
+const $ = i => document.getElementById(i);
+const KEY = 'worklog-v3';
+const MN = ['جانفي','فيفري','مارس','أفريل','ماي','جوان','جويلية','أوت','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const DN = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+const DESERT = ['حاسي مسعود','حاسي الرمل','أدرار','ورقلة','تمنراست','إليزي','تندوف','عين صالح','عين قزام','تيميمون','بني عباس','جانت','برج باجي مختار'];
+const COORD = {'برج بوعريريج':[36.07,4.76],'عين البيضة':[35.8,7.39],'حاسي مسعود':[31.68,6.07],'حاسي الرمل':[32.93,3.27],'أدرار':[27.87,-0.29],'ورقلة':[31.95,5.32],'تمنراست':[22.79,5.52],'إليزي':[26.5,8.48],'تندوف':[27.67,-8.15],'عين صالح':[27.2,2.48],'عين قزام':[19.57,5.77]};
+const SEED = {
+  '2025-06-01':{w:'نعم',p:'حاسي مسعود',av:200,dp:50,py:100},
+  '2025-06-02':{w:'نعم',p:'ورقلة',av:200,dp:50,py:200},
+  '2025-06-03':{w:'لا',p:'',av:0,dp:0,py:0},
+  '2025-06-04':{w:'نعم',p:'أدرار',av:200,dp:50,py:120},
+  '2025-06-05':{w:'نعم',p:'تمنراست',av:200,dp:50,py:200},
+  '2025-06-06':{w:'لا',p:'',av:0,dp:0,py:0},
+  '2025-06-07':{w:'نعم',p:'ورقلة',av:200,dp:50,py:90},
+  '2025-06-08':{w:'نعم',p:'حاسي مسعود',av:200,dp:50,py:100}
+};
+const OCT = {
+  '2026-10-03':{w:'نعم',p:'لمدية',av:0,dp:0,py:0},
+  '2026-10-04':{w:'نعم',p:'لمدية',av:0,dp:0,py:0},
+  '2026-10-05':{w:'نعم',p:'لمدية',av:0,dp:0,py:0},
+  '2026-10-06':{w:'نعم',p:'لمدية',av:0,dp:0,py:0},
+  '2026-10-07':{w:'نعم',p:'لمدية',av:0,dp:0,py:0},
+  '2026-10-13':{w:'نعم',p:'عين البيضة',av:0,dp:0,py:0},
+  '2026-10-14':{w:'نعم',p:'عين البيضة',av:0,dp:0,py:0},
+  '2026-10-15':{w:'نعم',p:'برج بوعريريج',av:0,dp:0,py:0},
+  '2026-10-16':{w:'نعم',p:'برج بوعريريج',av:0,dp:0,py:0}
+};
+let D = (() => {
+  try { const x = JSON.parse(localStorage.getItem(KEY)); if (x && x.rows && x.s) return x; } catch(e){}
+  return {rows: SEED, s:{name:'محمد', ps:200, pt:150, pd:50, nt:true, dk:false}, saved:['برج بوعريريج','عين البيضة'], loc:{name:'حاسي مسعود', lat:31.68, lon:6.07}, view:'2025-06', bak:null};
+})();
+let cur = 'login', stMode = 'm', plTab = 'desert', fk = null, fw = '';
+
+const sv = () => localStorage.setItem(KEY, JSON.stringify(D));
+const pad = n => String(n).padStart(2,'0');
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num = v => { const x = parseFloat(v); return isNaN(x) ? 0 : x; };
+const money = n => Math.round(n).toLocaleString('en-US');
+const mLabel = m => { const [y,mm] = m.split('-'); return MN[+mm-1] + ' ' + y; };
+const shiftM = (m, n) => { let [y,mm] = m.split('-').map(Number); mm += n; while (mm < 1){ mm += 12; y--; } while (mm > 12){ mm -= 12; y++; } return y + '-' + pad(mm); };
+const dim = m => { const [y,mm] = m.split('-').map(Number); return new Date(y, mm, 0).getDate(); };
+const keysOf = m => {
+  const [y, mm] = m.split('-').map(Number);
+  const dk = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  const pk = dk(new Date(y, mm - 1, 0)), nk = dk(new Date(y, mm, 1));
+  return Object.keys(D.rows).filter(k => k.startsWith(m + '-') || k === pk || k === nk);
+};
+const rateOf = p => DESERT.includes(p) ? D.s.ps : D.s.pt;
+const hasDp = r => String(r.dp ?? '').trim() !== '' && String(r.dp).trim() !== '0';
+function calc(keys){
+  const o = {w:0, o:0, earn:0, rec:0, pl:{}};
+  keys.forEach(k => {
+    const r = D.rows[k] || {};
+    if (r.w === 'نعم'){ o.w++; o.earn += rateOf(r.p); if (r.p) o.pl[r.p] = (o.pl[r.p]||0) + 1; }
+    else if (r.w === 'لا') o.o++;
+    if (hasDp(r)) o.earn += D.s.pd;
+    o.rec += num(r.av) + num(r.py);
+  });
+  o.rem = o.earn - o.rec;
+  return o;
+}
+function toast(m){
+  const d = document.createElement('div'); d.className = 'tst'; d.textContent = m;
+  $('tw').appendChild(d); setTimeout(() => d.remove(), 2200);
+}
+
+/* ---------- التنقل ---------- */
+const RENDER = {
+  main: () => renderMain(), table: () => renderTable(), set: () => renderSet(), wx: () => { renderWx(); loadWx(); },
+  places: () => renderPlaces(), mv: () => renderMove(), stmt: () => renderStmt(), st: () => renderStats(), bki: () => renderBki(), login: () => { $('lgName').textContent = D.s.name; }
+};
+function show(name){
+  cur = name;
+  document.querySelectorAll('.scr').forEach(s => s.classList.toggle('on', s.id === 's-' + name));
+  $('nav').classList.toggle('hide', !['main','table','tools'].includes(name));
+  document.querySelectorAll('#nav button').forEach(b => b.classList.toggle('on', b.dataset.go === name));
+  window.scrollTo(0,0);
+  if (RENDER[name]) RENDER[name]();
+}
+document.addEventListener('click', e => {
+  const g = e.target.closest('[data-go]');
+  if (g) { show(g.dataset.go); return; }
+  const n = e.target.closest('[data-n]');
+  if (n) { D.view = shiftM(D.view, +n.dataset.n); sv(); refresh(); return; }
+});
+function refresh(){
+  document.querySelectorAll('.mlbl').forEach(el => el.textContent = mLabel(D.view));
+  if (RENDER[cur]) RENDER[cur]();
+}
+
+/* ---------- تسجيل الدخول ---------- */
+$('lgIn').onclick = () => show('main');
+$('lgNew').onclick = () => { const v = prompt('الاسم', D.s.name); if (v && v.trim()){ D.s.name = v.trim(); sv(); } show('main'); };
+
+/* ---------- الرئيسية ---------- */
+function renderMain(){
+  $('mName').textContent = D.s.name;
+  document.querySelectorAll('.mlbl').forEach(el => el.textContent = mLabel(D.view));
+  const c = calc(keysOf(D.view));
+  $('mW').textContent = c.w; $('mO').textContent = c.o;
+  $('mDue').textContent = money(c.earn); $('mRec').textContent = money(c.rec);
+}
+
+/* ---------- الجدول ---------- */
+function renderTable(){
+  const m = D.view;
+  document.querySelectorAll('.mlbl').forEach(el => el.textContent = mLabel(m));
+  const c = calc(keysOf(m));
+  $('tW').textContent = c.w; $('tO').textContent = c.o;
+  $('tDue').textContent = money(c.earn); $('tRec').textContent = money(c.rec);
+  let h = '';
+  for (let d = 1; d <= dim(m); d++){
+    const k = m + '-' + pad(d), r = D.rows[k] || {};
+    h += `<tr data-k="${k}" class="${r.w === 'لا' ? 'off' : ''}" onclick="openForm('${k}')">
+      <td>${pad(d)}-${m.slice(5)}</td>
+      <td class="${r.w === 'نعم' ? 'yes' : r.w === 'لا' ? 'no' : ''}">${r.w === 'نعم' ? 'نعم' : r.w === 'لا' ? 'لا' : '—'}</td>
+      <td>${esc(r.p) || '—'}</td>
+      <td>${r.av ? money(r.av) : '—'}</td>
+      <td>${r.dp ? money(r.dp) : '—'}</td>
+      <td>${r.py ? money(r.py) : '—'}</td></tr>`;
+  }
+  $('tBody').innerHTML = h;
+}
+
+
+/* ---------- نموذج اليوم ---------- */
+function openForm(k){
+  fk = k;
+  const r = D.rows[k] || {};
+  fw = r.w || '';
+  $('fDate').value = k;
+  $('fAv').value = r.av || ''; $('fDp').value = r.dp || ''; $('fPy').value = r.py || '';
+  const all = [...DESERT, ...D.saved.filter(p => !DESERT.includes(p))];
+  if (r.p && !all.includes(r.p)) all.push(r.p);
+  $('fPlace').innerHTML = all.map(p => `<option ${p === r.p ? 'selected' : ''}>${esc(p)}</option>`).join('');
+  paintSeg();
+  show('form');
+}
+function paintSeg(){
+  document.querySelectorAll('#fSeg button').forEach(b => b.classList.toggle('on', b.dataset.v === fw));
+}
+$('fSeg').onclick = e => { const b = e.target.closest('button'); if (!b) return; fw = b.dataset.v; paintSeg(); };
+$('fSave').onclick = () => {
+  const k = $('fDate').value || fk;
+  if (!k) return;
+  if (fk && fk !== k) delete D.rows[fk];
+  const rec = {w: fw, p: $('fPlace').value, av: num($('fAv').value), dp: $('fDp').value.trim(), py: num($('fPy').value)};
+  if (!fw && !rec.p && !rec.av && !rec.dp && !rec.py) delete D.rows[k];
+  else D.rows[k] = rec;
+  D.view = k.slice(0,7); sv(); toast('تم الحفظ ✔'); show('table');
+};
+$('fDel').onclick = () => { if (fk && confirm('مسح بيانات هذا اليوم؟')){ delete D.rows[fk]; sv(); toast('🗑️ تم المسح'); show('table'); } };
+function nearest(la, lo){
+  let best = null, bd = Infinity;
+  for (const [n,[x,y]] of Object.entries(COORD)){ const d = (la-x)**2 + (lo-y)**2; if (d < bd){ bd = d; best = n; } }
+  return best;
+}
+function gps(cb){
+  if (!navigator.geolocation) return toast('الموقع غير مدعوم في هذا المتصفح');
+  toast('📍 جاري تحديد الموقع…');
+  navigator.geolocation.getCurrentPosition(p => cb(p.coords.latitude, p.coords.longitude), () => toast('تعذّر تحديد الموقع'));
+}
+$('fGps').onclick = () => gps((la, lo) => { const n = nearest(la, lo); $('fPlace').value = n; if (![...$('fPlace').options].some(o => o.value === n)) $('fPlace').add(new Option(n, n)); $('fPlace').value = n; toast('📍 ' + n); });
+
+/* ---------- الإعدادات ---------- */
+function renderSet(){
+  $('stNameV').textContent = D.s.name;
+  $('pS').value = D.s.ps; $('pT').value = D.s.pt; $('pD').value = D.s.pd;
+  $('tgNt').classList.toggle('on', !!D.s.nt);
+  $('tgDk').classList.toggle('on', !!D.s.dk);
+  document.documentElement.classList.toggle('dark', !!D.s.dk);
+}
+$('stName').onclick = () => { const v = prompt('الاسم', D.s.name); if (v && v.trim()){ D.s.name = v.trim(); sv(); renderSet(); } };
+[['pS','ps'],['pT','pt'],['pD','pd']].forEach(([id,k]) => $(id).onchange = () => { D.s[k] = num($(id).value); sv(); toast('✅ حُدّثت الأسعار'); });
+$('tgNt').onclick = () => { D.s.nt = !D.s.nt; sv(); renderSet(); toast(D.s.nt ? '🔔 التنبيه مُشغّل' : '🔕 التنبيه مُوقَف'); };
+$('tgDk').onclick = () => { D.s.dk = !D.s.dk; sv(); renderSet(); };
+$('stLang').onclick = () => toast('🌐 الواجهة العربية');
+$('stAbout').onclick = () => alert('سجل العمل — الإصدار 3.0\nتطبيق لتسجيل أيام العمل والمستحقات. بياناتك محفوظة على جهازك فقط.');
+
+/* ---------- الأدوات ---------- */
+document.querySelectorAll('[data-a]').forEach(el => el.onclick = () => {
+  const a = el.dataset.a;
+  if (a === 'copy'){
+    const m = D.view;
+    let t = 'اليوم\tالعمل\tالمكان\tأفونس\tديبلاصمو\tمدفوعات\n';
+    for (let d = 1; d <= dim(m); d++){ const r = D.rows[m+'-'+pad(d)] || {}; t += [pad(d)+'-'+m.slice(5), r.w||'', r.p||'', r.av||'', r.dp||'', r.py||''].join('\t') + '\n'; }
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => toast('📋 تم نسخ الجدول'), () => toast('تعذّر النسخ'));
+  }
+  if (a === 'addm'){ D.view = shiftM(D.view, 1); sv(); toast('➕ تمت إضافة الشهر'); show('table'); }
+  if (a === 'clear'){ if (confirm('حذف كل بيانات هذا الشهر؟')){ keysOf(D.view).forEach(k => delete D.rows[k]); sv(); toast('🗑️ مُسحت البيانات'); show('main'); } }
+});
+
+/* ---------- الطقس ---------- */
+const wIco = c => c === 0 ? '☀️' : c <= 3 ? '⛅' : c <= 48 ? '🌫️' : (c <= 67 || (c >= 80 && c <= 82)) ? '🌧️' : (c >= 71 && c <= 77) ? '❄️' : c >= 95 ? '⛈️' : '☁️';
+const wDesc = c => c === 0 ? 'مشمس' : c <= 3 ? 'غائم جزئياً' : c <= 48 ? 'ضبابي' : c <= 67 ? 'ممطر' : c <= 77 ? 'ثلجي' : c <= 82 ? 'أمطار' : 'عاصف';
+const coordTxt = (la, lo) => `${Math.abs(la).toFixed(2)}° ${la >= 0 ? 'N' : 'S'}, ${Math.abs(lo).toFixed(2)}° ${lo >= 0 ? 'E' : 'W'}`;
+function renderWx(){
+  $('wxN').textContent = D.loc.name;
+  $('wxC').textContent = coordTxt(D.loc.lat, D.loc.lon);
+}
+async function loadWx(){
+  const {lat, lon} = D.loc;
+  try {
+    const u = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,surface_pressure,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=auto&forecast_days=3`;
+    const j = await (await fetch(u)).json(), c = j.current;
+    $('wxT').textContent = Math.round(c.temperature_2m) + '°';
+    $('wxD').textContent = wDesc(c.weather_code);
+    $('wxI').textContent = wIco(c.weather_code);
+    $('wxH').textContent = c.relative_humidity_2m + '%';
+    $('wxW').textContent = Math.round(c.wind_speed_10m) + ' كم/سا';
+    $('wxP').textContent = Math.round(c.surface_pressure) + ' hPa';
+    $('wxF').innerHTML = j.daily.time.map((t,i) => `<div><small>${DN[new Date(t+'T12:00').getDay()]}</small><div style="font-size:22px">${wIco(j.daily.weather_code[i])}</div><b>${Math.round(j.daily.temperature_2m_max[i])}°</b><br><small>${Math.round(j.daily.temperature_2m_min[i])}°</small></div>`).join('');
+  } catch(e){ toast('تعذّر تحميل الطقس — تحقق من الإنترنت'); }
+}
+$('wxUpd').onclick = () => gps((la, lo) => { D.loc = {name: nearest(la, lo), lat: la, lon: lo}; sv(); renderWx(); loadWx(); });
+$('wxSave').onclick = () => { if (!D.saved.includes(D.loc.name)) D.saved.push(D.loc.name); sv(); toast('📍 تم حفظ المكان'); };
+
+/* ---------- أماكن العمل ---------- */
+function renderPlaces(){
+  document.querySelectorAll('#plTabs button').forEach(b => b.classList.toggle('on', b.dataset.t === plTab));
+  const list = plTab === 'saved' ? D.saved : DESERT;
+  $('plList').innerHTML = list.map(p => `<div class="li" style="cursor:default"><div class="ii">📍</div><div class="tx"><b>${esc(p)}</b><small>${DESERT.includes(p) ? 'منطقة صحراوية' : 'مكان محفوظ'}</small></div></div>`).join('') || '<div class="muted">لا توجد أماكن محفوظة</div>';
+}
+$('plTabs').onclick = e => { const b = e.target.closest('button'); if (!b) return; plTab = b.dataset.t; renderPlaces(); };
+$('plAdd').onclick = () => { const v = prompt('اسم المكان الجديد'); if (v && v.trim()){ D.saved.push(v.trim()); sv(); renderPlaces(); toast('📍 أُضيف المكان'); } };
+
+/* ---------- نقل الجدول ---------- */
+function renderMove(){
+  let opts = '';
+  for (let y = 2025; y <= 2026; y++) for (let m = 1; m <= 12; m++){ const k = y + '-' + pad(m); opts += `<option value="${k}" ${k === shiftM(D.view,1) ? 'selected' : ''}>${mLabel(k)}</option>`; }
+  $('mvSel').innerHTML = opts;
+}
+$('mvGo').onclick = () => {
+  const to = $('mvSel').value;
+  if (to === D.view) return toast('اختر شهراً مختلفاً');
+  if (!confirm('نقل بيانات الشهر الحالي؟')) return;
+  keysOf(D.view).forEach(k => { D.rows[to + k.slice(7)] = D.rows[k]; delete D.rows[k]; });
+  D.view = to; sv(); toast('🔁 تم النقل'); show('table');
+};
+
+/* ---------- الإحصائيات ---------- */
+function renderStats(){
+  document.querySelectorAll('#stTabs button').forEach(b => b.classList.toggle('on', b.dataset.t === stMode));
+  const keys = stMode === 'all' ? Object.keys(D.rows) : keysOf(D.view);
+  const c = calc(keys);
+  const pct = c.earn ? Math.min(100, c.rec / c.earn * 100) : 0;
+  $('stRing').style.background = `conic-gradient(#2EB872 0 ${pct}%, #E6EAF0 ${pct}% 100%)`;
+  $('stDue').textContent = money(c.earn);
+  $('stW').textContent = c.w; $('stO').textContent = c.o;
+  $('stRec').textContent = money(c.rec); $('stRem').textContent = money(c.rem);
+  const top = Object.entries(c.pl).sort((a,b) => b[1] - a[1]).slice(0,4);
+  $('stDist').innerHTML = top.length ? top.map(([p,n]) => `<div class="bar">${esc(p)} — ${Math.round(n/c.w*100)}%<div style="width:${Math.round(n/c.w*100)}%"></div></div>`).join('') : '<div class="muted">لا توجد بيانات بعد</div>';
+}
+$('stTabs').onclick = e => { const b = e.target.closest('button'); if (!b) return; stMode = b.dataset.t; renderStats(); };
+
+/* ---------- النسخ الاحتياطي ---------- */
+function download(name, text, type){
+  const a = document.createElement('a');
+  const blob = new Blob([text], {type});
+  a.href = URL.createObjectURL(blob); a.download = name; a.click();
+  return blob.size;
+}
+$('bkExp').onclick = () => {
+  const txt = JSON.stringify(D, null, 2);
+  const size = download(`worklog-${new Date().toISOString().slice(0,10)}.json`, txt, 'application/json');
+  D.bak = {t: new Date().toLocaleString('ar-DZ'), size, months: new Set(Object.keys(D.rows).map(k => k.slice(0,7))).size};
+  sv(); show('bki');
+};
+function renderBki(){
+  const b = D.bak || {t:'—', size:0, months:0};
+  $('bkWhen').textContent = b.t;
+  $('bkSize').textContent = (b.size/1024/1024).toFixed(2) + ' MB';
+  $('bkM').textContent = b.months;
+}
+$('bkImp').onclick = () => $('bkFile').click();
+$('bkFile').onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try { const d = JSON.parse(r.result); if (!d.rows || !d.s) throw 0; D = d; sv(); toast('✅ تمت الاستعادة'); show('main'); }
+    catch(err){ toast('ملف غير صالح'); }
+  };
+  r.readAsText(f);
+};
+$('bkGd').onclick = () => toast('☁️ نزّل الملف وارفعه على Google Drive');
+$('bkGd2').onclick = $('bkGd').onclick;
+
+/* ---------- تصدير CSV ---------- */
+$('xGo').onclick = () => {
+  const cols = [...document.querySelectorAll('#xCols input:checked')].map(i => i.dataset.c);
+  const names = {d:'الأيام', w:'العمل', p:'المكان', av:'أفونس', dp:'ديبلاصمو', py:'مدفوعات'};
+  const rows = [cols.map(c => names[c])];
+  keysOf(D.view).sort().forEach(k => {
+    const r = D.rows[k];
+    rows.push(cols.map(c => c === 'd' ? k.slice(8) + '-' + k.slice(5,7) : (r[c] ?? '')));
+  });
+  const csv = '\uFEFF' + rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\r\n');
+  download(`worklog-${D.view}.csv`, csv, 'text/csv;charset=utf-8');
+  toast('⬇ تم تصدير CSV');
+};
+
+/* ---------- كشف الحساب ---------- */
+const fdt = k => { const [y,m,d] = k.split('-'); return `${d}-${m}-${y}`; };
+const hasData = r => !!(r && (r.w || r.p || num(r.av) || hasDp(r) || num(r.py)));
+const stmRows = () => keysOf(D.view).filter(k => hasData(D.rows[k])).sort();
+function renderStmt(){
+  const ks = stmRows(), c = calc(ks);
+  let av = 0, py = 0;
+  ks.forEach(k => { av += num(D.rows[k].av); py += num(D.rows[k].py); });
+  $('stmM').textContent = mLabel(D.view);
+  $('sW').textContent = c.w; $('sO').textContent = c.o;
+  $('sAv').textContent = money(av) + ' دج';
+  $('sDue').textContent = money(c.earn) + ' دج';
+  $('sCol').textContent = money(py) + ' دج';
+  $('sRec').textContent = money(av + py) + ' دج';
+  $('sRem').textContent = money(c.rem) + ' دج';
+  let h = '';
+  const n = Math.max(30, ks.length);
+  for (let i = 0; i < n; i++){
+    const k = ks[i], r = k ? D.rows[k] : {};
+    h += `<tr><td class="rn">${i+1}</td><td>${k ? fdt(k) : ''}</td><td class="${r.w==='نعم'?'yes':r.w==='لا'?'no':''}">${r.w||''}</td><td>${esc(r.p)}</td><td>${r.av?money(r.av)+' دج':''}</td><td>${esc(r.dp)}</td><td>${r.py?money(r.py)+' دج':''}</td></tr>`;
+  }
+  $('stBody').innerHTML = h;
+}
+function stmText(){
+  const ks = stmRows(), c = calc(ks);
+  let t = `كشف الحساب — BENKACI ABBES — ${mLabel(D.view)}\n`;
+  ks.forEach(k => { const r = D.rows[k]; t += `${fdt(k)} | ${r.w||''} | ${r.p||''} | أفونس ${r.av||0} | ديبلاصمو ${r.dp||0} | مدفوعات ${r.py||0}\n`; });
+  return t + `المستحق: ${money(c.earn)} دج | المتبقي: ${money(c.rem)} دج`;
+}
+const copyTxt = t => (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => toast('📋 تم النسخ'), () => toast('تعذّر النسخ'));
+$('sX').onclick = () => show('tools');
+$('sPrint').onclick = () => window.print();
+$('sCopy').onclick = () => copyTxt(stmText());
+$('sShare').onclick = () => navigator.share ? navigator.share({title:'كشف الحساب', text: stmText()}).catch(() => {}) : copyTxt(stmText());
+$('sImg').onclick = () => toast('📸 خذ لقطة للشاشة، أو اختر طباعة ثم حفظ كـ PDF');
+if (!D.oct){ Object.assign(D.rows, OCT); D.view = '2026-10'; D.oct = true; sv(); }
+
+/* ---------- الجدول (التصميم الجديد) ---------- */
+const SEP = {
+  '2026-08-31':{w:'لا',p:'طريق',av:0,dp:'البرج_الحاسي',py:0},
+  '2026-09-01':{w:'نعم',p:'حاسي مسعود',av:0,dp:'',py:0},
+  '2026-09-02':{w:'لا',p:'طريق',av:0,dp:'الحاسي عين صالح',py:0},
+  '2026-09-03':{w:'نعم',p:'عين صالح',av:0,dp:'عين صالح_الشانطي',py:0},
+  '2026-09-04':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
+  '2026-09-05':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
+  '2026-09-06':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
+  '2026-09-07':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
+  '2026-09-08':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
+  '2026-09-09':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
+  '2026-09-10':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
+  '2026-09-11':{w:'لا',p:'عين صالح',av:0,dp:'',py:0},
+  '2026-09-12':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
+  '2026-09-13':{w:'نعم',p:'عين صالح',av:200,dp:'',py:0},
+  '2026-09-15':{w:'لا',p:'لبيرو',av:0,dp:'',py:3000},
+  '2026-09-22':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
+  '2026-09-23':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
+  '2026-09-24':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
+  '2026-09-25':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
+  '2026-09-26':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
+  '2026-09-27':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
+  '2026-09-28':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
+  '2026-09-29':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
+  '2026-09-30':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
+  '2026-10-01':{w:'لا',p:'برج بوعريريج يازيد',av:0,dp:'',py:2000}
+};
+function renderTable(){
+  const m = D.view, ks = keysOf(m).sort(), c = calc(ks);
+  let av = 0, py = 0;
+  ks.forEach(k => { av += num(D.rows[k].av); py += num(D.rows[k].py); });
+  $('tMon').textContent = mLabel(m);
+  $('tLoc').textContent = '📍 ' + D.loc.name;
+  $('tW').textContent = c.w; $('tO').textContent = c.o;
+  $('tAv').textContent = money(av) + ' دج';
+  $('tDue').textContent = money(c.earn) + ' دج';
+  $('tCol').textContent = money(py) + ' دج';
+  $('tTot').textContent = money(av + py) + ' دج';
+  $('tRem').textContent = money(c.rem) + ' دج';
+  let h = '';
+  for (let i = 0; i < Math.max(30, ks.length); i++){
+    const k = ks[i] || '', r = k ? D.rows[k] : {};
+    h += `<tr class="${r.w === 'لا' ? 'off' : ''}"><td class="rn" data-k="${k}">${i+1}</td><td>${k ? fdt(k) : ''}</td><td class="${r.w === 'نعم' ? 'yes' : r.w === 'لا' ? 'no' : ''}">${r.w || ''}</td><td>${esc(r.p)}</td><td>${r.av ? money(r.av) + ' دج' : ''}</td><td>${esc(r.dp)}</td><td>${r.py ? money(r.py) + ' دج' : ''}</td></tr>`;
+  }
+  $('tBody').innerHTML = h;
+}
+const todayKey = () => { const t = new Date(); return t.getFullYear() + '-' + pad(t.getMonth() + 1) + '-' + pad(t.getDate()); };
+function markDay(v){
+  const k = todayKey(), r = D.rows[k] || {};
+  D.rows[k] = {w: v, p: r.p || '', av: r.av || 0, dp: r.dp || '', py: r.py || 0};
+  D.view = k.slice(0, 7); sv();
+  show('table');
+  toast(v === 'نعم' ? '✔ تم تسجيل يوم عمل' : '✗ تم تسجيل يوم عطلة');
+}
+$('bigY').onclick = () => markDay('نعم');
+$('bigN').onclick = () => markDay('لا');
+$('tWx').onclick = () => $('wxUpd').click();
+$('tBody').onclick = e => { const td = e.target.closest('td.rn'); if (td && td.dataset.k) openForm(td.dataset.k); };
+if (!D.v5){
+  Object.values(D.rows).forEach(r => { if (typeof r.dp === 'number') r.dp = ''; });
+  Object.assign(D.rows, SEP);
+  D.view = '2026-09'; D.v5 = true; sv();
+}
+
+/* ---------- البدء ---------- */
+document.documentElement.classList.toggle('dark', !!D.s.dk);
+window.addEventListener('beforeunload', sv);
+show('login');
+</script>
+</body>
+</html>
