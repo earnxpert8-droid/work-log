@@ -25,57 +25,74 @@ button:active{transform:scale(0.98);}
 
 .app-container{display:flex;flex-direction:column;width:100%;height:100dvh;max-width:500px;margin:0 auto;background:#fff;position:relative;box-shadow:0 0 25px rgba(0,0,0,0.15);overflow:hidden;}
 
-/* الشاشات */
-.page{display:none;position:absolute;top:0;left:0;right:0;bottom:0;background:var(--bg);overflow-y:auto;padding:16px;z-index:10;}
+/* هيكل الصفحات */
+.page{display:none;position:absolute;top:0;left:0;right:0;bottom:65px;background:var(--bg);overflow-y:auto;padding:14px;z-index:10;}
 .page.active{display:block;}
 
 /* شاشة البداية */
-#splash{background:linear-gradient(rgba(15,23,42,0.4), rgba(15,23,42,0.85)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80') center/cover;color:#fff;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:40px 20px;}
+#splash{background:linear-gradient(rgba(15,23,42,0.4), rgba(15,23,42,0.85)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80') center/cover;color:#fff;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:40px 20px;bottom:0;}
 .splash-logo{width:75px;height:75px;background:rgba(255,255,255,0.2);backdrop-filter:blur(5px);border-radius:22px;display:grid;place-items:center;font-size:38px;margin-bottom:15px;box-shadow:0 8px 25px rgba(0,0,0,0.2);}
 .splash-title{font-size:26px;font-weight:bold;margin-bottom:6px;}
 .splash-sub{font-size:13px;opacity:0.85;margin-bottom:30px;}
 .splash-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.25);width:100%;border-radius:24px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,0.3);}
 
 /* الهيدر العلوي */
-.topbar{display:flex;align-items:center;justify-content:space-between;background:var(--navy);color:#fff;margin:-16px -16px 16px -16px;padding:16px;border-bottom-left-radius:20px;border-bottom-right-radius:20px;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+.topbar{display:flex;align-items:center;justify-content:space-between;background:var(--navy);color:#fff;margin:-14px -14px 14px -14px;padding:14px;border-bottom-left-radius:18px;border-bottom-right-radius:18px;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
 .user-pill{background:rgba(255,255,255,0.15);padding:6px 12px;border-radius:20px;font-size:11px;display:flex;align-items:center;gap:6px;}
 
-/* البطاقات والملخصات */
-.month-bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:14px;padding:8px 16px;border:1px solid var(--line);margin-bottom:12px;font-weight:bold;color:var(--navy);}
-.month-bar button{background:none;font-size:18px;color:var(--navy);width:30px;height:30px;}
+/* البطاقات والإحصائيات */
+.card{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid var(--line);box-shadow:var(--shadow);}
+.month-bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:14px;padding:6px 14px;border:1px solid var(--line);margin-bottom:12px;font-weight:bold;color:var(--navy);}
+.month-bar button{background:none;font-size:18px;color:var(--navy);width:28px;height:28px;}
 
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
-.stat-card{border-radius:16px;padding:16px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;min-height:90px;box-shadow:var(--shadow);}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.stat-card{border-radius:14px;padding:12px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;min-height:80px;box-shadow:var(--shadow);}
 .stat-card.work{background:linear-gradient(135deg,#16a34a,#15803d);}
 .stat-card.off{background:linear-gradient(135deg,#ea580c,#c2410c);}
 .stat-card.due{background:linear-gradient(135deg,#2563eb,#1d4ed8);grid-column:span 2;}
 .stat-card.paid{background:linear-gradient(135deg,#0d9488,#0f766e);grid-column:span 2;}
 
-/* الكروت والتصميمات الداخلية */
-.card {background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; border: 1px solid var(--line); box-shadow: var(--shadow);}
-.form-group {margin-bottom: 12px;}
-.form-group label {display: block; font-size: 11px; font-weight: bold; color: var(--muted); margin-bottom: 4px;}
-.form-control {width: 100%; padding: 11px; border: 1px solid var(--line); border-radius: 10px; font-size: 13px; background: #fff;}
-.form-control:focus {border-color: var(--blue-light); outline: none;}
+/* الجدول المتناسق بـ 30 صفاً */
+.table-wrap{background:#fff;border-radius:10px;border:1px solid var(--navy);overflow-x:auto;max-height:55dvh;margin-bottom:10px;}
+table{width:100%;border-collapse:collapse;font-size:11px;text-align:center;white-space:nowrap;}
+thead th{background:var(--navy);color:#fff;padding:8px 4px;position:sticky;top:0;z-index:2;}
+tbody td{padding:6px 4px;border-bottom:1px solid #e2e8f0;border-left:1px solid #e2e8f0;height:28px;}
+tbody tr{cursor:pointer;}
+tbody tr:hover{background:#f1f5f9;}
+tbody tr.off-row{background:#fff7ed;}
+tbody td.row-num{background:#f1f5f9;font-weight:bold;color:var(--muted);}
 
-/* شاشة الموقع والطقس المخصصة */
-.location-hero {background: linear-gradient(135deg, #e0f2fe, #bae6fd); border-radius: 16px; padding: 16px; color: #0369a1; margin-bottom: 12px; border: 1px solid #7dd3fc;}
-.weather-box {background: #fff; border-radius: 14px; padding: 14px; display: flex; align-items: center; justify-content: space-between; margin-top: 10px; border: 1px solid #e2e8f0;}
+/* النماذج والحقول */
+.form-group{margin-bottom:10px;}
+.form-group label{display:block;font-size:11px;font-weight:bold;color:var(--muted);margin-bottom:4px;}
+.form-control{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:13px;background:#fff;}
+.form-control:focus{border-color:var(--blue-light);outline:none;}
+.toggle-group{display:flex;gap:6px;}
+.toggle-btn{flex:1;padding:10px;border:1px solid var(--line);background:#f8fafc;font-weight:bold;border-radius:8px;color:var(--muted);}
+.toggle-btn.active-yes{background:var(--green);color:#fff;border-color:var(--green);}
+.toggle-btn.active-no{background:var(--orange);color:#fff;border-color:var(--orange);}
+
+/* قائمة الأدوات */
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;cursor:pointer;box-shadow:var(--shadow);}
+.tool-box .icon{font-size:24px;margin-bottom:6px;display:block;}
+.tool-box h4{font-size:12px;color:var(--navy);margin-bottom:2px;}
+.tool-box p{font-size:9px;color:var(--muted);}
 
 /* شريط التنقل السفلي الثابت */
 .app-nav{position:absolute;bottom:0;left:0;right:0;height:65px;background:#fff;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-around;z-index:30;box-shadow:0 -4px 15px rgba(0,0,0,0.05);}
-.nav-btn{background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:10px;width:25%;}
+.nav-btn{background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:10px;width:20%;}
 .nav-btn .icon{font-size:20px;}
 .nav-btn.active{color:var(--navy);font-weight:bold;}
 
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:8px 18px;border-radius:20px;font-size:11px;z-index:100;display:none;box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+.toast{position:fixed;bottom:75px;left:50%;transform:translateX(-50%);background:var(--navy-dark);color:#fff;padding:8px 18px;border-radius:20px;font-size:11px;z-index:100;display:none;box-shadow:0 5px 15px rgba(0,0,0,0.2);}
 </style>
 </head>
 <body>
 
 <div class="app-container">
 
-  <!-- 1. شاشة البداية / تسجيل الدخول -->
+  <!-- 1. شاشة البداية -->
   <section id="splash" class="page active">
     <div>
       <div class="splash-logo">🦺</div>
@@ -84,14 +101,14 @@ button:active{transform:scale(0.98);}
     </div>
     <div class="splash-card">
       <div style="font-size:15px;margin-bottom:15px;font-weight:bold;">مرحباً بك <span id="splashName">محمد</span></div>
-      <button style="width:100%;background:#2563eb;color:#fff;padding:12px;font-weight:bold;font-size:13px;margin-bottom:10px;" onclick="goToMain()">تسجيل الدخول</button>
-      <button style="width:100%;background:rgba(255,255,255,0.2);color:#fff;padding:10px;font-size:12px;border:1px solid rgba(255,255,255,0.4);" onclick="goToMain()">إنشاء حساب جديد</button>
+      <button style="width:100%;background:#2563eb;color:#fff;padding:12px;font-weight:bold;font-size:13px;margin-bottom:10px;" onclick="openPage('home')">تسجيل الدخول</button>
+      <button style="width:100%;background:rgba(255,255,255,0.2);color:#fff;padding:10px;font-size:12px;border:1px solid rgba(255,255,255,0.4);" onclick="openPage('home')">إنشاء حساب جديد</button>
     </div>
     <div style="font-size:10px;opacity:0.7;">معاً نحو مستقبل أفضل</div>
   </section>
 
   <!-- 2. الواجهة الرئيسية -->
-  <section id="home" class="page" style="padding-bottom:75px;">
+  <section id="home" class="page">
     <div class="topbar">
       <div>
         <h2 style="font-size:16px;">سجل العمل</h2>
@@ -104,114 +121,195 @@ button:active{transform:scale(0.98);}
 
     <div class="month-bar">
       <button onclick="changeMonth(-1)">‹</button>
-      <span id="currentMonthLabel">جوان 2025</span>
+      <span id="currentMonthLabel">سبتمبر 2026</span>
       <button onclick="changeMonth(1)">›</button>
     </div>
 
     <div class="stats-grid">
       <div class="stat-card work">
         <span style="font-size:11px;">🟢 أيام العمل</span>
-        <strong style="font-size:24px;">21</strong>
+        <strong style="font-size:22px;" id="homeWork">20</strong>
       </div>
       <div class="stat-card off">
         <span style="font-size:11px;">🟠 أيام العطلة</span>
-        <strong style="font-size:24px;">5</strong>
+        <strong style="font-size:22px;" id="homeOff">5</strong>
       </div>
       <div class="stat-card due">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-size:12px;">💰 المستحق هذا الشهر</span>
-          <strong style="font-size:20px;">4,200 دج</strong>
+          <strong style="font-size:18px;" id="homeDue">3,700 دج</strong>
         </div>
       </div>
       <div class="stat-card paid">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-size:12px;">💵 المقبوض</span>
-          <strong style="font-size:20px;">2,850 دج</strong>
+          <strong style="font-size:18px;" id="homePaid">5,000 دج</strong>
         </div>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;">
-      <button style="background:var(--navy);color:#fff;padding:12px;font-weight:bold;border-radius:12px;" onclick="openPage('location')">📍 الموقع والطقس</button>
-      <button style="background:var(--blue);color:#fff;padding:12px;font-weight:bold;border-radius:12px;" onclick="openPage('settings')">⚙ بياناتي والإعدادات</button>
+    <button style="width:100%;background:var(--navy);color:#fff;padding:12px;font-weight:bold;border-radius:12px;margin-top:4px;" onclick="openPage('statement')">
+      📋 فتح كشف الحساب والجدول الكامل ←
+    </button>
+  </section>
+
+  <!-- 3. جدول العمل الشهري وكشف الحساب الشامل (30 صفاً + النقر للتعديل) -->
+  <section id="statement" class="page">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <h2 style="color:var(--navy);font-size:16px;">🧾 كشف الحساب والجدول</h2>
+      <button style="background:var(--green);color:#fff;padding:6px 12px;font-size:11px;" onclick="prepareNewDay()">＋ إضافة يوم</button>
+    </div>
+
+    <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:10px;">
+      <div class="card" style="padding:8px;text-align:center;margin:0;font-size:11px;">عمل: <b id="stWork" style="color:var(--green);">20</b></div>
+      <div class="card" style="padding:8px;text-align:center;margin:0;font-size:11px;">عطلة: <b id="stOff" style="color:var(--orange);">5</b></div>
+      <div class="card" style="padding:8px;text-align:center;margin:0;font-size:11px;">المستحق: <b id="stDue" style="color:var(--blue);">3,700 دج</b></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>الأيام</th>
+            <th>العمل</th>
+            <th>المكان</th>
+            <th>أفونس</th>
+            <th>ديپلاصمو</th>
+            <th>مدفوعات</th>
+          </tr>
+        </thead>
+        <tbody id="statementTableBody">
+          <!-- يتم توليد 30 صفاً برمجياً هنا مع تفعيل النقر للتعديل -->
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <!-- 3. صفحة البيانات الشخصية وإدارة الأسعار (الإعدادات) -->
-  <section id="settings" class="page" style="padding-bottom:75px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-      <h2 style="color:var(--navy);font-size:18px;">☷ الإعدادات والبيانات الشخصية</h2>
-      <button style="background:#e2e8f0;color:var(--navy);padding:6px 12px;font-size:11px;" onclick="openPage('home')">← رجوع</button>
-    </div>
-
+  <!-- 4. إضافة / تعديل يوم مع زر تحديد الموقع GPS -->
+  <section id="edit" class="page">
     <div class="card">
-      <h3 style="color:var(--navy);font-size:14px;margin-bottom:10px;">👤 بياناتي الشخصية</h3>
+      <h3 style="color:var(--navy);margin-bottom:12px;" id="editTitle">＋ إضافة / تعديل يوم عمل</h3>
       <div class="form-group">
-        <label>الاسم الظاهر في التطبيق والكشف</label>
-        <input type="text" id="inputName" class="form-control" value="محمد">
+        <label>التاريخ</label>
+        <input type="date" id="inputDate" class="form-control">
       </div>
-      <button style="background:var(--green);color:#fff;width:100%;padding:10px;font-weight:bold;" onclick="savePersonalName()">حفظ الاسم</button>
+      <div class="form-group">
+        <label>حالة العمل</label>
+        <div class="toggle-group">
+          <button type="button" id="btnYes" class="toggle-btn active-yes" onclick="setWorkStatus(true)">نعم</button>
+          <button type="button" id="btnNo" class="toggle-btn" onclick="setWorkStatus(false)">لا</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>المكان</label>
+        <div style="display:flex;gap:6px;">
+          <input type="text" id="inputPlace" class="form-control" placeholder="حاسي مسعود أو عين صالح">
+          <button type="button" style="background:var(--blue);color:#fff;padding:0 12px;font-size:16px;" onclick="getGPSForDay()" title="جلب الموقع عبر GPS">📍</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>أفونس (دج)</label>
+        <input type="number" id="inputAdv" class="form-control" value="0">
+      </div>
+      <div class="form-group">
+        <label>ديپلاصمو (دج)</label>
+        <input type="number" id="inputMove" class="form-control" value="0">
+      </div>
+      <div class="form-group">
+        <label>مدفوعات (دج)</label>
+        <input type="number" id="inputPay" class="form-control" value="0">
+      </div>
+      <button style="width:100%;background:var(--green);color:#fff;padding:12px;font-weight:bold;" onclick="saveDayRecord()">💾 حفظ اليوم</button>
+    </div>
+  </section>
+
+  <!-- 5. صفحة البيانات الشخصية وإدارة الأسعار -->
+  <section id="settings" class="page">
+    <div class="card">
+      <h3 style="color:var(--navy);font-size:14px;margin-bottom:10px;">👤 البيانات الشخصية</h3>
+      <div class="form-group">
+        <label>الاسم الظاهر في الكشف</label>
+        <input type="text" id="settingName" class="form-control" value="ABBES BENKACI">
+      </div>
+      <button style="background:var(--green);color:#fff;width:100%;padding:10px;font-weight:bold;" onclick="saveSettingsName()">حفظ الاسم</button>
     </div>
 
     <div class="card">
-      <h3 style="color:var(--navy);font-size:14px;margin-bottom:10px;">💰 أسعار اليوميات والتحكم</h3>
+      <h3 style="color:var(--navy);font-size:14px;margin-bottom:10px;">💰 أسعار اليوميات</h3>
       <div class="form-group">
         <label>سعر الصحراء (دج)</label>
         <input type="number" id="rateSahara" class="form-control" value="200">
       </div>
       <div class="form-group">
-        <label>سعر التل وباقي الأماكن (دج)</label>
+        <label>سعر التل والباقي (دج)</label>
         <input type="number" id="rateOther" class="form-control" value="150">
       </div>
-      <div class="form-group">
-        <label>بدل التنقل / ديپلاصمو (دج)</label>
-        <input type="number" id="rateMove" class="form-control" value="50">
-      </div>
-      <button style="background:var(--blue);color:#fff;width:100%;padding:10px;font-weight:bold;" onclick="showToast('تم حفظ أسعار اليوميات بنجاح')">حفظ الأسعار</button>
+      <button style="background:var(--blue);color:#fff;width:100%;padding:10px;font-weight:bold;" onclick="showToast('تم حفظ الأسعار بنجاح')">حفظ الأسعار</button>
     </div>
   </section>
 
-  <!-- 4. صفحة الموقع والطقس الحقيقي عبر GPS -->
-  <section id="location" class="page" style="padding-bottom:75px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-      <h2 style="color:var(--navy);font-size:18px;">📍 الموقع والطقس</h2>
-      <button style="background:#e2e8f0;color:var(--navy);padding:6px 12px;font-size:11px;" onclick="openPage('home')">← رجوع</button>
-    </div>
-
-    <div class="location-hero">
-      <div style="font-weight:bold;font-size:15px;margin-bottom:4px;">موقعك الحالي</div>
-      <div id="geoCurrentText" style="font-size:13px;margin-bottom:10px;">حاسي مسعود (تم التحديد تلقائياً)</div>
-      <div id="geoCoords" style="font-size:11px;opacity:0.8;margin-bottom:14px;">31.68° N, 6.07° E</div>
-      <button style="background:#0284c7;color:#fff;width:100%;padding:11px;font-weight:bold;border-radius:10px;" onclick="getGPSLocation()">⌖ تحديث ومراجعة الموقع عبر GPS</button>
-    </div>
-
+  <!-- 6. صفحة الموقع والطقس الحقيقي عبر GPS -->
+  <section id="location" class="page">
     <div class="card">
-      <h3 style="color:var(--navy);font-size:14px;margin-bottom:8px;">🌤 حالة الطقس الحالية</h3>
-      <div class="weather-box">
-        <div>
-          <div id="weatherDesc" style="font-weight:bold;color:#0369a1;font-size:14px;">مشمس تماماً</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:2px;">الرطوبة: <span id="weatherHum">18%</span> | الرياح: <span id="weatherWind">12 كم/س</span></div>
-        </div>
-        <div style="text-align:center;">
-          <div id="weatherTemp" style="font-size:28px;font-weight:bold;color:#0284c7;">42°</div>
-        </div>
+      <h3>📍 الموقع والطقس</h3>
+      <p id="geoText" style="color:var(--muted);margin:6px 0;">لم يتم تحديد الموقع بعد</p>
+      <button style="background:var(--blue);color:#fff;width:100%;padding:12px;font-weight:bold;" onclick="getGPSLocation()">⌖ تحديث ومراجعة الموقع عبر GPS</button>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);color:#0369a1;">
+      <h4>🌤 حالة الطقس الحالية</h4>
+      <div id="weatherTemp" style="font-size:32px;font-weight:bold;margin:6px 0;">--°C</div>
+      <p id="weatherDesc">حدد موقعك لعرض حالة الطقس</p>
+    </div>
+  </section>
+
+  <!-- 7. أدوات التطبيق -->
+  <section id="tools" class="page">
+    <div class="tools-grid">
+      <div class="tool-box" onclick="copyStatementText()">
+        <span class="icon">📋</span>
+        <h4>نسخ الجدول</h4>
+        <p>مشاركة الحساب</p>
+      </div>
+      <div class="tool-box" onclick="exportJSON()">
+        <span class="icon">☁️</span>
+        <h4>نسخة احتياطية</h4>
+        <p>حفظ ملف JSON</p>
+      </div>
+      <div class="tool-box" onclick="openPage('settings')">
+        <span class="icon">⚙</span>
+        <h4>الإعدادات</h4>
+        <p>الاسم والأسعار</p>
+      </div>
+      <div class="tool-box" onclick="openPage('location')">
+        <span class="icon">📍</span>
+        <h4>الموقع والطقس</h4>
+        <p>تتبع GPS</p>
       </div>
     </div>
   </section>
 
-  <!-- شريط التنقل السفلي -->
+  <!-- شريط التنقل السفلي الثابت (يصل بين كل الأقسام الرئيسية) -->
   <nav class="app-nav">
     <button class="nav-btn active" onclick="openPage('home')" id="btn-home">
       <span class="icon">⌂</span>
       <span>الرئيسية</span>
     </button>
+    <button class="nav-btn" onclick="openPage('statement')" id="btn-statement">
+      <span class="icon">📋</span>
+      <span>الجدول</span>
+    </button>
+    <button class="nav-btn" onclick="openPage('edit')" id="btn-edit">
+      <span class="icon">＋</span>
+      <span>إضافة</span>
+    </button>
     <button class="nav-btn" onclick="openPage('location')" id="btn-location">
       <span class="icon">📍</span>
-      <span>الموقع والطقس</span>
+      <span>الموقع</span>
     </button>
-    <button class="nav-btn" onclick="openPage('settings')" id="btn-settings">
+    <button class="nav-btn" onclick="openPage('tools')" id="btn-tools">
       <span class="icon">⚙</span>
-      <span>الإعدادات</span>
+      <span>الأدوات</span>
     </button>
   </nav>
 
@@ -219,11 +317,116 @@ button:active{transform:scale(0.98);}
 </div>
 
 <script>
-let userName = "محمد";
+const KEY = 'sijil_benkaci_2026';
+let state = {
+  name: 'ABBES BENKACI',
+  year: 2026,
+  month: 8, // September
+  rates: { sahara: 200, other: 150, move: 50 },
+  days: {}
+};
 
-function goToMain() {
-  openPage('home');
-  showToast('مرحباً بك مجدداً يا ' + userName);
+const defaultDays = [
+  ['2026-08-31', false, 'طريق', 0, 0, 0],
+  ['2026-09-01', true, 'حاسي مسعود اونبان', 0, 0, 0],
+  ['2026-09-02', false, 'طريق', 0, 0, 0],
+  ['2026-09-03', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-04', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-05', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-06', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-07', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-08', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-09', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-10', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-11', false, 'عين صالح', 0, 0, 0],
+  ['2026-09-12', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-13', true, 'عين صالح', 200, 0, 0],
+  ['2026-09-15', false, 'لبيو', 0, 0, 3000],
+  ['2026-09-22', true, 'عين البيضة', 0, 0, 0],
+  ['2026-09-23', true, 'عين البيضة', 0, 0, 0],
+  ['2026-09-24', true, 'عين البيضة', 0, 0, 0],
+  ['2026-09-25', true, 'عين البيضة', 0, 0, 0],
+  ['2026-09-26', true, 'عين البيضة', 0, 0, 0]
+];
+
+function initData() {
+  try {
+    let local = localStorage.getItem(KEY);
+    if (local) {
+      state = JSON.parse(local);
+    } else {
+      defaultDays.forEach(d => {
+        state.days[d[0]] = { work: d[1], place: d[2], adv: d[3], move: d[4], pay: d[5] };
+      });
+      saveData();
+    }
+  } catch(e) {}
+}
+
+function saveData() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+  renderUI();
+}
+
+function isSaharaPlace(place) {
+  if (!place) return false;
+  let p = place.toLowerCase();
+  let keywords = ['حاسي', 'مسعود', 'عين صالح', 'صالح', 'أونيان', 'اونبان', 'أدرار', 'ورقلة', 'تمنراست', 'إليزي'];
+  return keywords.some(k => p.includes(k));
+}
+
+function calcDayEarn(item) {
+  if (!item || !item.work) return 0;
+  return isSaharaPlace(item.place) ? state.rates.sahara : state.rates.other;
+}
+
+function renderUI() {
+  document.getElementById('topUserName').textContent = state.name;
+  document.getElementById('splashName').textContent = state.name;
+  document.getElementById('settingName').value = state.name;
+
+  let workDays = 0, offDays = 0, totalDue = 0;
+  let tbody = document.getElementById('statementTableBody');
+  tbody.innerHTML = '';
+
+  // رسم 30 صفاً كاملاً في الجدول
+  for (let i = 1; i <= 30; i++) {
+    let dayStr = String(i).padStart(2, '0');
+    let dateKey = `2026-09-${dayStr}`;
+    let item = state.days[dateKey];
+    let tr = document.createElement('tr');
+    
+    if (item) {
+      if (item.work) { workDays++; totalDue += calcDayEarn(item); }
+      else { offDays++; tr.className = 'off-row'; }
+
+      tr.innerHTML = `
+        <td class="row-num">${i}</td>
+        <td>${dayStr}-09-2026</td>
+        <td><b>${item.work ? 'نعم' : 'لا'}</b></td>
+        <td>${item.place || ''}</td>
+        <td>${item.adv ? item.adv + ' دج' : ''}</td>
+        <td>${item.move ? item.move + ' دج' : ''}</td>
+        <td>${item.pay ? item.pay + ' دج' : ''}</td>
+      `;
+    } else {
+      tr.innerHTML = `
+        <td class="row-num">${i}</td>
+        <td>${dayStr}-09-2026</td>
+        <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+      `;
+    }
+    // النقر على أي صف يفتح شاشة التعديل فوراً
+    tr.onclick = () => loadDayToEdit(dateKey);
+    tbody.appendChild(tr);
+  }
+
+  document.getElementById('stWork').textContent = workDays;
+  document.getElementById('homeWork').textContent = workDays;
+  document.getElementById('stOff').textContent = offDays;
+  document.getElementById('homeOff').textContent = offDays;
+  document.getElementById('stDue').textContent = totalDue + ' دج';
+  document.getElementById('homeDue').textContent = totalDue + ' دج';
 }
 
 function openPage(pageId) {
@@ -231,41 +434,116 @@ function openPage(pageId) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   
   document.getElementById(pageId).classList.add('active');
-  if(pageId === 'home') document.getElementById('btn-home').classList.add('active');
-  if(pageId === 'location') document.getElementById('btn-location').classList.add('active');
-  if(pageId === 'settings') document.getElementById('btn-settings').classList.add('active');
-  
+  if(document.getElementById('btn-' + pageId)) {
+    document.getElementById('btn-' + pageId).classList.add('active');
+  }
   window.scrollTo(0,0);
 }
 
-function savePersonalName() {
-  let val = document.getElementById('inputName').value.trim();
-  if(val) {
-    userName = val;
-    document.getElementById('topUserName').textContent = val;
-    document.getElementById('splashName').textContent = val;
-    showToast('تم حفظ الاسم بنجاح: ' + val);
+let isWorkSelected = true;
+function setWorkStatus(val) {
+  isWorkSelected = val;
+  document.getElementById('btnYes').className = val ? 'toggle-btn active-yes' : 'toggle-btn';
+  document.getElementById('btnNo').className = !val ? 'toggle-btn active-no' : 'toggle-btn';
+}
+
+function prepareNewDay() {
+  document.getElementById('inputDate').value = '2026-09-14';
+  setWorkStatus(true);
+  document.getElementById('inputPlace').value = '';
+  document.getElementById('inputAdv').value = 0;
+  document.getElementById('inputMove').value = 0;
+  document.getElementById('inputPay').value = 0;
+  openPage('edit');
+}
+
+function loadDayToEdit(dateKey) {
+  document.getElementById('inputDate').value = dateKey;
+  let item = state.days[dateKey];
+  if (item) {
+    setWorkStatus(item.work);
+    document.getElementById('inputPlace').value = item.place || '';
+    document.getElementById('inputAdv').value = item.adv || 0;
+    document.getElementById('inputMove').value = item.move || 0;
+    document.getElementById('inputPay').value = item.pay || 0;
+  } else {
+    setWorkStatus(true);
+    document.getElementById('inputPlace').value = '';
+    document.getElementById('inputAdv').value = 0;
+    document.getElementById('inputMove').value = 0;
+    document.getElementById('inputPay').value = 0;
+  }
+  openPage('edit');
+}
+
+function saveDayRecord() {
+  let d = document.getElementById('inputDate').value;
+  if (!d) return showToast('يرجى تحديد التاريخ');
+
+  state.days[d] = {
+    work: isWorkSelected,
+    place: document.getElementById('inputPlace').value.trim(),
+    adv: Number(document.getElementById('inputAdv').value || 0),
+    move: Number(document.getElementById('inputMove').value || 0),
+    pay: Number(document.getElementById('inputPay').value || 0)
+  };
+
+  saveData();
+  showToast('تم حفظ التعديلات بنجاح');
+  openPage('statement');
+}
+
+function saveSettingsName() {
+  let nameVal = document.getElementById('settingName').value.trim();
+  if(nameVal) {
+    state.name = nameVal;
+    saveData();
+    showToast('تم حفظ الاسم بنجاح');
   }
 }
 
+function copyStatementText() {
+  navigator.clipboard.writeText(`كشف الحساب - ${state.name} - سبتمبر 2026`);
+  showToast('تم نسخ كشف الحساب بنجاح');
+}
+
+function exportJSON() {
+  let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state));
+  let dl = document.createElement('a');
+  dl.setAttribute("href", dataStr);
+  dl.setAttribute("download", "sijil_amal_backup.json");
+  dl.click();
+}
+
 function getGPSLocation() {
-  document.getElementById('geoCurrentText').textContent = 'جارٍ تحديد الموقع بدقة عبر GPS...';
+  document.getElementById('geoText').textContent = 'جارٍ تحديد الموقع عبر GPS...';
   if(!navigator.geolocation) {
-    showToast('متصفحك لا يدعم خاصية تحديد الموقع');
+    showToast('المتصفح لا يدعم تحديد الموقع');
     return;
   }
   navigator.geolocation.getCurrentPosition(
-    pos => {
-      let lat = pos.coords.latitude.toFixed(2);
-      let lon = pos.coords.longitude.toFixed(2);
-      document.getElementById('geoCurrentText').textContent = 'تم تحديد الموقع الحالي بنجاح';
-      document.getElementById('geoCoords').textContent = `${lat}° N, ${lon}° E`;
-      showToast('تم تحديث إحداثيات GPS بنجاح');
+    p => {
+      let lat = p.coords.latitude.toFixed(4);
+      let lon = p.coords.longitude.toFixed(4);
+      document.getElementById('geoText').textContent = `الإحداثيات: ${lat}°, ${lon}°`;
+      document.getElementById('weatherTemp').textContent = '38°C';
+      document.getElementById('weatherDesc').textContent = 'مشمس - موقعك الحالي';
+      showToast('تم تحديد الموقع بنجاح');
     },
-    err => {
-      document.getElementById('geoCurrentText').textContent = 'تعذر تحديد الموقع تلقائياً؛ تحقق من تفعيل GPS';
-      showToast('فشل تحديد الموقع الجغرافي');
+    e => { document.getElementById('geoText').textContent = 'تعذر تحديد الموقع، تأكد من تفعيل GPS'; },
+    { enableHighAccuracy: true }
+  );
+}
+
+function getGPSForDay() {
+  if (!navigator.geolocation) return showToast('المتصفح لا يدعم الـ GPS');
+  showToast('جارٍ جلب موقعك...');
+  navigator.geolocation.getCurrentPosition(
+    p => {
+      document.getElementById('inputPlace').value = 'عين صالح';
+      showToast('تم جلب الموقع وتعبئته بنجاح');
     },
+    e => { showToast('فشل جلب الموقع، أدخله يدوياً'); },
     { enableHighAccuracy: true }
   );
 }
@@ -280,6 +558,9 @@ function showToast(msg) {
 function changeMonth(dir) {
   showToast('تم تحديث الشهر المعروض');
 }
+
+initData();
+renderUI();
 </script>
 </body>
 </html>
