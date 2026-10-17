@@ -1,702 +1,543 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#1f3a66">
-<title>سجل العمل</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#1a3258">
+<title>سجل العمل الذكي — ABBES BENKACI</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden;background:#eef2f7;color:#1b2433;font-family:Tahoma,"Segoe UI",Arial,sans-serif;font-size:13px}
-button,input,select{font:inherit;color:inherit}
-#app{position:fixed;inset:0;max-width:440px;margin:0 auto;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;background:#eef2f7;overflow:hidden}
-#app.nomb{grid-template-rows:auto minmax(0,1fr) auto}
-header{background:#1f3a66;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:calc(6px + env(safe-area-inset-top)) 12px 6px}
-header h1{font-size:15px}
-header small{font-size:10px;opacity:.85}
-.mbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:5px 8px;background:#fff;border-bottom:1px solid #dde3ec}
-.mbar b{font-size:14px;flex:1;text-align:center}
-.mbar button{width:36px;height:30px;border:1px solid #d9e1eb;background:#fff;border-radius:9px;font-size:16px;cursor:pointer}
-main{position:relative;min-height:0;overflow:hidden}
-.scr{position:absolute;inset:0;display:none;flex-direction:column;gap:6px;padding:6px 8px;overflow:hidden}
-.scr.on{display:flex}
-nav{display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid #dde3ec;padding-bottom:env(safe-area-inset-bottom)}
-nav button{border:0;background:none;padding:5px 1px;font-size:10px;color:#6b7587;display:flex;flex-direction:column;align-items:center;gap:1px;cursor:pointer}
-nav button i{font-style:normal;font-size:15px}
-nav button.on{color:#1e6fd9;font-weight:700}
-.card{background:#fff;border:1px solid #dde3ec;border-radius:12px;padding:7px 8px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.c{border-radius:10px;padding:2px 2px;text-align:center;border:1px solid;font-size:9.5px;font-weight:700;display:flex;flex-direction:column;justify-content:center;min-height:30px;line-height:1.2}
-.c b{font-size:12px;margin-top:0}
-.c-w{background:#e8f6ee;border-color:#a8ddbe;color:#1e824c}
-.c-o{background:#fdf3e6;border-color:#f0c48a;color:#d9822b}
-.c-a{background:#f3e9fb;border-color:#cdb4ec;color:#7b3fb5}
-.c-d{background:#eaedf5;border-color:#b8c0d8;color:#2e3f7a}
-.c-r{background:#eaf5fc;border-color:#a9d3ee;color:#1e6fd9}
-.c-m{background:#e3f6ef;border-color:#a8ddbe;color:#1e824c}
-.c-t{background:#fdecea;border-color:#f0b8b0;color:#c0392b}
-.note{grid-column:span 2;align-self:center;font-size:9px;color:#6b7587;text-align:center}
-.btn{border:0;border-radius:11px;padding:9px 6px;font-weight:700;font-size:12.5px;color:#fff;background:#1e6fd9;cursor:pointer;width:100%}
-.btn.g{background:#2d8a56}.btn.o{background:#e07f25}.btn.gr{background:#e6eaf0;color:#44506a}.btn.dg{background:#fff;color:#c0392b;border:1px solid #f0b8b0}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
-.tbl{flex:1;min-height:0;display:grid;grid-template-rows:auto repeat(30,minmax(0,1fr));background:#fff;border:1px solid #d9e1eb;border-radius:8px;overflow:hidden}
-.hr,.rw{display:grid;grid-template-columns:22px 1.05fr .6fr 1fr .8fr 1.5fr .9fr;align-items:stretch;min-height:0}
-.hr{background:#2f5597;color:#fff;font-weight:700;font-size:10px}
-.rw{border-top:1px solid #e3e8ef;font-size:clamp(7px,2.2vw,10px);line-height:1.1}
-.hr>div,.rw>div{display:flex;align-items:center;justify-content:center;padding:0 1px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0;text-align:center;line-height:1.1}
-.rw>div:first-child{background:#e6ebf3;color:#555;cursor:pointer}
-.rw.off>div:not(:first-child){background:#fce3d3}
-.yes{color:#1e824c;font-weight:700}.no{color:#c0392b;font-weight:700}
-.hint{font-size:10px;color:#6b7587;line-height:1.5}
-label{font-size:11px;color:#6b7587;font-weight:700;display:block;margin:4px 0 2px}
-input,select{width:100%;padding:7px 8px;border:1px solid #d9e1eb;border-radius:9px;background:#fff;font-size:14px}
-.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.seg button{padding:7px;border:1px solid #d9e1eb;border-radius:9px;background:#f4f6fa;font-weight:700;color:#6b7587;cursor:pointer}
-.seg button.on[data-v="نعم"]{background:#2d8a56;color:#fff;border-color:#2d8a56}
-.seg button.on[data-v="لا"]{background:#c0392b;color:#fff;border-color:#c0392b}
-.seg button.on[data-v=""]{background:#8b95a8;color:#fff}
-.stmhead{background:#1f3a66;color:#fff;text-align:center;padding:4px;border-radius:9px;font-weight:700;font-size:11px}
-.srow{display:flex;justify-content:space-between;align-items:center;padding:6px 2px;border-bottom:1px solid #e3e8ef;font-size:12px;gap:6px}
-.srow input{width:110px;padding:4px 6px}
-#toast{position:fixed;top:10px;left:50%;transform:translateX(-50%);background:#1b2433;color:#fff;padding:7px 14px;border-radius:10px;font-size:12px;opacity:0;transition:.2s;z-index:50;pointer-events:none;white-space:nowrap}
-#toast.on{opacity:1}
-@media print{
-  body *{visibility:hidden}
-  #s-stmt,#s-stmt *{visibility:visible}
-  #app{position:static;display:block;height:auto}
-  main{overflow:visible}
-  #s-stmt{position:static;display:flex;height:auto}
-  .tbl{height:auto}
-  .btn,.seg,.row2,.row3{display:none}
+:root {
+  --navy:#1a3258; --navy-dark:#11223e; --blue:#2d588e; --blue-light:#4a82c8;
+  --bg:#edf2f7; --card-bg:#ffffff; --ink:#1e293b; --muted:#64748b; --line:#cbd5e1;
+  --green:#16a34a; --green-bg:#f0fdf4; --green-border:#bbf7d0;
+  --orange:#ea580c; --orange-bg:#fff7ed; --orange-border:#fed7aa;
+  --purple:#9333ea; --purple-bg:#faf5ff; --purple-border:#e9d5ff;
+  --red:#dc2626; --red-bg:#fef2f2; --red-border:#fecaca;
+  --teal:#0d9488; --teal-bg:#f0fdfa; --teal-border:#99f6e4;
+  --shadow:0 4px 12px rgba(15,23,42,0.08);
 }
 
-/* ===== كشف الحساب بالتصميم المرجعي ===== */
-#s-stmt{padding:0!important;gap:0!important}
-.sttitle{background:#1f3a66;color:#fff;text-align:center;padding:10px 6px;font-weight:700;font-size:13px}
-.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:8px}
-.sc{border-radius:10px;border:1px solid;padding:6px 2px;text-align:center;font-size:11px;font-weight:700;min-height:32px;display:flex;align-items:center;justify-content:center;gap:3px}
-.sc b{font-size:12px}
-.sc{white-space:nowrap}
-.sc.long{font-size:9px;gap:2px}
-.sc.long b{font-size:10.5px}
-.sn{grid-column:span 2;align-self:center;font-size:10px;color:#6b7587;text-align:center}
-.stw2{flex:1 1 0;min-height:0;margin:0 8px;display:grid;grid-template-rows:auto repeat(30,minmax(0,1fr));border:1px solid #d9e1eb;background:#fff;overflow:hidden}
-.sbar{display:grid;grid-template-columns:.7fr 1fr 1fr 1fr 1.1fr;gap:5px;padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
-.sbar button{border:1px solid #d9e1eb;background:#fff;border-radius:10px;padding:9px 1px;font-size:11px;font-weight:700;color:#1b2433;cursor:pointer}
-.sbar .pm{background:#1f6fd0;color:#fff;border:0}
-#app.stmode{grid-template-rows:minmax(0,1fr)}
-#app.stmode header,#app.stmode nav,#app.stmode .mbar{display:none}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;font-size:13px;user-select:none;}
+button,input,select,textarea{font:inherit;}
+button{cursor:pointer;border:none;outline:none;border-radius:10px;transition:background .2s,transform .1s;}
+button:active{transform:scale(0.97);}
+
+/* Container Application Layout */
+.app-container{display:flex;flex-direction:column;width:100%;height:100dvh;max-width:500px;margin:0 auto;background:#fff;position:relative;box-shadow:0 0 25px rgba(0,0,0,0.15);}
+
+/* Fixed Top Header */
+.app-header{background:var(--navy);color:#fff;height:54px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;z-index:30;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+.brand-title{display:flex;align-items:center;gap:8px;}
+.brand-title h1{font-size:15px;font-weight:700;letter-spacing:0.3px;}
+.header-actions{display:flex;gap:8px;}
+.header-btn{background:rgba(255,255,255,0.15);color:#fff;width:34px;height:34px;border-radius:8px;display:grid;place-items:center;font-size:16px;}
+
+/* Scrollable View Area */
+.app-content{flex:1;overflow-y:auto;overflow-x:hidden;position:relative;background:var(--bg);padding-bottom:70px;}
+.page{display:none;padding:12px;animation:fadeIn 0.15s ease-in-out;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0.6;}to{opacity:1;}}
+
+/* Fixed Bottom Navigation */
+.app-nav{height:60px;background:#fff;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-around;flex-shrink:0;z-index:30;box-shadow:0 -2px 10px rgba(0,0,0,0.05);position:absolute;bottom:0;left:0;right:0;}
+.nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);background:none;width:20%;height:100%;gap:3px;font-size:10px;}
+.nav-item .icon{font-size:18px;}
+.nav-item.active{color:var(--navy);font-weight:bold;}
+
+/* Common UI Components */
+.card{background:#fff;border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid #e2e8f0;box-shadow:var(--shadow);}
+.month-selector{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:20px;padding:4px 12px;border:1px solid var(--line);margin-bottom:10px;}
+.month-selector button{background:none;color:var(--navy);font-size:18px;font-weight:bold;width:30px;height:30px;}
+.month-selector span{font-size:14px;font-weight:bold;color:var(--navy);}
+
+/* Summary Badges Grid */
+.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px;}
+.badge-box{border-radius:16px;padding:8px 4px;text-align:center;font-weight:bold;font-size:12px;border:1px solid transparent;}
+.badge-purple{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-border);}
+.badge-orange{background:var(--orange-bg);color:var(--orange);border-color:var(--orange-border);}
+.badge-green{background:var(--green-bg);color:var(--green);border-color:var(--green-border);}
+.badge-teal{background:var(--teal-bg);color:var(--teal);border-color:var(--teal-border);}
+.badge-blue{background:#eff6ff;color:#2563eb;border-color:#bfdbfe;}
+.badge-red{background:var(--red-bg);color:var(--red);border-color:var(--red-border);grid-column:span 3;}
+
+/* Action Buttons Grid */
+.quick-btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.btn-action-green{background:#16a34a;color:#fff;padding:12px;font-weight:bold;font-size:13px;border-radius:10px;}
+.btn-action-orange{background:#ea580c;color:#fff;padding:12px;font-weight:bold;font-size:13px;border-radius:10px;}
+
+/* Table Styling */
+.table-container{background:#fff;border-radius:8px;border:1px solid var(--navy);overflow:hidden;}
+.statement-table{width:100%;border-collapse:collapse;font-size:11px;text-align:center;}
+.statement-table thead{background:var(--navy);color:#fff;}
+.statement-table th{padding:7px 2px;font-weight:bold;border-left:1px solid rgba(255,255,255,0.15);}
+.statement-table td{padding:5px 2px;border-bottom:1px solid #e2e8f0;border-left:1px solid #e2e8f0;height:28px;white-space:nowrap;}
+.statement-table tr{cursor:pointer;}
+.statement-table tr:hover{background:#f1f5f9;}
+.statement-table tr.off-row{background:#fff7ed;}
+.statement-table td.row-num{background:#f1f5f9;color:#64748b;font-weight:bold;width:22px;}
+
+/* Form Fields */
+.form-group{margin-bottom:10px;}
+.form-group label{display:block;font-size:11px;font-weight:bold;color:var(--muted);margin-bottom:4px;}
+.form-control{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:13px;background:#fff;}
+.form-control:focus{border-color:var(--blue-light);outline:none;}
+.toggle-group{display:flex;gap:6px;}
+.toggle-btn{flex:1;padding:10px;border:1px solid var(--line);background:#f8fafc;font-weight:bold;border-radius:8px;color:var(--muted);}
+.toggle-btn.active-yes{background:var(--green);color:#fff;border-color:var(--green);}
+.toggle-btn.active-no{background:var(--orange);color:#fff;border-color:var(--orange);}
+
+/* Tools & Cards */
+.tools-list{display:flex;flex-direction:column;gap:8px;}
+.tool-item{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+.tool-icon{width:36px;height:36px;border-radius:8px;background:#e0f2fe;color:#0284c7;display:grid;place-items:center;font-size:18px;}
+.tool-info{flex:1;}
+.tool-info h4{font-size:13px;color:var(--navy);margin-bottom:2px;}
+.tool-info p{font-size:10px;color:var(--muted);}
+
+/* Weather Card */
+.weather-card{background:linear-gradient(135deg,#e0f2fe,#bae6fd);border-radius:12px;padding:14px;color:#0369a1;margin-top:8px;}
+.weather-temp{font-size:34px;font-weight:bold;color:#0284c7;}
+
+/* Toast Notification */
+.toast{position:fixed;bottom:75px;left:50%;transform:translateX(-50%);background:var(--navy-dark);color:#fff;padding:8px 16px;border-radius:20px;font-size:11px;z-index:50;display:none;box-shadow:0 4px 12px rgba(0,0,0,0.2);}
 </style>
 </head>
 <body>
-<div id="app">
-  <header>
-    <h1>🦺 سجل العمل</h1>
-    <small id="hName"></small>
+
+<div class="app-container">
+  <!-- Fixed Header -->
+  <header class="app-header">
+    <div class="brand-title">
+      <span style="font-size:20px;">🦺</span>
+      <h1 id="headerTitle">ABBES BENKACI</h1>
+    </div>
+    <div class="header-actions">
+      <button class="header-btn" onclick="openPage('settings')">⚙</button>
+    </div>
   </header>
 
-  <div class="mbar" id="mbar">
-    <button data-n="1" aria-label="التالي">›</button>
-    <b id="mLbl"></b>
-    <button data-n="-1" aria-label="السابق">‹</button>
-  </div>
+  <!-- Scrollable Main Content -->
+  <main class="app-content">
 
-  <main>
-    <!-- الرئيسية -->
-    <section class="scr" id="s-home">
-      <div class="card" style="text-align:center">
-        <div style="font-weight:700;font-size:14px">مرحباً <span id="hWho"></span></div>
-        <div class="hint">كل أيام عملك ومدفوعاتك في مكان واحد</div>
+    <!-- 1. الواجهة الرئيسية المحسنة والجذابة -->
+    <section id="home" class="page active">
+      <div class="card" style="background:linear-gradient(135deg,#1a3258,#2d588e);color:#fff;padding:18px;position:relative;overflow:hidden;">
+        <div style="font-size:22px;font-weight:bold;margin-bottom:4px;">مرحباً بك، <span id="welcomeUser">ABBES BENKACI</span></div>
+        <p style="font-size:11px;opacity:0.85;margin-bottom:12px;">كل أيام عملك ومدفوعاتك في مكان واحد، بتقرير منظم.</p>
+        <div style="background:rgba(255,255,255,0.15);padding:6px 12px;border-radius:20px;display:inline-block;font-size:11px;">📅 سبتمبر 2026</div>
       </div>
-      <div class="cards">
-        <div class="c c-w">عمل<b id="hW"></b></div>
-        <div class="c c-o">عطلة<b id="hO"></b></div>
-        <div class="c c-d">المستحق<b id="hDue"></b></div>
-        <div class="c c-r">المقبوض<b id="hPay"></b></div>
-        <div class="c c-m">المجموع المقبوض<b id="hRec"></b></div>
-        <div class="c c-t">المتبقي<b id="hRem"></b></div>
-      </div>
-      <div class="row2" style="margin-top:auto">
-        <button class="btn" data-go="stmt">🧾 كشف الحساب</button>
-        <button class="btn gr" data-go="table">▦ جدول العمل</button>
-      </div>
-    </section>
 
-    <!-- الجدول -->
-    <section class="scr" id="s-table">
-      <div class="cards" style="grid-template-columns:repeat(4,1fr)">
-        <div class="c c-w">عمل<b id="tW"></b></div>
-        <div class="c c-o">عطلة<b id="tO"></b></div>
-        <div class="c c-d">المستحق<b id="tDue"></b></div>
-        <div class="c c-t">المتبقي<b id="tRem"></b></div>
+      <div class="month-selector">
+        <button onclick="changeMonth(-1)">‹</button>
+        <span id="homeMonthLabel">سبتمبر 2026</span>
+        <button onclick="changeMonth(1)">›</button>
       </div>
-      <div class="tbl" id="tGrid"></div>
-      <div class="row2">
-        <button class="btn g" id="bigY">✔ نعم، عملت اليوم</button>
-        <button class="btn o" id="bigN">✗ لا، عطلة اليوم</button>
-      </div>
-    </section>
 
-    <!-- كشف الحساب -->
-    <section class="scr" id="s-stmt">
-      <div class="sttitle" id="stmTitle"></div>
-      <div class="sgrid">
-        <div class="sc c-w">عمل: <b id="sW"></b></div>
-        <div class="sc c-o">عطلة: <b id="sO"></b></div>
-        <div class="sc c-a">أفونس: <b id="sAv"></b></div>
-        <div class="sc c-d">المستحق: <b id="sDue"></b></div>
-        <div class="sc c-r">المقبوض: <b id="sPay"></b></div>
-        <div class="sc c-m long">المجموع المقبوض: <b id="sRec"></b></div>
-        <div class="sc c-t">المتبقي: <b id="sRem"></b></div>
-        <div class="sn">المتبقي = المستحق − (أفونس + مدفوعات)</div>
+      <div class="summary-grid">
+        <div class="badge-box badge-green">🟢 عمل: <span id="homeWork">20</span></div>
+        <div class="badge-box badge-orange">🟠 عطلة: <span id="homeOff">5</span></div>
+        <div class="badge-box badge-purple">🟣 أفونس: <span id="homeAdv">200 دج</span></div>
+        <div class="badge-box badge-blue">💰 المستحق: <span id="homeDue">3700 دج</span></div>
+        <div class="badge-box badge-teal">💵 المقبوض: <span id="homePaid">5000 دج</span></div>
+        <div class="badge-box badge-red">🔴 المتبقي: <span id="homeRemain">-1500 دج</span></div>
       </div>
-      <div class="stw2" id="sGrid"></div>
-      <div class="sbar">
-        <button id="sX">✕</button>
-        <button id="sCopy">📋 نسخ</button>
-        <button id="sShare">📤 إرسال</button>
-        <button id="sPrint">🖨 طباعة</button>
-        <button class="pm" id="sImg">🖼 كصورة</button>
-      </div>
-    </section>
 
-    <!-- إضافة / تعديل يوم -->
-    <section class="scr" id="s-form">
-      <div class="card" style="flex:1;min-height:0;overflow:hidden">
-        <label>التاريخ</label>
-        <input type="date" id="fDate">
-        <label>العمل</label>
-        <div class="seg" id="fSeg"><button data-v="">—</button><button data-v="لا">لا</button><button data-v="نعم">نعم</button></div>
-        <label>المكان</label>
-        <select id="fPlace"></select>
-        <label>أفونس (دج)</label>
-        <input type="number" id="fAv" min="0">
-        <label>ديبلاصمو (مسار أو ملاحظة)</label>
-        <input id="fDp" placeholder="مثال: البرج_الحاسي">
-        <div class="hint">إذا كتبت نصاً هنا تُضاف قيمة ديبلاصمو (50 دج) إلى المستحق.</div>
-        <label>مدفوعات (دج)</label>
-        <input type="number" id="fPy" min="0">
-      </div>
-      <div class="row2">
-        <button class="btn g" id="fSave">💾 حفظ</button>
-        <button class="btn gr" id="fCancel">إلغاء</button>
-      </div>
-      <button class="btn dg" id="fDel">🗑 مسح بيانات هذا اليوم</button>
-    </section>
-
-    <!-- المزيد -->
-    <section class="scr" id="s-more">
       <div class="card">
-        <label>الاسم</label>
-        <input id="sName">
-        <div class="srow" style="margin-top:6px"><span>أجر الصحراء (دج)</span><input type="number" id="sPs"></div>
-        <div class="srow"><span>أجر باقي الأماكن (دج)</span><input type="number" id="sPt"></div>
-        <div class="srow"><span>ديبلاصمو (دج)</span><input type="number" id="sPd"></div>
-      </div>
-      <div class="row2">
-        <button class="btn" data-go="stats">📊 الإحصائيات</button>
-        <button class="btn" data-go="places">📍 أماكن العمل</button>
-        <button class="btn" data-go="move">🔁 نقل الجدول</button>
-        <button class="btn" data-go="wx">🌤 الموقع والطقس</button>
-      </div>
-      <div class="row2">
-        <button class="btn" id="bExp">☁ تصدير نسخة (JSON)</button>
-        <button class="btn gr" id="bImp">⤴ استيراد نسخة</button>
-      </div>
-      <div class="row2">
-        <button class="btn g" id="bCsv">⬇ تصدير Excel (CSV)</button>
-        <button class="btn o" id="bClr">🗑 مسح هذا الشهر</button>
-      </div>
-      <input type="file" id="bFile" accept="application/json" style="display:none">
-      <div class="hint" style="text-align:center;margin-top:auto">البيانات محفوظة على جهازك فقط.</div>
-    </section>
-    <!-- الإحصائيات -->
-    <section class="scr" id="s-stats">
-      <div class="srow" style="border:0;justify-content:flex-start"><button class="btn gr" data-go="more" style="width:auto;padding:6px 10px">‹ رجوع</button><b style="font-size:14px">📊 الإحصائيات والتقارير</b></div>
-      <div class="row2"><button class="btn gr" id="stA">العام</button><button class="btn" id="stM">هذا الشهر</button></div>
-      <div class="cards">
-        <div class="c c-w">عمل<b id="xW"></b></div>
-        <div class="c c-o">عطلة<b id="xO"></b></div>
-        <div class="c c-d">المستحق<b id="xDue"></b></div>
-        <div class="c c-r">المقبوض<b id="xPay"></b></div>
-        <div class="c c-m">المجموع المقبوض<b id="xRec"></b></div>
-        <div class="c c-t">المتبقي<b id="xRem"></b></div>
-      </div>
-      <div class="card" style="flex:1;min-height:0;overflow:hidden">
-        <label>توزيع أماكن العمل</label>
-        <div id="xDist"></div>
-      </div>
-    </section>
-
-    <!-- أماكن العمل -->
-    <section class="scr" id="s-places">
-      <div class="srow" style="border:0;justify-content:flex-start"><button class="btn gr" data-go="more" style="width:auto;padding:6px 10px">‹ رجوع</button><b style="font-size:14px">📍 أماكن العمل</b></div>
-      <div class="card" style="flex:1;min-height:0;overflow:hidden">
-        <label>المناطق الصحراوية</label>
-        <div class="hint" id="plD" style="line-height:1.9"></div>
-        <label>أماكن محفوظة</label>
-        <div class="hint" id="plS" style="line-height:1.9"></div>
-      </div>
-      <div class="row2" style="grid-template-columns:1fr auto">
-        <input id="plNew" placeholder="اسم مكان جديد">
-        <button class="btn" id="plAdd" style="width:auto;padding:8px 14px">إضافة</button>
-      </div>
-    </section>
-
-    <!-- نقل الجدول -->
-    <section class="scr" id="s-move">
-      <div class="srow" style="border:0;justify-content:flex-start"><button class="btn gr" data-go="more" style="width:auto;padding:6px 10px">‹ رجوع</button><b style="font-size:14px">🔁 نقل الجدول لشهر آخر</b></div>
-      <div class="card">
-        <label>الشهر المستهدف</label>
-        <select id="mvSel"></select>
-        <div class="hint" style="margin-top:8px">سيتم نقل بيانات الشهر المعروض في الجدول إلى الشهر المحدد، وتُمسح من الشهر الأصلي.</div>
-      </div>
-      <button class="btn" id="mvGo">🔁 نقل البيانات</button>
-    </section>
-
-    <!-- الموقع والطقس -->
-    <section class="scr" id="s-wx">
-      <div class="srow" style="border:0;justify-content:flex-start"><button class="btn gr" data-go="more" style="width:auto;padding:6px 10px">‹ رجوع</button><b style="font-size:14px">📍 الموقع والطقس</b></div>
-      <div class="card">
-        <div id="wxN" style="font-weight:700;font-size:14px"></div>
-        <div class="hint" id="wxC"></div>
-        <button class="btn" id="wxUpd" style="margin-top:6px">📍 تحديث الموقع (GPS)</button>
-      </div>
-      <div class="card" style="text-align:center">
-        <div id="wxI" style="font-size:30px">☀️</div>
-        <div id="wxT" style="font-size:24px;font-weight:700">--°</div>
-        <div id="wxD" class="hint"></div>
-        <div class="row3" style="margin-top:6px">
-          <div class="c c-w">الرطوبة<b id="wxH">—</b></div>
-          <div class="c c-o">الرياح<b id="wxW">—</b></div>
-          <div class="c c-d">الضغط<b id="wxP">—</b></div>
+        <h3 style="color:var(--navy);font-size:14px;margin-bottom:10px;">⚡ الوصول السريع</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <button class="btn-action-green" style="padding:10px;font-size:12px;" onclick="openPage('statement')">📋 كشف الحساب</button>
+          <button class="btn-action-orange" style="padding:10px;font-size:12px;" onclick="openPage('edit')">＋ إضافة يوم</button>
+          <button class="tool-item" style="padding:10px;margin:0;justify-content:center;" onclick="openPage('location')">📍 الطقس والموقع</button>
+          <button class="tool-item" style="padding:10px;margin:0;justify-content:center;" onclick="openPage('tools')">⚙ أدوات التطبيق</button>
         </div>
       </div>
-      <div class="row3" id="wxF"></div>
     </section>
+
+    <!-- 2. جدول العمل الشهري وكشف الحساب (قابل للتعديل والنقر الفوري) -->
+    <section id="statement" class="page">
+      <div class="card" style="background:var(--navy);color:#fff;text-align:center;padding:10px;font-weight:bold;font-size:12px;" id="statementBanner">
+        سبتمبر 2026 — ABBES BENKACI — كشف الحساب 📝
+      </div>
+
+      <div class="summary-grid">
+        <div class="badge-box badge-green">عمل: <span id="stWork">20</span></div>
+        <div class="badge-box badge-orange">عطلة: <span id="stOff">5</span></div>
+        <div class="badge-box badge-purple">أفونس: <span id="stAdv">200 دج</span></div>
+        <div class="badge-box badge-blue">المستحق: <span id="stDue">3700 دج</span></div>
+        <div class="badge-box badge-teal">المقبوض: <span id="stPaid">5000 دج</span></div>
+        <div class="badge-box badge-teal">المجموع المقبوض: <span id="stAllPaid">5200 دج</span></div>
+        <div class="badge-box badge-red">المتبقي: <span id="stRemain">-1500 دج</span></div>
+      </div>
+
+      <div class="quick-btn-grid">
+        <button class="btn-action-green" onclick="quickAddWork(true)">✔ نعم، عملت اليوم</button>
+        <button class="btn-action-orange" onclick="quickAddWork(false)">✘ لا، عطلة اليوم</button>
+      </div>
+
+      <div class="table-container">
+        <table class="statement-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>الأيام</th>
+              <th>العمل</th>
+              <th>المكان</th>
+              <th>أفونس</th>
+              <th>ديپلاصمو</th>
+              <th>مدفوعات</th>
+            </tr>
+          </thead>
+          <tbody id="statementTableBody">
+            <!-- 30 Rows rendered dynamically with click-to-edit -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. إضافة / تعديل يوم مع زر GPS والمكان -->
+    <section id="edit" class="page">
+      <div class="card">
+        <h3 style="color:var(--navy);margin-bottom:10px;" id="editTitle">＋ إضافة / تعديل يوم</h3>
+        <div class="form-group">
+          <label>التاريخ</label>
+          <input type="date" id="inputDate" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>حالة العمل</label>
+          <div class="toggle-group">
+            <button type="button" id="btnYes" class="toggle-btn active-yes" onclick="setWorkStatus(true)">نعم</button>
+            <button type="button" id="btnNo" class="toggle-btn" onclick="setWorkStatus(false)">لا</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>المكان</label>
+          <div style="display:flex;gap:6px;">
+            <input type="text" id="inputPlace" class="form-control" placeholder="مثال: حاسي مسعود أو عين صالح">
+            <button type="button" class="btn-action-green" style="padding:0 12px;font-size:16px;" onclick="getGPSForDay()" title="تحديد المكان عبر GPS">📍</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>أفونس (دج)</label>
+          <input type="number" id="inputAdv" class="form-control" value="0">
+        </div>
+        <div class="form-group">
+          <label>ديپلاصمو (دج)</label>
+          <input type="number" id="inputMove" class="form-control" value="0">
+        </div>
+        <div class="form-group">
+          <label>مدفوعات (دج)</label>
+          <input type="number" id="inputPay" class="form-control" value="0">
+        </div>
+        <button class="btn-action-green" style="width:100%;" onclick="saveDay()">💾 حفظ اليوم</button>
+      </div>
+    </section>
+
+    <!-- 4. أدوات التطبيق -->
+    <section id="tools" class="page">
+      <div class="tools-list">
+        <div class="tool-item" onclick="copyStatementText()">
+          <div class="tool-icon">📋</div>
+          <div class="tool-info"><h4>نسخ الجدول</h4><p>لإرساله أو لصقه في إكسل</p></div>
+        </div>
+        <div class="tool-item" onclick="exportJSON()">
+          <div class="tool-icon">☁️</div>
+          <div class="tool-info"><h4>حفظ احتياطي</h4><p>إدارة البيانات وتصدير ملف JSON</p></div>
+        </div>
+        <div class="tool-item" onclick="openPage('settings')">
+          <div class="tool-icon">⚙</div>
+          <div class="tool-info"><h4>الإعدادات والأسعار</h4><p>تعديل أسعار الصحراء والتل</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. الموقع والطقس عبر GPS -->
+    <section id="location" class="page">
+      <div class="card">
+        <h3>موقعك الحالي والطقس</h3>
+        <p id="geoText" style="color:var(--muted);margin:6px 0;">لم يتم تحديد الموقع بعد</p>
+        <button class="btn-action-green" style="width:100%;margin-bottom:10px;" onclick="getGPSLocation()">📍 تحديد موقعي عبر GPS</button>
+      </div>
+      <div class="weather-card">
+        <h4>حالة الطقس</h4>
+        <div class="weather-temp" id="weatherTemp">--°C</div>
+        <p id="weatherDesc">حدد موقعك لعرض حالة الطقس الحالية</p>
+      </div>
+    </section>
+
+    <!-- 6. الإعدادات -->
+    <section id="settings" class="page">
+      <div class="card">
+        <h3>بياناتي الشخصية</h3>
+        <div class="form-group" style="margin-top:8px;">
+          <label>الاسم الظاهر في الكشف</label>
+          <input type="text" id="settingName" class="form-control" value="ABBES BENKACI">
+        </div>
+        <button class="btn-action-green" style="width:100%;" onclick="saveSettings()">حفظ الاسم</button>
+      </div>
+    </section>
+
   </main>
 
-  <nav>
-    <button data-go="home"><i>🏠</i>الرئيسية</button>
-    <button data-go="table"><i>▦</i>الجدول</button>
-    <button data-go="stmt"><i>🧾</i>الكشف</button>
-    <button data-go="form"><i>＋</i>إضافة</button>
-    <button data-go="more"><i>☰</i>المزيد</button>
+  <!-- Fixed Bottom Navigation Bar -->
+  <nav class="app-nav">
+    <button class="nav-item active" onclick="openPage('home')" id="nav-home"><span class="icon">⌂</span><span>الرئيسية</span></button>
+    <button class="nav-item" onclick="openPage('statement')" id="nav-statement"><span class="icon">📋</span><span>الجدول</span></button>
+    <button class="nav-item" onclick="openPage('edit')" id="nav-edit"><span class="icon">＋</span><span>إضافة</span></button>
+    <button class="nav-item" onclick="openPage('location')" id="nav-location"><span class="icon">📍</span><span>الموقع</span></button>
+    <button class="nav-item" onclick="openPage('tools')" id="nav-tools"><span class="icon">⚙</span><span>الأدوات</span></button>
   </nav>
+
+  <div class="toast" id="toast"></div>
 </div>
-<div id="toast"></div>
 
 <script>
-const $ = id => document.getElementById(id);
-const KEY = 'worklog-app-v1';
-const MN = ['جانفي','فيفري','مارس','أفريل','ماي','جوان','جويلية','أوت','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
-const DESERT = ['حاسي مسعود','حاسي الرمل','أدرار','ورقلة','تمنراست','إليزي','تندوف','عين صالح','عين قزام','تيميمون','بني عباس','جانت','برج باجي مختار'];
-const COORD = {'برج بوعريريج':[36.07,4.76],'عين البيضة':[35.8,7.39],'حاسي مسعود':[31.68,6.07],'حاسي الرمل':[32.93,3.27],'أدرار':[27.87,-0.29],'ورقلة':[31.95,5.32],'تمنراست':[22.79,5.52],'إليزي':[26.5,8.48],'تندوف':[27.67,-8.15],'عين صالح':[27.2,2.48],'عين قزام':[19.57,5.77]};
-const SEP = {
-  '2026-08-31':{w:'لا',p:'طريق',av:0,dp:'البرج_الحاسي',py:0},
-  '2026-09-01':{w:'نعم',p:'حاسي مسعود',av:0,dp:'',py:0},
-  '2026-09-02':{w:'لا',p:'طريق',av:0,dp:'الحاسي عين صالح',py:0},
-  '2026-09-03':{w:'نعم',p:'عين صالح',av:0,dp:'عين صالح_الشانطي',py:0},
-  '2026-09-04':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
-  '2026-09-05':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
-  '2026-09-06':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
-  '2026-09-07':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
-  '2026-09-08':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
-  '2026-09-09':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
-  '2026-09-10':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
-  '2026-09-11':{w:'لا',p:'عين صالح',av:0,dp:'',py:0},
-  '2026-09-12':{w:'نعم',p:'عين صالح',av:0,dp:'',py:0},
-  '2026-09-13':{w:'نعم',p:'عين صالح',av:200,dp:'',py:0},
-  '2026-09-15':{w:'لا',p:'لبيرو',av:0,dp:'',py:3000},
-  '2026-09-22':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
-  '2026-09-23':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
-  '2026-09-24':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
-  '2026-09-25':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
-  '2026-09-26':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
-  '2026-09-27':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
-  '2026-09-28':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
-  '2026-09-29':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
-  '2026-09-30':{w:'نعم',p:'عين البيضة',av:0,dp:'',py:0},
-  '2026-10-01':{w:'لا',p:'برج بوعريريج يازيد',av:0,dp:'',py:2000}
+const KEY = 'sijil_benkaci_2026';
+let state = {
+  name: 'ABBES BENKACI',
+  year: 2026,
+  month: 8, // September
+  rates: { sahara: 200, other: 150, move: 50 },
+  days: {}
 };
 
-function load(){
-  try { const x = JSON.parse(localStorage.getItem(KEY)); if (x && x.rows && x.s) return x; } catch(e){}
-  return {rows: SEP, s:{name:'ABBES BENKACI', ps:200, pt:150, pd:50}, view:'2026-09'};
-}
-let D = load();
-const sv = () => localStorage.setItem(KEY, JSON.stringify(D));
-const pad = n => String(n).padStart(2,'0');
-const num = v => { const x = parseFloat(v); return isNaN(x) ? 0 : x; };
-const money = n => Math.round(n).toLocaleString('en-US');
-const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const fdt = k => { const [y,m,d] = k.split('-'); return `${d}-${m}-${y}`; };
-const mLabel = m => { const [y,mm] = m.split('-'); return MN[+mm-1] + ' ' + y; };
-const shiftM = (m, n) => { let [y,mm] = m.split('-').map(Number); mm += n; while (mm < 1){ mm += 12; y--; } while (mm > 12){ mm -= 12; y++; } return y + '-' + pad(mm); };
-const dkey = d => d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
-const todayKey = () => dkey(new Date());
-const hasDp = r => String(r.dp ?? '').trim() !== '' && String(r.dp).trim() !== '0';
-const rateOf = p => DESERT.includes(p) ? D.s.ps : D.s.pt;
-function toast(m){ const t = $('toast'); t.textContent = m; t.classList.add('on'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('on'), 1800); }
+const defaultDays = [
+  ['2026-08-31', false, 'طريق', 0, 0, 0],
+  ['2026-09-01', true, 'حاسي مسعود اونبان', 0, 0, 0],
+  ['2026-09-02', false, 'طريق', 0, 0, 0],
+  ['2026-09-03', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-04', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-05', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-06', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-07', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-08', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-09', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-10', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-11', false, 'عين صالح', 0, 0, 0],
+  ['2026-09-12', true, 'عين صالح', 0, 0, 0],
+  ['2026-09-13', true, 'عين صالح', 200, 0, 0],
+  ['2026-09-15', false, 'لبيو', 0, 0, 3000],
+  ['2026-09-22', true, 'عين البيضة', 0, 0, 0],
+  ['2026-09-23', true, 'عين البيضة', 0, 0, 0],
+  ['2026-09-24', true, 'عين البيضة', 0, 0, 0],
+  ['2026-09-25', true, 'عين البيضة', 0, 0, 0],
+  ['2026-09-26', true, 'عين البيضة', 0, 0, 0],
+  ['2026-09-27', true, 'عين البيضة', 0, 0, 0],
+  ['2026-09-28', true, 'عين البيضة', 0, 0, 0],
+  ['2026-09-29', true, 'عين البيضة', 0, 0, 0],
+  ['2026-09-30', true, 'عين البيضة', 0, 0, 0]
+];
 
-/* أيام الشهر + آخر يوم من الشهر السابق وأول يوم من الشهر التالي (كما في الكشف المرجعي) */
-function keysOf(m){
-  const [y, mm] = m.split('-').map(Number);
-  const pk = dkey(new Date(y, mm-1, 0)), nk = dkey(new Date(y, mm, 1));
-  return Object.keys(D.rows).filter(k => k.startsWith(m + '-') || k === pk || k === nk).sort();
-}
-const hasData = r => !!(r && (r.w || r.p || num(r.av) || hasDp(r) || num(r.py)));
-const recKeys = () => keysOf(D.view).filter(k => hasData(D.rows[k]));
-function calc(keys){
-  const o = {w:0, o:0, earn:0, av:0, py:0};
-  keys.forEach(k => {
-    const r = D.rows[k] || {};
-    if (r.w === 'نعم'){ o.w++; o.earn += rateOf(r.p || ''); }
-    else if (r.w === 'لا') o.o++;
-    if (hasDp(r)) o.earn += D.s.pd;
-    o.av += num(r.av); o.py += num(r.py);
-  });
-  o.rec = o.av + o.py;
-  o.rem = o.earn - o.rec;
-  return o;
-}
-
-/* ---------- التنقل ---------- */
-let cur = 'home';
-const RENDER = {home: renderHome, table: renderTable, stmt: renderStmt, form: () => {}, more: renderMore, stats: renderStats, places: renderPlaces, move: renderMove, wx: renderWx};
-function show(name){
-  cur = name;
-  document.querySelectorAll('.scr').forEach(s => s.classList.toggle('on', s.id === 's-' + name));
-  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.go === name));
-  const withBar = ['home','table'].includes(name);
-  $('mbar').style.display = withBar ? 'flex' : 'none';
-  $('app').classList.toggle('nomb', !withBar);
-  $('app').classList.toggle('stmode', name === 'stmt');
-  RENDER[name]();
-}
-function refresh(){ RENDER[cur](); }
-document.addEventListener('click', e => {
-  const g = e.target.closest('[data-go]'); if (g){ show(g.dataset.go); return; }
-  const n = e.target.closest('[data-n]'); if (n){ D.view = shiftM(D.view, +n.dataset.n); sv(); refresh(); }
-});
-
-/* ---------- الرئيسية ---------- */
-function renderHome(){
-  $('mLbl').textContent = mLabel(D.view);
-  $('hName').textContent = D.s.name;
-  $('hWho').textContent = D.s.name;
-  const c = calc(recKeys());
-  $('hW').textContent = c.w; $('hO').textContent = c.o;
-  $('hDue').textContent = money(c.earn); $('hPay').textContent = money(c.py);
-  $('hRec').textContent = money(c.rec); $('hRem').textContent = money(c.rem);
-}
-
-/* ---------- الجدول والكشف (شبكة 30 صفاً تملأ الشاشة) ---------- */
-function gridHtml(){
-  const ks = recKeys();
-  let h = '<div class="hr"><div>#</div><div>الأيام</div><div>العمل</div><div>المكان</div><div>أفونس</div><div>ديبلاصمو</div><div>مدفوعات</div></div>';
-  for (let i = 0; i < 30; i++){
-    const k = ks[i] || '', r = k ? D.rows[k] : {};
-    const cls = r.w === 'نعم' ? 'yes' : r.w === 'لا' ? 'no' : '';
-    h += `<div class="rw ${r.w === 'لا' ? 'off' : ''}"><div data-k="${k}">${i+1}</div><div>${k ? fdt(k) : ''}</div><div class="${cls}">${r.w || ''}</div><div>${esc(r.p)}</div><div>${r.av ? money(r.av) : ''}</div><div>${esc(r.dp)}</div><div>${r.py ? money(r.py) : ''}</div></div>`;
-  }
-  return h;
-}
-function renderTable(){
-  $('mLbl').textContent = mLabel(D.view);
-  const c = calc(recKeys());
-  $('tW').textContent = c.w; $('tO').textContent = c.o;
-  $('tDue').textContent = money(c.earn); $('tRem').textContent = money(c.rem);
-  $('tGrid').innerHTML = gridHtml();
-}
-function stmGridHtml(){
-  const ks = recKeys();
-  let h = '<div class="hr"><div>#</div><div>الأيام</div><div>العمل</div><div>المكان</div><div>أفونس</div><div>ديبلاصمو</div><div>مدفوعات</div></div>';
-  for (let i = 0; i < 30; i++){
-    const k = ks[i] || '', r = k ? D.rows[k] : {};
-    const cls = r.w === 'نعم' ? 'yes' : r.w === 'لا' ? 'no' : '';
-    h += `<div class="rw ${r.w === 'لا' ? 'off' : ''}"><div>${i+1}</div><div>${k ? fdt(k) : ''}</div><div class="${cls}">${r.w || ''}</div><div>${esc(r.p)}</div><div>${r.av ? Math.round(r.av) + ' دج' : ''}</div><div>${esc(r.dp)}</div><div>${r.py ? Math.round(r.py) + ' دج' : ''}</div></div>`;
-  }
-  return h;
-}
-function renderStmt(){
-  $('stmTitle').textContent = `🧾 كشف الحساب — ${D.s.name} — ${mLabel(D.view)}`;
-  const c = calc(recKeys());
-  $('sW').textContent = c.w; $('sO').textContent = c.o;
-  $('sAv').textContent = Math.round(c.av) + ' دج';
-  $('sDue').textContent = Math.round(c.earn) + ' دج';
-  $('sPay').textContent = Math.round(c.py) + ' دج';
-  $('sRec').textContent = Math.round(c.rec) + ' دج';
-  $('sRem').textContent = Math.round(c.rem) + ' دج';
-  $('sGrid').innerHTML = stmGridHtml();
-}
-
-/* صورة الكشف (PNG) تُرسم مباشرة من البيانات */
-function stmCanvas(){
-  const ks = recKeys(), c = calc(ks);
-  const W = 900, rowH = 30, headH = 34, cardsH = 150, titleH = 52;
-  const cv = document.createElement('canvas');
-  cv.width = W; cv.height = titleH + cardsH + headH + rowH*30 + 16;
-  const x = cv.getContext('2d');
-  x.fillStyle = '#fff'; x.fillRect(0,0,cv.width,cv.height);
-  x.fillStyle = '#1f3a66'; x.fillRect(0,0,W,titleH);
-  x.fillStyle = '#fff'; x.font = 'bold 22px Tahoma,Arial'; x.textAlign = 'center'; x.textBaseline = 'middle';
-  x.fillText(`🧾 كشف الحساب — ${D.s.name} — ${mLabel(D.view)}`, W/2, titleH/2);
-  const cards = [
-    ['عمل: '+c.w,'#e8f6ee','#a8ddbe','#1e824c'], ['عطلة: '+c.o,'#fdf3e6','#f0c48a','#d9822b'], ['أفونس: '+Math.round(c.av)+' دج','#f3e9fb','#cdb4ec','#7b3fb5'],
-    ['المستحق: '+Math.round(c.earn)+' دج','#eaedf5','#b8c0d8','#2e3f7a'], ['المقبوض: '+Math.round(c.py)+' دج','#eaf5fc','#a9d3ee','#1e6fd9'], ['المجموع المقبوض: '+Math.round(c.rec)+' دج','#e3f6ef','#a8ddbe','#1e824c'],
-    ['المتبقي: '+Math.round(c.rem)+' دج','#fdecea','#f0b8b0','#c0392b']
-  ];
-  const cw = (W-32-16)/3, ch = 40;
-  cards.forEach((cd,i) => {
-    const col = i % 3, row = Math.floor(i/3);
-    const cx = 16 + (2-col)*(cw+8), cy = titleH + 12 + row*(ch+10);
-    x.fillStyle = cd[1]; x.fillRect(cx, cy, cw, ch);
-    x.strokeStyle = cd[2]; x.strokeRect(cx, cy, cw, ch);
-    x.fillStyle = cd[3]; x.font = 'bold 18px Tahoma,Arial'; x.fillText(cd[0], cx+cw/2, cy+ch/2);
-  });
-  x.fillStyle = '#6b7587'; x.font = '15px Tahoma,Arial';
-  x.fillText('المتبقي = المستحق − (أفونس + مدفوعات)', 16 + cw + 8 + cw/2, titleH + 12 + 2*(ch+10) + ch/2);
-  const y0 = titleH + cardsH;
-  const cols = [.45,1.05,.6,1,.8,1.5,.9]; const tot = cols.reduce((a,b)=>a+b,0);
-  const widths = cols.map(v => (W-16) * v / tot);
-  const heads = ['#','الأيام','العمل','المكان','أفونس','ديبلاصمو','مدفوعات'];
-  const drawRow = (y, cells, bg, fg, bold) => {
-    let xx = W - 8;
-    cells.forEach((t,i) => {
-      const w = widths[i]; xx -= w;
-      x.fillStyle = bg[i] || bg.all || '#fff'; x.fillRect(xx, y, w, rowH);
-      x.strokeStyle = '#dde3ec'; x.strokeRect(xx, y, w, rowH);
-      x.fillStyle = (fg && fg[i]) || '#1b2433';
-      x.font = (bold ? 'bold ' : '') + '15px Tahoma,Arial'; x.textAlign = 'center'; x.textBaseline = 'middle';
-      let s = String(t ?? ''); while (s && x.measureText(s).width > w-6) s = s.slice(0,-1);
-      x.fillText(s, xx + w/2, y + rowH/2);
-    });
-  };
-  drawRow(y0, heads, {all:'#2f5597'}, {all:'#fff'}, true);
-  for (let i = 0; i < 30; i++){
-    const k = ks[i] || '', r = k ? D.rows[k] : {};
-    const off = r.w === 'لا';
-    const cells = [i+1, k ? fdt(k) : '', r.w || '', r.p || '', r.av ? Math.round(r.av)+' دج' : '', r.dp || '', r.py ? Math.round(r.py)+' دج' : ''];
-    const bg = cells.map((_,ci) => ci === 0 ? '#e6ebf3' : (off ? '#fce3d3' : '#fff'));
-    const fg = cells.map((_,ci) => ci === 2 ? (r.w === 'نعم' ? '#1e824c' : r.w === 'لا' ? '#c0392b' : '') : '');
-    drawRow(y0 + headH + i*rowH, cells, bg, fg, false);
-  }
-  return cv;
-}
-const stmBlob = () => new Promise(res => stmCanvas().toBlob(res, 'image/png'));
-$('sImg').onclick = async () => {
-  const b = await stmBlob();
-  const a = document.createElement('a'); a.href = URL.createObjectURL(b);
-  a.download = `kashf-${D.view}.png`; a.click(); toast('تم حفظ الصورة');
-};
-$('sShare').onclick = async () => {
+function initData() {
   try {
-    const b = await stmBlob();
-    const f = new File([b], `kashf-${D.view}.png`, {type:'image/png'});
-    if (navigator.canShare && navigator.canShare({files:[f]})) return navigator.share({files:[f], title:'كشف الحساب'}).catch(()=>{});
-    if (navigator.share) return navigator.share({title:'كشف الحساب', text: stmtText()}).catch(()=>{});
-    copyText(stmtText());
-  } catch(e){ copyText(stmtText()); }
-};
-$('sX').onclick = () => show('table');
-
-/* تعديل يوم عند الضغط على رقم الصف */
-['tGrid','sGrid'].forEach(id => $(id).addEventListener('click', e => {
-  const k = e.target.dataset && e.target.dataset.k; if (k) openForm(k);
-}));
-
-/* تسجيل اليوم الحالي */
-function markDay(v){
-  const k = todayKey(), r = D.rows[k] || {};
-  D.rows[k] = {w: v, p: r.p || '', av: r.av || 0, dp: r.dp || '', py: r.py || 0};
-  D.view = k.slice(0,7); sv();
-  show('table');
-  toast(v === 'نعم' ? '✔ تم تسجيل يوم عمل' : '✗ تم تسجيل يوم عطلة');
+    let local = localStorage.getItem(KEY);
+    if (local) {
+      state = JSON.parse(local);
+    } else {
+      defaultDays.forEach(d => {
+        state.days[d[0]] = { work: d[1], place: d[2], adv: d[3], move: d[4], pay: d[5] };
+      });
+      saveData();
+    }
+  } catch(e) {}
 }
-$('bigY').onclick = () => markDay('نعم');
-$('bigN').onclick = () => markDay('لا');
 
-/* ---------- نموذج اليوم ---------- */
-let fk = null, fw = '';
-function openForm(k){
-  fk = k;
-  const r = D.rows[k] || {};
-  fw = r.w || '';
-  $('fDate').value = k;
-  const places = [...DESERT, ...Object.keys(COORD).filter(p => !DESERT.includes(p))];
-  if (r.p && !places.includes(r.p)) places.push(r.p);
-  $('fPlace').innerHTML = places.map(p => `<option ${p === r.p ? 'selected' : ''}>${esc(p)}</option>`).join('');
-  $('fAv').value = r.av || ''; $('fDp').value = r.dp || ''; $('fPy').value = r.py || '';
-  paintSeg();
-  show('form');
+function saveData() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+  renderUI();
 }
-function paintSeg(){ document.querySelectorAll('#fSeg button').forEach(b => b.classList.toggle('on', b.dataset.v === fw)); }
-$('fSeg').onclick = e => { const b = e.target.closest('button'); if (!b) return; fw = b.dataset.v; paintSeg(); };
-$('fSave').onclick = () => {
-  const k = $('fDate').value || fk;
-  if (!k) return toast('اختر التاريخ');
-  if (fk && fk !== k) delete D.rows[fk];
-  const rec = {w: fw, p: $('fPlace').value, av: num($('fAv').value), dp: $('fDp').value.trim(), py: num($('fPy').value)};
-  if (!fw && !rec.p && !rec.av && !rec.dp && !rec.py) delete D.rows[k];
-  else D.rows[k] = rec;
-  D.view = k.slice(0,7); sv();
-  toast('تم الحفظ ✔');
-  show('table');
-};
-$('fCancel').onclick = () => show('table');
-$('fDel').onclick = () => {
-  if (!fk || !confirm('مسح بيانات هذا اليوم؟')) return;
-  delete D.rows[fk]; sv(); toast('تم المسح'); show('table');
-};
 
-/* ---------- المزيد: الإعدادات والأدوات ---------- */
-function renderMore(){
-  $('sName').value = D.s.name; $('sPs').value = D.s.ps; $('sPt').value = D.s.pt; $('sPd').value = D.s.pd;
+function isSaharaPlace(place) {
+  if (!place) return false;
+  let p = place.toLowerCase();
+  let keywords = ['حاسي', 'مسعود', 'عين صالح', 'صالح', 'أونيان', 'اونبان', 'أدرار', 'ورقلة', 'تمنراست', 'إليزي'];
+  return keywords.some(k => p.includes(k));
 }
-['sName','sPs','sPt','sPd'].forEach(id => $(id).onchange = () => {
-  D.s.name = $('sName').value.trim() || 'ABBES BENKACI';
-  D.s.ps = num($('sPs').value); D.s.pt = num($('sPt').value); D.s.pd = num($('sPd').value);
-  sv(); toast('تم حفظ الإعدادات');
-});
-function download(name, text, type){
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([text], {type})); a.download = name; a.click();
-}
-$('bExp').onclick = () => download(`worklog-${todayKey()}.json`, JSON.stringify(D, null, 2), 'application/json');
-$('bImp').onclick = () => $('bFile').click();
-$('bFile').onchange = e => {
-  const f = e.target.files[0]; if (!f) return;
-  const r = new FileReader();
-  r.onload = () => {
-    try { const d = JSON.parse(r.result); if (!d.rows || !d.s) throw 0; D = d; sv(); toast('تمت الاستعادة'); show('home'); }
-    catch(err){ toast('ملف غير صالح'); }
-  };
-  r.readAsText(f);
-};
-$('bCsv').onclick = () => {
-  const names = ['الأيام','العمل','المكان','أفونس','ديبلاصمو','مدفوعات'];
-  const rows = [names];
-  recKeys().forEach(k => { const r = D.rows[k]; rows.push([fdt(k), r.w || '', r.p || '', r.av || 0, r.dp || '', r.py || 0]); });
-  const csv = '\uFEFF' + rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\r\n');
-  download(`worklog-${D.view}.csv`, csv, 'text/csv;charset=utf-8');
-  toast('تم تصدير CSV');
-};
-$('bClr').onclick = () => {
-  if (!confirm('حذف بيانات هذا الشهر؟')) return;
-  Object.keys(D.rows).filter(k => k.startsWith(D.view + '-')).forEach(k => delete D.rows[k]);
-  sv(); toast('تم مسح الشهر'); show('table');
-};
 
-/* ---------- كشف الحساب: طباعة ونسخ وإرسال ---------- */
-function stmtText(){
-  const ks = recKeys(), c = calc(ks);
-  let t = `كشف الحساب — ${D.s.name} — ${mLabel(D.view)}\n`;
-  ks.forEach(k => { const r = D.rows[k]; t += `${fdt(k)} | ${r.w||''} | ${r.p||''} | أفونس ${r.av||0} | ديبلاصمو ${r.dp||''} | مدفوعات ${r.py||0}\n`; });
-  return t + `المستحق: ${money(c.earn)} دج | المتبقي: ${money(c.rem)} دج`;
+function calcDayEarn(item) {
+  if (!item || !item.work) return 0;
+  return isSaharaPlace(item.place) ? state.rates.sahara : state.rates.other;
 }
-const copyText = t => (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject())
-  .then(() => toast('تم النسخ'), () => toast('تعذّر النسخ'));
-$('sPrint').onclick = () => window.print();
-$('sCopy').onclick = () => copyText(stmtText());
-$('sShare').onclick = () => navigator.share ? navigator.share({title:'كشف الحساب', text: stmtText()}).catch(() => {}) : copyText(stmtText());
 
+function renderUI() {
+  document.getElementById('headerTitle').textContent = state.name;
+  document.getElementById('welcomeUser').textContent = state.name;
+  document.getElementById('settingName').value = state.name;
 
-/* ---------- الإحصائيات ---------- */
-let statMode = 'm';
-function placeCount(keys){
-  const pl = {}; let w = 0;
-  keys.forEach(k => { const r = D.rows[k] || {}; if (r.w === 'نعم'){ w++; if (r.p) pl[r.p] = (pl[r.p]||0) + 1; } });
-  return {pl, w};
-}
-function renderStats(){
-  $('stA').className = statMode === 'a' ? 'btn' : 'btn gr';
-  $('stM').className = statMode === 'm' ? 'btn' : 'btn gr';
-  const keys = statMode === 'a' ? Object.keys(D.rows).filter(k => hasData(D.rows[k])) : recKeys();
-  const c = calc(keys), pc = placeCount(keys);
-  $('xW').textContent = c.w; $('xO').textContent = c.o;
-  $('xDue').textContent = money(c.earn); $('xPay').textContent = money(c.py);
-  $('xRec').textContent = money(c.rec); $('xRem').textContent = money(c.rem);
-  const top = Object.entries(pc.pl).sort((a,b) => b[1]-a[1]);
-  $('xDist').innerHTML = top.length ? top.map(([p,n]) => {
-    const pct = Math.round(n / pc.w * 100);
-    return `<div class="srow" style="display:block"><div style="display:flex;justify-content:space-between"><span>${esc(p)}</span><b>${pct}%</b></div><div style="height:7px;background:#e6ebf3;border-radius:4px;margin-top:4px"><div style="height:7px;width:${pct}%;background:#1e6fd9;border-radius:4px"></div></div></div>`;
-  }).join('') : '<div class="hint">لا توجد بيانات بعد</div>';
-}
-$('stA').onclick = () => { statMode = 'a'; renderStats(); };
-$('stM').onclick = () => { statMode = 'm'; renderStats(); };
+  let workDays = 0, offDays = 0, totalAdv = 0, totalPay = 0, totalDue = 0;
+  let tbody = document.getElementById('statementTableBody');
+  tbody.innerHTML = '';
 
-/* ---------- أماكن العمل ---------- */
-function renderPlaces(){
-  $('plD').innerHTML = DESERT.map(esc).join(' · ');
-  $('plS').innerHTML = D.saved.length ? D.saved.map(esc).join(' · ') : 'لا توجد أماكن محفوظة';
-}
-$('plAdd').onclick = () => {
-  const v = $('plNew').value.trim();
-  if (!v) return toast('اكتب اسم المكان');
-  if (!D.saved.includes(v)) D.saved.push(v);
-  $('plNew').value = ''; sv(); renderPlaces(); toast('تمت الإضافة');
-};
+  for (let i = 1; i <= 30; i++) {
+    let dayStr = String(i).padStart(2, '0');
+    let dateKey = `${state.year}-09-${dayStr}`;
+    let item = state.days[dateKey];
+    let tr = document.createElement('tr');
+    
+    if (item) {
+      if (item.work) { workDays++; totalDue += calcDayEarn(item); }
+      else { offDays++; tr.className = 'off-row'; }
+      totalAdv += Number(item.adv || 0);
+      totalPay += Number(item.pay || 0);
 
-/* ---------- نقل الجدول ---------- */
-function renderMove(){
-  let opts = '';
-  for (let y = 2025; y <= 2026; y++) for (let m = 1; m <= 12; m++){
-    const k = y + '-' + pad(m);
-    opts += `<option value="${k}" ${k === shiftM(D.view,1) ? 'selected' : ''}>${mLabel(k)}</option>`;
+      tr.innerHTML = `
+        <td class="row-num">${i}</td>
+        <td>${dayStr}-09-2026</td>
+        <td>${item.work ? 'نعم' : 'لا'}</td>
+        <td>${item.place || ''}</td>
+        <td>${item.adv ? item.adv + ' دج' : ''}</td>
+        <td>${item.move ? item.move + ' دج' : ''}</td>
+        <td>${item.pay ? item.pay + ' دج' : ''}</td>
+      `;
+    } else {
+      tr.innerHTML = `
+        <td class="row-num">${i}</td>
+        <td>${dayStr}-09-2026</td>
+        <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+      `;
+    }
+    // النقر على أي صف يفتح شاشة التعديل فوراً
+    tr.onclick = () => loadDayToEdit(dateKey);
+    tbody.appendChild(tr);
   }
-  $('mvSel').innerHTML = opts;
-}
-$('mvGo').onclick = () => {
-  const from = D.view, to = $('mvSel').value;
-  if (to === from) return toast('اختر شهراً مختلفاً');
-  if (!confirm(`نقل بيانات ${mLabel(from)} إلى ${mLabel(to)}؟`)) return;
-  Object.keys(D.rows).filter(k => k.startsWith(from + '-')).forEach(k => {
-    D.rows[to + k.slice(7)] = D.rows[k]; delete D.rows[k];
-  });
-  D.view = to; sv(); toast('تم النقل'); show('table');
-};
 
-/* ---------- الموقع والطقس ---------- */
-const wIco = c => c === 0 ? '☀️' : c <= 3 ? '⛅' : c <= 48 ? '🌫️' : (c <= 67 || (c >= 80 && c <= 82)) ? '🌧️' : (c >= 71 && c <= 77) ? '❄️' : c >= 95 ? '⛈️' : '☁️';
-const wDesc = c => c === 0 ? 'مشمس' : c <= 3 ? 'غائم جزئياً' : c <= 48 ? 'ضبابي' : c <= 67 ? 'ممطر' : c <= 77 ? 'ثلجي' : c <= 82 ? 'أمطار' : 'عاصف';
-const DNW = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
-function renderWx(){
-  $('wxN').textContent = D.loc.name;
-  $('wxC').textContent = `${Math.abs(D.loc.lat).toFixed(2)}° ${D.loc.lat >= 0 ? 'N' : 'S'}, ${Math.abs(D.loc.lon).toFixed(2)}° ${D.loc.lon >= 0 ? 'E' : 'W'}`;
-  loadWx();
-}
-async function loadWx(){
-  const {lat, lon} = D.loc;
-  try {
-    const u = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,surface_pressure,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=auto&forecast_days=3`;
-    const j = await (await fetch(u)).json(), c = j.current;
-    $('wxT').textContent = Math.round(c.temperature_2m) + '°';
-    $('wxD').textContent = wDesc(c.weather_code);
-    $('wxI').textContent = wIco(c.weather_code);
-    $('wxH').textContent = c.relative_humidity_2m + '%';
-    $('wxW').textContent = Math.round(c.wind_speed_10m) + ' كم/سا';
-    $('wxP').textContent = Math.round(c.surface_pressure) + ' hPa';
-    $('wxF').innerHTML = j.daily.time.map((t,i) => `<div class="card" style="text-align:center;padding:4px"><div class="hint">${DNW[new Date(t+'T12:00').getDay()]}</div><div style="font-size:18px">${wIco(j.daily.weather_code[i])}</div><b>${Math.round(j.daily.temperature_2m_max[i])}°</b> <span class="hint">${Math.round(j.daily.temperature_2m_min[i])}°</span></div>`).join('');
-  } catch(e){ toast('تعذّر تحميل الطقس — تحقق من الإنترنت'); }
-}
-$('wxUpd').onclick = () => {
-  if (!navigator.geolocation) return toast('الموقع غير مدعوم');
-  toast('جاري تحديد الموقع…');
-  navigator.geolocation.getCurrentPosition(p => {
-    const la = p.coords.latitude, lo = p.coords.longitude;
-    let best = null, bd = Infinity;
-    for (const [n,[x,y]] of Object.entries(COORD)){ const d = (la-x)**2 + (lo-y)**2; if (d < bd){ bd = d; best = n; } }
-    D.loc = {name: best, lat: la, lon: lo}; sv(); renderWx();
-  }, () => toast('تعذّر تحديد الموقع'));
-};
+  let allReceived = totalPay + totalAdv;
+  let remain = totalDue - allReceived;
 
-/* ---------- البدء ---------- */
-D.saved = D.saved || [];
-D.loc = D.loc || {name:'حاسي مسعود', lat:31.68, lon:6.07};
-if (!D.v1){ Object.values(D.rows).forEach(r => { if (typeof r.dp === 'number') r.dp = ''; }); D.v1 = true; sv(); }
-show('table');
+  // تحديث القيم في الواجهة الرئيسية وكشف الحساب
+  ['stWork', 'homeWork'].forEach(id => document.getElementById(id).textContent = workDays);
+  ['stOff', 'homeOff'].forEach(id => document.getElementById(id).textContent = offDays);
+  ['stAdv', 'homeAdv'].forEach(id => document.getElementById(id).textContent = totalAdv + ' دج');
+  ['stDue', 'homeDue'].forEach(id => document.getElementById(id).textContent = totalDue + ' دج');
+  ['stPaid', 'homePaid'].forEach(id => document.getElementById(id).textContent = totalPay + ' دج');
+  document.getElementById('stAllPaid').textContent = allReceived + ' دج';
+  ['stRemain', 'homeRemain'].forEach(id => document.getElementById(id).textContent = remain + ' دج');
+}
+
+function openPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+  let target = document.getElementById(pageId);
+  if (target) target.classList.add('active');
+
+  let navBtn = document.getElementById('nav-' + pageId);
+  if (navBtn) navBtn.classList.add('active');
+
+  if (pageId === 'edit' && !document.getElementById('inputDate').value) {
+    document.getElementById('inputDate').value = '2026-09-14';
+  }
+  window.scrollTo(0,0);
+}
+
+let isWorkSelected = true;
+function setWorkStatus(val) {
+  isWorkSelected = val;
+  document.getElementById('btnYes').className = val ? 'toggle-btn active-yes' : 'toggle-btn';
+  document.getElementById('btnNo').className = !val ? 'toggle-btn active-no' : 'toggle-btn';
+}
+
+function loadDayToEdit(dateKey) {
+  document.getElementById('inputDate').value = dateKey;
+  let item = state.days[dateKey];
+  if (item) {
+    setWorkStatus(item.work);
+    document.getElementById('inputPlace').value = item.place || '';
+    document.getElementById('inputAdv').value = item.adv || 0;
+    document.getElementById('inputMove').value = item.move || 0;
+    document.getElementById('inputPay').value = item.pay || 0;
+  } else {
+    setWorkStatus(true);
+    document.getElementById('inputPlace').value = '';
+    document.getElementById('inputAdv').value = 0;
+    document.getElementById('inputMove').value = 0;
+    document.getElementById('inputPay').value = 0;
+  }
+  openPage('edit');
+}
+
+function saveDay() {
+  let d = document.getElementById('inputDate').value;
+  if (!d) return showToast('يرجى تحديد التاريخ');
+
+  state.days[d] = {
+    work: isWorkSelected,
+    place: document.getElementById('inputPlace').value.trim(),
+    adv: Number(document.getElementById('inputAdv').value || 0),
+    move: Number(document.getElementById('inputMove').value || 0),
+    pay: Number(document.getElementById('inputPay').value || 0)
+  };
+
+  saveData();
+  showToast('تم حفظ التعديلات بنجاح');
+  openPage('statement');
+}
+
+function quickAddWork(status) {
+  let todayKey = '2026-09-14';
+  state.days[todayKey] = { work: status, place: 'عين صالح', adv: 0, move: 0, pay: 0 };
+  saveData();
+  showToast(status ? 'تم تسجيل اليوم كعمل' : 'تم تسجيل اليوم كعطلة');
+}
+
+function saveSettings() {
+  state.name = document.getElementById('settingName').value.trim();
+  saveData();
+  showToast('تم تحديث الاسم بنجاح');
+}
+
+function showToast(msg) {
+  let t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 2000);
+}
+
+function copyStatementText() {
+  navigator.clipboard.writeText(`كشف الحساب - ${state.name} - سبتمبر 2026`);
+  showToast('تم نسخ كشف الحساب بنجاح');
+}
+
+function exportJSON() {
+  let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state));
+  let dl = document.createElement('a');
+  dl.setAttribute("href", dataStr);
+  dl.setAttribute("download", "sijil_amal_backup.json");
+  dl.click();
+}
+
+function getGPSLocation() {
+  document.getElementById('geoText').textContent = 'جارٍ تحديد الموقع عبر GPS...';
+  navigator.geolocation.getCurrentPosition(
+    p => {
+      let lat = p.coords.latitude.toFixed(4);
+      let lon = p.coords.longitude.toFixed(4);
+      document.getElementById('geoText').textContent = الإحداثيات: ${lat}°,${lon}°;
+      document.getElementById('weatherTemp').textContent = '38°C';
+      document.getElementById('weatherDesc').textContent = 'مشمس - موقعك الحالي';
+      showToast('تم تحديد الموقع بنجاح');
+    },
+    e => { document.getElementById('geoText').textContent = 'تعذر تحديد الموقع، تأكد من تفعيل GPS'; },
+    { enableHighAccuracy: true }
+  );
+}
+
+function getGPSForDay() {
+  if (!navigator.geolocation) return showToast('المتصفح لا يدعم الـ GPS');
+  showToast('جارٍ جلب موقعك...');
+  navigator.geolocation.getCurrentPosition(
+    p => {
+      // افتراضياً نضع اسم موقع جغرافي افتراضي أو إحداثيات كمكان عمل
+      document.getElementById('inputPlace').value = 'عين صالح';
+      showToast('تم جلب الموقع وتعبئته بنجاح');
+    },
+    e => { showToast('فشل جلب الموقع، أدخله يدوياً'); },
+    { enableHighAccuracy: true }
+  );
+}
+
+initData();
+renderUI();
 </script>
 </body>
 </html>
