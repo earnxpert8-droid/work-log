@@ -7,142 +7,135 @@
 <title>سجل العمل الذكي — ABBES BENKACI</title>
 <style>
 :root {
-  --navy:#1b365d; --blue:#2563eb; --green:#16a34a; --orange:#ea580c;
-  --purple:#9333ea; --teal:#0d9488; --red:#dc2626; --bg:#f3f6f9; --text:#1e293b; --line:#cbd5e1;
+  --navy:#1b365d; --blue:#0284c7; --green:#16a34a; --orange:#ea580c;
+  --purple:#9333ea; --teal:#0d9488; --red:#dc2626; --bg:#ebf2f7; --card:#ffffff;
+  --text:#1e293b; --muted:#64748b; --line:#cbd5e1;
 }
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0;user-select:none;}
-html,body{width:100%;height:100%;overflow:hidden;background:#0f172a;font-family:system-ui,-apple-system,sans-serif;font-size:12px;}
+html,body{width:100%;height:100%;overflow:hidden;background:#0b1329;font-family:system-ui,-apple-system,sans-serif;font-size:12px;color:var(--text);}
 
-.app-container{display:flex;flex-direction:column;width:100%;height:100dvh;max-width:480px;margin:0 auto;background:var(--bg);position:relative;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,0.5);}
+.app-container{display:flex;flex-direction:column;width:100%;height:100dvh;max-width:450px;margin:0 auto;background:var(--bg);position:relative;overflow:hidden;}
 
-/* إطار الصفحات الثابت بالكامل بدون تمرير */
-.page{display:none;position:absolute;top:0;left:0;right:0;bottom:60px;background:var(--bg);overflow:hidden;padding:12px;z-index:10;}
+.app-topbar{height:48px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;flex-shrink:0;z-index:20;box-shadow:0 2px 10px rgba(0,0,0,0.15);}
+.app-topbar h1{font-size:15px;font-weight:bold;display:flex;align-items:center;gap:6px;}
+.topbar-btn{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;}
+
+.page{display:none;position:absolute;top:48px;left:0;right:0;bottom:60px;background:var(--bg);padding:12px;overflow:hidden;z-index:10;}
 .page.active{display:flex;flex-direction:column;}
 
 /* 1. شاشة البداية */
-#splash{background:linear-gradient(rgba(15,23,42,0.35), rgba(15,23,42,0.85)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80') center/cover;color:#fff;justify-content:space-between;align-items:center;text-align:center;padding:40px 20px;}
-.splash-logo{width:75px;height:75px;background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);border-radius:22px;display:grid;place-items:center;font-size:38px;box-shadow:0 10px 30px rgba(0,0,0,0.3);}
-.splash-card{background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.25);width:100%;border-radius:22px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+#splash{top:0;bottom:0;z-index:50;background:linear-gradient(rgba(15,23,42,0.4), rgba(15,23,42,0.85)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80') center/cover;color:#fff;justify-content:space-between;align-items:center;text-align:center;padding:45px 20px;}
+.splash-logo-box{width:80px;height:80px;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);border-radius:24px;display:grid;place-items:center;font-size:42px;margin:0 auto 12px;box-shadow:0 10px 25px rgba(0,0,0,0.3);}
+.splash-card-box{background:rgba(255,255,255,0.15);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.3);width:100%;border-radius:24px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+.btn-blue-main{background:linear-gradient(135deg,#0284c7,#0369a1);color:#fff;padding:12px;font-weight:bold;font-size:13px;border-radius:12px;width:100%;border:none;cursor:pointer;box-shadow:0 4px 12px rgba(2,132,199,0.3);}
 
 /* الواجهة الرئيسية */
-.hero-card{background:linear-gradient(135deg,#1b365d,#2563eb);color:#fff;border-radius:16px;padding:12px;position:relative;box-shadow:0 4px 15px rgba(0,0,0,0.15);margin-bottom:8px;}
-.user-badge{position:absolute;top:12px;left:12px;background:rgba(255,255,255,0.2);padding:5px 10px;border-radius:20px;font-size:10px;display:flex;align-items:center;gap:4px;}
+.hero-header-card{background:linear-gradient(135deg,#1b365d,#0284c7);color:#fff;border-radius:20px;padding:16px;position:relative;margin-bottom:8px;box-shadow:0 6px 18px rgba(27,54,93,0.2);}
+.hero-user-badge{background:rgba(255,255,255,0.2);padding:6px 12px;border-radius:20px;font-size:11px;position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:6px;}
 
-.month-picker{background:#fff;border-radius:12px;padding:5px 12px;border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;font-weight:bold;color:var(--navy);margin-bottom:8px;}
-.month-picker button{background:none;border:none;font-size:16px;color:var(--navy);cursor:pointer;}
+.selector-month{background:#fff;border-radius:14px;padding:6px 14px;border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;font-weight:bold;color:var(--navy);margin-bottom:8px;}
+.grid-2x2{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;}
+.card-stat-item{border-radius:14px;padding:10px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;min-height:65px;}
+.card-stat-item.green{background:linear-gradient(135deg,#16a34a,#15803d);}
+.card-stat-item.orange{background:linear-gradient(135deg,#ea580c,#c2410c);}
+.card-stat-item.blue{background:linear-gradient(135deg,#0284c7,#0369a1);grid-column:span 2;height:50px;flex-direction:row;align-items:center;}
+.card-stat-item.teal{background:linear-gradient(135deg,#0d9488,#0f766e);grid-column:span 2;height:50px;flex-direction:row;align-items:center;}
 
-.stats-box-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;}
-.s-card{border-radius:12px;padding:10px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;height:65px;}
-.s-card.work{background:linear-gradient(135deg,#16a34a,#15803d);}
-.s-card.off{background:linear-gradient(135deg,#ea580c,#c2410c);}
-.s-card.due{background:linear-gradient(135deg,#2563eb,#1d4ed8);grid-column:span 2;height:52px;flex-direction:row;align-items:center;}
-.s-card.paid{background:linear-gradient(135deg,#0d9488,#0f766e);grid-column:span 2;height:52px;flex-direction:row;align-items:center;}
+.daily-alert{background:#fff1f2;border:1px solid #fda4af;color:#be123c;padding:8px 12px;border-radius:10px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;font-size:10px;}
 
-/* الإعدادات والأدوات */
-.card-box{background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1px solid var(--line);}
-.setting-item{background:#fff;border-radius:10px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;border:1px solid var(--line);font-size:11px;color:var(--text);}
-.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.tool-btn{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;cursor:pointer;}
+/* كشف الحساب والجدول بـ 30 صفاً */
+.card-wrapper{background:#fff;border-radius:16px;padding:12px;margin-bottom:8px;border:1px solid var(--line);}
+.table-container-scroll{background:#fff;border-radius:10px;border:1px solid var(--navy);overflow-y:auto;max-height:calc(100dvh - 150px);flex:1;}
+table{width:100%;border-collapse:collapse;font-size:10px;text-align:center;white-space:nowrap;}
+th{background:var(--navy);color:#fff;padding:6px 4px;position:sticky;top:0;}
+td{padding:5px 4px;border-bottom:1px solid #f1f5f9;border-left:1px solid #f1f5f9;}
+tr.off-day{background:#fff7ed;}
 
-/* بطاقة الإشعارات والتذكير اليومي */
-.notification-banner {background:linear-gradient(135deg,#fff1f2,#ffe4e6);border:1px solid #fda4af;color:#be123c;padding:10px;border-radius:12px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;font-size:11px;}
+.setting-row{background:#fff;border-radius:10px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;border:1px solid var(--line);font-size:11px;}
+.tools-menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.tool-card-btn{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;cursor:pointer;}
 
 /* شريط التنقل السفلي */
-.app-nav{position:absolute;bottom:0;left:0;right:0;height:60px;background:#fff;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-around;z-index:30;}
-.nav-btn{background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:2px;color:#64748b;font-size:9px;width:20%;cursor:pointer;}
-.nav-btn .icon{font-size:18px;}
-.nav-btn.active{color:var(--navy);font-weight:bold;}
+.app-bottom-nav{position:absolute;bottom:0;left:0;right:0;height:60px;background:#fff;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-around;z-index:30;}
+.nav-action-btn{background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:2px;color:#64748b;font-size:9px;width:20%;cursor:pointer;}
+.nav-action-btn .icon{font-size:18px;}
+.nav-action-btn.active{color:var(--navy);font-weight:bold;}
 
-.toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:6px 14px;border-radius:20px;font-size:10px;z-index:100;display:none;}
+.toast-msg{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:6px 14px;border-radius:20px;font-size:10px;z-index:100;display:none;}
 </style>
 </head>
 <body>
 
 <div class="app-container">
 
+  <header class="app-topbar">
+    <h1><span style="font-size:16px;">🦺</span> <span id="topBarName">ABBES BENKACI</span></h1>
+    <button class="topbar-btn" onclick="openPage('settings')">⚙</button>
+  </header>
+
   <!-- 1. شاشة البداية -->
   <section id="splash" class="page active">
     <div>
-      <div class="splash-logo">🦺</div>
-      <h1 style="font-size:22px;font-weight:bold;margin-bottom:2px;">سجل العمل</h1>
-      <p style="font-size:11px;opacity:0.85;">تنظيم عملك .. لراحة بالك</p>
+      <div class="splash-logo-box">🦺</div>
+      <h1 style="font-size:24px;font-weight:bold;margin-bottom:2px;">سجل العمل</h1>
+      <p style="font-size:11px;opacity:0.85;">نظم عملك بسهولة</p>
     </div>
-    <div class="splash-card">
-      <div style="font-size:13px;margin-bottom:10px;font-weight:bold;">مرحباً بك محمد</div>
-      <button style="width:100%;background:var(--blue);color:#fff;padding:10px;font-weight:bold;border-radius:10px;margin-bottom:6px;border:none;" onclick="openPage('home')">تسجيل الدخول</button>
-      <button style="width:100%;background:rgba(255,255,255,0.2);color:#fff;padding:9px;font-size:11px;border-radius:10px;border:1px solid rgba(255,255,255,0.4);" onclick="openPage('home')">إنشاء حساب جديد</button>
+    <div class="splash-card-box">
+      <div style="font-size:14px;margin-bottom:12px;font-weight:bold;">مرحباً بك عباس</div>
+      <button class="btn-blue-main" onclick="openPage('home')">تسجيل الدخول</button>
     </div>
-    <div style="font-size:9px;opacity:0.7;">معاً نحو مستقبل أفضل</div>
+    <div style="font-size:10px;opacity:0.7;">معاً نحو مستقبل أفضل</div>
   </section>
 
-  <!-- 2. الواجهة الرئيسية مع إشعار التذكير اليومي -->
+  <!-- 2. الواجهة الرئيسية -->
   <section id="home" class="page">
-    <div class="hero-card">
-      <h2 style="font-size:14px;margin-bottom:2px;">سجل العمل</h2>
-      <p style="font-size:9px;opacity:0.8;">تنظيم عملك .. لراحة بالك</p>
-      <div class="user-badge"><span>👤 أهلاً بك محمد</span></div>
+    <div class="hero-header-card">
+      <h2 style="font-size:16px;margin-bottom:2px;">سجل العمل</h2>
+      <p style="font-size:9px;opacity:0.85;">تنظيم عملك .. لراحة بالك</p>
+      <div class="hero-user-badge"><span>👤 أهلاً بك عباس</span></div>
     </div>
 
-    <!-- إشعار التذكير اليومي (هل عملت اليوم؟ سجل يومك) -->
-    <div class="notification-banner">
-      <div>🔔 <b>تنبيه اليوم:</b> هل عملت اليوم؟ لا تنسَ تسجيل يومك!</div>
-      <button style="background:#be123c;color:#fff;border:none;padding:4px 8px;border-radius:6px;font-size:10px;cursor:pointer;" onclick="openPage('edit')">سجل الآن</button>
+    <div class="daily-alert">
+      <div>🔔 <b>تنبيه:</b> هل عملت اليوم؟ سجل يومياتك!</div>
+      <button style="background:#be123c;color:#fff;border:none;padding:3px 6px;border-radius:4px;font-size:9px;" onclick="openPage('statement')">سجل</button>
     </div>
 
-    <div class="month-picker">
-      <button>‹</button>
+    <div class="selector-month">
       <span>جوان 2025</span>
-      <button>›</button>
     </div>
 
-    <div class="stats-box-grid">
-      <div class="s-card work">
-        <span style="font-size:10px;">🟢 أيام العمل</span>
-        <strong style="font-size:20px;">21</strong>
-      </div>
-      <div class="s-card off">
-        <span style="font-size:10px;">🟠 أيام العطلة</span>
-        <strong style="font-size:20px;">5</strong>
-      </div>
-      <div class="s-card due">
-        <span style="font-size:11px;">💰 المستحق هذا الشهر</span>
-        <strong style="font-size:16px;">4,200 دج</strong>
-      </div>
-      <div class="s-card paid">
-        <span style="font-size:11px;">💵 المقبوض</span>
-        <strong style="font-size:16px;">2,850 دج</strong>
-      </div>
+    <div class="grid-2x2">
+      <div class="card-stat-item green"><span style="font-size:9px;">🟢 أيام العمل</span><strong style="font-size:18px;">21</strong></div>
+      <div class="card-stat-item orange"><span style="font-size:9px;">🟠 أيام العطلة</span><strong style="font-size:18px;">5</strong></div>
+      <div class="card-stat-item blue"><span style="font-size:10px;">💰 المستحق: <b>4,200 دج</b></span></div>
+      <div class="card-stat-item teal"><span style="font-size:10px;">💵 المقبوض: <b>2,850 دج</b></span></div>
     </div>
 
-    <button style="width:100%;background:var(--navy);color:#fff;padding:11px;font-weight:bold;border-radius:12px;border:none;margin-top:auto;" onclick="openPage('statement')">
-      ابدأ الآن ← عرض جدول العمل
-    </button>
+    <button class="btn-blue-main" style="margin-top:auto;" onclick="openPage('statement')">عرض جدول العمل وكشف الحساب ←</button>
   </section>
 
-  <!-- 3. جدول العمل الشهري -->
+  <!-- 3. صفحة كشف الحساب والجدول الشهري (30 صفاً كاملاً) -->
   <section id="statement" class="page">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-      <h2 style="color:var(--navy);font-size:14px;">جدول العمل الشهري</h2>
+      <h2 style="color:var(--navy);font-size:13px;">🧾 كشف الحساب والجدول الشهري</h2>
       <button style="background:var(--green);color:#fff;padding:4px 8px;font-size:10px;border-radius:6px;border:none;" onclick="openPage('edit')">＋ إضافة</button>
     </div>
-    <div style="background:#fff;border-radius:10px;border:1px solid var(--line);overflow:hidden;flex:1;">
-      <table style="width:100%;border-collapse:collapse;font-size:10px;text-align:center;">
+    <div class="table-container-scroll">
+      <table>
         <thead>
-          <tr style="background:var(--navy);color:#fff;">
-            <th style="padding:6px;">اليوم</th>
-            <th style="padding:6px;">التاريخ</th>
-            <th style="padding:6px;">العمل</th>
-            <th style="padding:6px;">المكان</th>
-            <th style="padding:6px;">أفونس</th>
-            <th style="padding:6px;">مدفوعات</th>
+          <tr>
+            <th>#</th>
+            <th>التاريخ</th>
+            <th>العمل</th>
+            <th>المكان</th>
+            <th>أفونس</th>
+            <th>ديپلاصمو</th>
+            <th>مدفوعات</th>
           </tr>
         </thead>
-        <tbody>
-          <tr><td style="padding:5px;">01</td><td>01-06-2025</td><td style="color:var(--green);font-weight:bold;">نعم</td><td>حاسي مسعود</td><td>200 دج</td><td>0</td></tr>
-          <tr style="background:#fff7ed;"><td style="padding:5px;">02</td><td>02-06-2025</td><td style="color:var(--orange);font-weight:bold;">لا</td><td>ورقلة</td><td>200 دج</td><td>200 دج</td></tr>
-          <tr><td style="padding:5px;">03</td><td>03-06-2025</td><td style="color:var(--green);font-weight:bold;">نعم</td><td>أدرار</td><td>200 دج</td><td>120 دج</td></tr>
-          <tr><td style="padding:5px;">04</td><td>04-06-2025</td><td style="color:var(--green);font-weight:bold;">نعم</td><td>تمنراست</td><td>200 دج</td><td>200 دج</td></tr>
+        <tbody id="statementTableBody">
+          <!-- يتم توليد 30 صفاً تلقائياً هنا -->
         </tbody>
       </table>
     </div>
@@ -150,138 +143,130 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0f172a;font-family:
 
   <!-- 4. إضافة / تعديل يوم -->
   <section id="edit" class="page">
-    <div class="card-box" style="flex:1;">
+    <div class="card-wrapper" style="flex:1;">
       <h3 style="color:var(--navy);font-size:13px;margin-bottom:8px;">إضافة / تعديل يوم عمل</h3>
-      <div style="margin-bottom:8px;"><label style="font-size:10px;color:#64748b;">التاريخ</label><input type="date" value="2025-06-01" style="width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;margin-top:2px;"></div>
-      <div style="margin-bottom:8px;"><label style="font-size:10px;color:#64748b;">المكان</label><input type="text" value="حاسي مسعود" style="width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;margin-top:2px;"></div>
-      <button style="width:100%;background:var(--green);color:#fff;padding:10px;font-weight:bold;border-radius:10px;border:none;margin-top:10px;" onclick="openPage('statement')">حفظ البيانات</button>
+      <div style="margin-bottom:6px;"><label style="font-size:10px;color:var(--muted);">التاريخ</label><input type="date" value="2025-06-01" style="width:100%;padding:8px;border:1px solid var(--line);border-radius:6px;"></div>
+      <div style="margin-bottom:8px;"><label style="font-size:10px;color:var(--muted);">المكان</label><input type="text" value="حاسي مسعود" style="width:100%;padding:8px;border:1px solid var(--line);border-radius:6px;"></div>
+      <button class="btn-blue-main" onclick="openPage('statement')">حفظ البيانات</button>
     </div>
   </section>
 
   <!-- 5. أدوات التطبيق -->
   <section id="tools" class="page">
-    <h2 style="color:var(--navy);font-size:14px;margin-bottom:8px;">أدوات التطبيق</h2>
-    <div class="tools-grid">
-      <div class="tool-btn" onclick="showToast('تم نسخ الجدول')"><span style="font-size:18px;">📋</span><h4 style="font-size:11px;color:var(--navy);margin-top:4px;">نسخ الجدول</h4></div>
-      <div class="tool-btn" onclick="showToast('جاري تصدير CSV')"><span style="font-size:18px;">📊</span><h4 style="font-size:11px;color:var(--navy);margin-top:4px;">تصدير Excel</h4></div>
-      <div class="tool-btn" onclick="showToast('تم تصدير النسخة')"><span style="font-size:18px;">☁️</span><h4 style="font-size:11px;color:var(--navy);margin-top:4px;">نسخة احتياطية</h4></div>
-      <div class="tool-btn" onclick="openPage('places')"><span style="font-size:18px;">📍</span><h4 style="font-size:11px;color:var(--navy);margin-top:4px;">أماكن العمل</h4></div>
+    <h2 style="color:var(--navy);font-size:13px;margin-bottom:8px;">⚙ أدوات التطبيق</h2>
+    <div class="tools-menu-grid">
+      <div class="tool-card-btn" onclick="showToast('تم نسخ الجدول')"><span style="font-size:18px;">📋</span><h4 style="font-size:10px;color:var(--navy);margin-top:2px;">نسخ الجدول</h4></div>
+      <div class="tool-card-btn" onclick="showToast('جاري تصدير CSV')"><span style="font-size:18px;">📊</span><h4 style="font-size:10px;color:var(--navy);margin-top:2px;">تصدير Excel</h4></div>
+      <div class="tool-card-btn" onclick="showToast('تم حفظ النسخة')"><span style="font-size:18px;">☁️</span><h4 style="font-size:10px;color:var(--navy);margin-top:2px;">نسخة احتياطية</h4></div>
+      <div class="tool-card-btn" onclick="openPage('places')"><span style="font-size:18px;">📍</span><h4 style="font-size:10px;color:var(--navy);margin-top:2px;">أماكن العمل</h4></div>
     </div>
   </section>
 
   <!-- 6. الموقع والطقس -->
   <section id="location" class="page">
-    <h2 style="color:var(--navy);font-size:14px;margin-bottom:8px;">الموقع والطقس</h2>
-    <div style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);border-radius:12px;padding:10px;color:#0369a1;margin-bottom:8px;border:1px solid #7dd3fc;">
-      <div style="font-weight:bold;font-size:12px;">موقعك الحالي: حاسي مسعود</div>
-      <div style="font-size:10px;opacity:0.8;">31.68° N, 6.07° E</div>
+    <h2 style="color:var(--navy);font-size:13px;margin-bottom:8px;">📍 الموقع والطقس</h2>
+    <div class="card-wrapper" style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);color:#0369a1;">
+      <div style="font-weight:bold;font-size:11px;">موقعك الحالي: حاسي مسعود</div>
+      <div style="font-size:9px;opacity:0.8;">31.68° N, 6.07° E</div>
     </div>
-    <div style="background:#fff;border-radius:12px;padding:10px;border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;">
-      <div><div style="font-weight:bold;color:#0369a1;">الطقس الآن — مشمس</div><div style="font-size:9px;color:#64748b;">الرطوبة: 18% | الرياح: 12 كم/س</div></div>
-      <div style="font-size:24px;font-weight:bold;color:#0284c7;">42°</div>
+    <div class="card-wrapper" style="display:flex;align-items:center;justify-content:space-between;">
+      <div><div style="font-weight:bold;color:#0369a1;">الطقس الآن — مشمس</div><div style="font-size:9px;color:var(--muted);">الرطوبة: 18%</div></div>
+      <div style="font-size:24px;font-weight:bold;color:#0284c7;">42°C</div>
     </div>
   </section>
 
-  <!-- 7. الإعدادات والبيانات الشخصية والإشعارات -->
+  <!-- 7. الإعدادات -->
   <section id="settings" class="page">
-    <h2 style="color:var(--navy);font-size:14px;margin-bottom:8px;">الإعدادات</h2>
-    <div class="setting-item"><span>بياناتي الشخصية</span><b style="color:var(--blue);">محمد</b></div>
-    <div class="setting-item"><span>أسعار اليوميات (الصحراء / التل)</span><span style="color:#64748b;">200دج / 150دج</span></div>
-    <div class="setting-item"><span>تنبيهات تسجيل الحضور اليومي</span><input type="checkbox" checked style="accent-color:var(--blue);"></div>
-    <div class="setting-item"><span>الوضع الليلي</span><input type="checkbox" style="accent-color:var(--blue);"></div>
-    <div class="setting-item"><span>اللغة</span><span style="color:#64748b;">العربية</span></div>
-    <div class="setting-item"><span>حول التطبيق</span><span style="color:#64748b;">v4.0</span></div>
+    <h2 style="color:var(--navy);font-size:13px;margin-bottom:8px;">☷ الإعدادات</h2>
+    <div class="setting-row"><span>بياناتي الشخصية</span><b style="color:var(--blue);">عباس بن قاسي</b></div>
+    <div class="setting-row"><span>أسعار اليوميات (الصحراء / التل)</span><span style="color:var(--muted);">200دج / 150دج</span></div>
+    <div class="setting-row"><span>تنبيهات العمل اليومية</span><input type="checkbox" checked style="accent-color:var(--blue);"></div>
+    <div class="setting-row"><span>الوضع الليلي</span><input type="checkbox" style="accent-color:var(--blue);"></div>
+    <div class="setting-row"><span>اللغة</span><span style="color:var(--muted);">العربية</span></div>
+    <div class="setting-row"><span>حول التطبيق</span><span style="color:var(--muted);">v4.0</span></div>
   </section>
 
   <!-- 8. النسخ الاحتياطي -->
-  <section id="backup" class="page">
-    <h2 style="color:var(--navy);font-size:14px;margin-bottom:8px;">النسخ الاحتياطي</h2>
-    <div class="card-box" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
-      <span style="font-size:32px;margin-bottom:8px;">☁️</span>
-      <h3 style="font-size:13px;color:var(--navy);margin-bottom:4px;">حفظ وإدارة البيانات</h3>
-      <p style="font-size:10px;color:#64748b;margin-bottom:12px;">حفظ بياناتك كملف JSON على جهازك للاستعادة لاحقاً.</p>
-      <button style="background:var(--blue);color:#fff;padding:10px 20px;border-radius:10px;border:none;font-weight:bold;" onclick="showToast('تم حفظ النسخة بنجاح')">تصدير (JSON)</button>
-    </div>
-  </section>
-
-  <!-- 9. تصدير إلى Excel -->
-  <section id="export_excel" class="page">
-    <h2 style="color:var(--navy);font-size:14px;margin-bottom:8px;">تصدير إلى Excel</h2>
-    <div class="card-box" style="flex:1;">
-      <p style="font-size:11px;color:#64748b;margin-bottom:10px;">تصدير بيانات الشهر بصيغة CSV متوافقة مع Excel.</p>
-      <button style="width:100%;background:var(--green);color:#fff;padding:10px;border-radius:10px;border:none;font-weight:bold;" onclick="showToast('تم التصدير بنجاح')">⬇ تنزيل CSV</button>
-    </div>
-  </section>
-
+  <section id="backup" class="page"><h2 style="color:var(--navy);font-size:13px;margin-bottom:8px;">☁️ النسخ الاحتياطي</h2><div class="card-wrapper" style="text-align:center;"><button class="btn-blue-main" onclick="showToast('تم الحفظ')">تصدير (JSON)</button></div></section>
+  <!-- 9. تصدير Excel -->
+  <section id="export_excel" class="page"><h2 style="color:var(--navy);font-size:13px;margin-bottom:8px;">📊 تصدير Excel</h2><div class="card-wrapper"><button class="btn-blue-main" onclick="showToast('تم التنزيل')">⬇ تنزيل CSV</button></div></section>
   <!-- 10. أماكن العمل -->
-  <section id="places" class="page">
-    <h2 style="color:var(--navy);font-size:14px;margin-bottom:8px;">أماكن العمل</h2>
-    <div class="card-box" style="flex:1;overflow:hidden;">
-      <div style="font-weight:bold;color:var(--navy);margin-bottom:6px;">المناطق الصحراوية المحفوظة:</div>
-      <div style="font-size:11px;color:#64748b;line-height:1.8;">📍 حاسي مسعود<br>📍 عين صالح<br>📍 أدرار<br>📍 ورقلة</div>
-    </div>
-  </section>
-
-  <!-- 11. نقل الجدول لشهر آخر -->
-  <section id="shift_month" class="page">
-    <h2 style="color:var(--navy);font-size:14px;margin-bottom:8px;">نقل الجدول لشهر آخر</h2>
-    <div class="card-box" style="flex:1;">
-      <label style="font-size:10px;color:#64748b;">اختر الشهر المستهدف</label>
-      <input type="month" value="2025-07" style="width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;margin:6px 0 12px 0;">
-      <button style="width:100%;background:var(--blue);color:#fff;padding:10px;border-radius:10px;border:none;font-weight:bold;" onclick="showToast('تم نقل الجدول بنجاح')">نقل البيانات</button>
-    </div>
-  </section>
-
-  <!-- 12. الإحصائيات والتقارير -->
-  <section id="reports" class="page">
-    <h2 style="color:var(--navy);font-size:14px;margin-bottom:8px;">الإحصائيات والتقارير</h2>
-    <div class="card-box" style="flex:1;">
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:11px;"><span>أيام العمل:</span><b>21 يوم</b></div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:11px;"><span>أيام العطل:</span><b>5 أيام</b></div>
-      <div style="display:flex;justify-content:space-between;font-size:11px;"><span>المقبوض:</span><b>2,850 دج</b></div>
-    </div>
-  </section>
-
-  <!-- 13. حول التطبيق والدعم -->
-  <section id="about" class="page">
-    <h2 style="color:var(--navy);font-size:14px;margin-bottom:8px;">حول التطبيق</h2>
-    <div class="card-box" style="flex:1;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-      <span style="font-size:36px;margin-bottom:6px;">🦺</span>
-      <h3 style="font-size:13px;color:var(--navy);">سجل العمل الذكي v4.0</h3>
-      <p style="font-size:10px;color:#64748b;margin-top:4px;">مخصص بالكامل للتوافق مع AppCreator24</p>
-    </div>
-  </section>
+  <section id="places" class="page"><h2 style="color:var(--navy);font-size:13px;margin-bottom:8px;">📍 أماكن العمل</h2><div class="card-wrapper"><p style="font-size:11px;color:var(--muted);">حاسي مسعود، عين صالح، أدرار</p></div></section>
+  <!-- 11. نقل الشهر -->
+  <section id="shift_month" class="page"><h2 style="color:var(--navy);font-size:13px;margin-bottom:8px;">🗓️ نقل الجدول</h2><div class="card-wrapper"><input type="month" value="2025-07" style="width:100%;padding:8px;margin-bottom:10px;"><button class="btn-blue-main" onclick="showToast('تم النقل')">نقل</button></div></section>
+  <!-- 12. الإحصائيات -->
+  <section id="reports" class="page"><h2 style="color:var(--navy);font-size:13px;margin-bottom:8px;">📈 الإحصائيات</h2><div class="card-wrapper"><p style="font-size:11px;">أيام العمل: 21 | العطل: 5</p></div></section>
+  <!-- 13. حول -->
+  <section id="about" class="page"><h2 style="color:var(--navy);font-size:13px;margin-bottom:8px;">ℹ️ حول</h2><div class="card-wrapper" style="text-align:center;"><h3>سجل العمل الذكي</h3></div></section>
 
   <!-- شريط التنقل السفلي الثابت -->
-  <nav class="app-nav">
-    <button class="nav-btn active" onclick="openPage('home')" id="btn-home"><span class="icon">⌂</span><span>الرئيسية</span></button>
-    <button class="nav-btn" onclick="openPage('statement')" id="btn-statement"><span class="icon">📋</span><span>الجدول</span></button>
-    <button class="nav-btn" onclick="openPage('location')" id="btn-location"><span class="icon">📍</span><span>الموقع</span></button>
-    <button class="nav-btn" onclick="openPage('tools')" id="btn-tools"><span class="icon">📊</span><span>الأدوات</span></button>
-    <button class="nav-btn" onclick="openPage('settings')" id="btn-settings"><span class="icon">⚙</span><span>الإعدادات</span></button>
+  <nav class="app-bottom-nav">
+    <button class="nav-action-btn active" onclick="openPage('home')" id="btn-home"><span class="icon">⌂</span><span>الرئيسية</span></button>
+    <button class="nav-action-btn" onclick="openPage('statement')" id="btn-statement"><span class="icon">📋</span><span>الجدول</span></button>
+    <button class="nav-action-btn" onclick="openPage('location')" id="btn-location"><span class="icon">📍</span><span>الموقع</span></button>
+    <button class="nav-action-btn" onclick="openPage('tools')" id="btn-tools"><span class="icon">📊</span><span>الأدوات</span></button>
+    <button class="nav-action-btn" onclick="openPage('settings')" id="btn-settings"><span class="icon">⚙</span><span>الإعدادات</span></button>
   </nav>
 
-  <div class="toast" id="toast">تم التنفيذ بنجاح</div>
+  <div class="toast-msg" id="toastMsg">تم التنفيذ بنجاح</div>
 </div>
 
 <script>
+let appDaysData = {
+  '2025-06-01': {work: true, place: 'حاسي مسعود', adv: 200, move: 50, pay: 0},
+  '2025-06-02': {work: false, place: 'ورقلة', adv: 200, move: 50, pay: 200},
+  '2025-06-03': {work: true, place: 'أدرار', adv: 200, move: 50, pay: 120},
+  '2025-06-04': {work: true, place: 'تمنراست', adv: 200, move: 50, pay: 200}
+};
+
+function renderStatementTable() {
+  let tbody = document.getElementById('statementTableBody');
+  tbody.innerHTML = '';
+  for(let i = 1; i <= 30; i++) {
+    let dayStr = String(i).padStart(2, '0');
+    let dateKey = `2025-06-${dayStr}`;
+    let item = appDaysData[dateKey];
+    let tr = document.createElement('tr');
+    
+    if(item) {
+      if(!item.work) tr.className = 'off-day';
+      tr.innerHTML = `
+        <td>${dayStr}</td>
+        <td>${dayStr}-06-2025</td>
+        <td style="font-weight:bold;color:${item.work?'#16a34a':'#ea580c'};">${item.work?'نعم':'لا'}</td>
+        <td>${item.place||'—'}</td>
+        <td>${item.adv||0} دج</td>
+        <td>${item.move||0} دج</td>
+        <td>${item.pay||0} دج</td>
+      `;
+    } else {
+      tr.innerHTML = `<td>${dayStr}</td><td>${dayStr}-06-2025</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>`;
+    }
+    tbody.appendChild(tr);
+  }
+}
+
 function openPage(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-action-btn').forEach(b => b.classList.remove('active'));
   
-  let target = document.getElementById(pageId);
-  if(target) target.classList.add('active');
+  let page = document.getElementById(pageId);
+  if(page) page.classList.add('active');
   
   let btn = document.getElementById('btn-' + pageId);
   if(btn) btn.classList.add('active');
+  
+  if(pageId === 'statement') renderStatementTable();
 }
 
 function showToast(msg) {
-  let t = document.getElementById('toast');
+  let t = document.getElementById('toastMsg');
   t.textContent = msg;
   t.style.display = 'block';
   setTimeout(() => t.style.display = 'none', 2000);
 }
+
+renderStatementTable();
 </script>
 </body>
 </html>
