@@ -51,7 +51,7 @@ td.n{background:var(--num);color:var(--mut)}tr.off td:not(.n){background:var(--o
 .gs{font-size:12px;color:var(--mut);margin-top:4px;min-height:16px}
 .hint-box{font-size:11px;text-align:center;color:#d9822b;margin-top:2px;grid-column:span 3}
 
-/* ===== التنسيقات المضافة الخاصة بالشاشات المستوردة من التصاميم ===== */
+/* ===== التنسيقات الخاصة بالشاشات المستوردة ===== */
 .main-header {
   background: #0d1e3a; color: #fff; padding: 25px 16px 20px; text-align: center; position: relative; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;
 }
@@ -198,7 +198,7 @@ td.n{background:var(--num);color:var(--mut)}tr.off td:not(.n){background:var(--o
   </button>
 </div>
 
-<!-- عناصر التحكم والجدول الأصلية من كودك لتظل البرمجة شغال بدون أخطاء -->
+<!-- عناصر التحكم والجدول الأصلية -->
 <div class="top-banner" style="display:none;">
   <div class="top-right" id="topLogo">🛡️ شعار</div>
   <div class="top-center" id="topName">ABBES BENKACI</div>
@@ -250,6 +250,26 @@ td.n{background:var(--num);color:var(--mut)}tr.off td:not(.n){background:var(--o
 </div>
 
 <script>
+/* سكريبت التفاعل لشاشة البداية لتسهيل الإغلاق والانتقال */
+document.addEventListener('DOMContentLoaded', function() {
+  var splOv = document.getElementById('splOv');
+  var splGo = document.getElementById('splGo');
+  var splSkip = document.getElementById('splSkip');
+
+  function closeSplash() {
+    if (splOv) {
+      splOv.style.opacity = '0';
+      splOv.style.transition = 'opacity 0.4s ease';
+      setTimeout(function() {
+        splOv.style.display = 'none';
+      }, 400);
+    }
+  }
+
+  if (splGo) splGo.onclick = closeSplash;
+  if (splSkip) splSkip.onclick = closeSplash;
+});
+
 var K='worklog-public-v1',NK='worklog-public-name',nm='',D={},ck='',ei=0,NM=['جانفي','فيفري','مارس','أفريل','ماي','جوان','جويلية','أوت','سبتمبر','أكتوبر','نوفمبر','ديسمبر'],$=function(i){return document.getElementById(i)};
 function two(n){return('0'+n).slice(-2)}
 function today(){var d=new Date();return d.getFullYear()+'-'+two(d.getMonth()+1)+'-'+two(d.getDate())}
@@ -400,7 +420,7 @@ $('mg').onclick=function(){var t=$('mt').value;$('mo').style.display='none';if(t
 load();render();
 </script>
 
-<!-- ===== 3. شاشة الإعدادات الكاملة بنفس تصميم الصور بالضبط ===== -->
+<!-- ===== 3. شاشة الإعدادات الكاملة ===== -->
 <div id="stgOv"><div id="stgBox">
   <div class="settings-container" id="stgBody">
     <div class="settings-header-title" style="display:flex; justify-content:space-between; align-items:center;">
@@ -496,7 +516,7 @@ load();render();
   <div class="stg-pg" id="stgPg"><div class="ph"><button id="stgBack">← رجوع</button><b id="stgPgT"></b></div><div class="pb" id="stgPgB"></div></div>
 </div></div>
 
-<!-- ===== 4. شاشة الإحصائيات (تُعرض عند طلبها أو التغيير بين الواجهات) ===== -->
+<!-- ===== 4. شاشة الإحصائيات ===== -->
 <div id="statsView" style="display:none;">
   <div class="stats-header">
     <button>←</button>
