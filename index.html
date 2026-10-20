@@ -23,7 +23,6 @@ button,select,input{font-family:inherit}
 .st i{position:absolute;left:5px;top:50%;transform:translateY(-50%);font-style:normal;font-size:12px}
 .st small{font-size:10px;font-weight:bold}
 .st b{font-size:13px}
-.st em{font-size:9px;font-style:normal;font-weight:bold;margin-inline-start:2px}
 .c-g{background:#e8f7ee;border-color:#bfe3cd;color:#1f8a4c}
 .c-o{background:#fdf0e3;border-color:#f3d2ae;color:#d9822b}
 .c-p{background:#f1ecfb;border-color:#d9cbf0;color:#7b4bb8}
@@ -61,77 +60,7 @@ input,select{width:100%;padding:8px;border:1px solid #cdd6e3;border-radius:10px;
 .row button{flex:1;height:38px;border-radius:10px;border:1px solid #cdd6e3;background:#fff;font-size:14px;cursor:pointer}
 .row .p{background:#1d4ea0;color:#fff;border-color:#1d4ea0;font-weight:bold}
 .row .d{color:#d7262e;border-color:#d7262e}
-.bar{height:8px;background:#e6ebf2;border-radius:6px;overflow:hidden;margin:4px 0 8px}
-.bar span{display:block;height:100%;background:#1d4ea0}
 .line{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #eef1f5}
-#stm{display:none;position:fixed;inset:0;background:#fff;z-index:45;flex-direction:column;max-width:440px;margin:0 auto}
-#stm.on{display:flex}
-.sth{flex:0 0 auto;background:linear-gradient(90deg,#0e3a78,#1d4ea0);color:#fff;text-align:center;font-weight:bold;font-size:14px;padding:8px}
-.scards{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;padding:6px}
-.sc{border-radius:10px;border:1px solid;height:30px;display:flex;align-items:center;justify-content:space-between;padding:0 8px;font-size:11px;font-weight:bold}
-.sc b{font-size:12px}
-.sc i{font-style:normal;font-size:12px}
-.sc.nt{grid-column:span 2;background:#f1f4fa;border:1px solid #c7d0e4;color:#444;font-weight:normal;justify-content:center}
-.sc.g{background:#e8f7ee;border-color:#bfe3cd;color:#1f8a4c}
-.sc.o{background:#fdf0e3;border-color:#f3d2ae;color:#d9822b}
-.sc.p{background:#f1ecfb;border-color:#d9cbf0;color:#7b4bb8}
-.sc.m{background:#e6f5f0;border-color:#a9d9c7;color:#1f7a5c}
-.sc.b{background:#e8f2fd;border-color:#bcd9f2;color:#1f6fb5}
-.sc.n{background:#eef0fb;border-color:#c9cfee;color:#2c3e8a}
-.sc.r{background:#fdebec;border-color:#f3c0c3;color:#d7262e}
-.stw{flex:1 1 auto;min-height:0;margin:0 6px;border:1px solid #d5dbe7;border-radius:10px;overflow:hidden}
-.stw table{width:100%;height:100%;border-collapse:collapse;table-layout:fixed;font-size:clamp(7px,1.6vh,11px)}
-.stw th{background:#1d4ea0;color:#fff;font-weight:bold;padding:2px;white-space:nowrap;overflow:hidden}
-.stw td{border-top:1px solid #e3e9f3;text-align:center;padding:0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.1}
-.stw td.n{background:#e9eef5;color:#444}
-.stw tr.off td:not(.n){background:#fde3d6}
-.sbar{flex:0 0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:5px;padding:6px}
-.sbar .b1{background:#1d4ea0;color:#fff;border-color:#1d4ea0;font-weight:bold}
-.sbar .b2{background:#fdeedd;color:#b55d1a;border-color:#f0c9a0;font-weight:bold}
-.sbar .b3{background:#d9f3e6;color:#1b7a4e;border-color:#9fd8bb;font-weight:bold}
-.sbar .b4{background:#efe3fb;color:#6d3fa6;border-color:#cdb5ea;font-weight:bold}
-.sbar button{height:34px;border-radius:10px;border:1px solid #c9d3e6;background:#fff;font-size:12px;cursor:pointer}
-.sbar .back{background:#1f3a63;color:#fff;border-color:#1f3a63;font-weight:bold}
-@media print{body>*:not(#stm){display:none!important}#stm{position:static;display:flex!important;max-width:none}#stm .sbar{display:none}}
-#form .box{background:linear-gradient(180deg,#eef4ff 0%,#fff 35%)}
-#form .hd{background:linear-gradient(135deg,#0b3a7a,#1d4ea0);color:#fff;border-radius:14px;padding:10px 12px;box-shadow:0 4px 12px rgba(11,58,122,.3)}
-#form .hd button{color:#fff}
-#form label{font-weight:bold;font-size:13px;color:#0b3a7a;margin-top:10px}
-#form input,#form select{border:2px solid #cdd6e3;border-radius:12px;background:#fff;height:42px}
-#fD{border-color:#1d4ea0!important}
-#fW{border-color:#1f8a4c!important}
-#fP{border-color:#d9822b!important}
-#fA{border-color:#7b4bb8!important}
-#fB{border-color:#1f6fb5!important}
-#fM{border-color:#1f8a4c!important}
-#fPr{background:#e8f7ee;border-radius:10px;padding:7px 10px;margin-top:8px}
-#form .row{margin-top:16px}
-#form .row button{height:44px;border-radius:12px;font-size:15px}
-#form .row .p{background:linear-gradient(135deg,#1d4ea0,#2c6fd6);color:#fff;border:0;box-shadow:0 4px 10px rgba(29,78,160,.3)}
-#form .row .d{background:#fff5f5;color:#d7262e;border:2px solid #d7262e}
-#form .row button:not(.p):not(.d){background:#f1f4fa;color:#333;border:2px solid #cdd6e3}
-#form .box{padding:6px 12px 8px;max-height:100%;overflow:hidden}
-#form .hd{padding:6px 10px;font-size:14px}
-#form label{margin-top:3px;margin-bottom:2px;font-size:12px}
-#form input,#form select{height:32px;padding:3px 8px;font-size:14px;border-width:2px}
-#fPr{padding:3px 8px;margin-top:3px;font-size:12px}
-#form .row{margin-top:6px;gap:6px}
-#form .row button{height:36px;font-size:14px}
-.sg{background:#fff;border:1px solid #e3e9f3;border-radius:14px;overflow:hidden;margin-bottom:10px;box-shadow:0 2px 6px rgba(0,0,0,.04)}
-.sgh{color:#fff;font-weight:bold;padding:7px 12px;font-size:13px}
-.sbody{padding:4px 10px 6px}
-.sbody label{margin-top:6px}
-.sr{display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px solid #eef1f5;cursor:pointer}
-.sr:last-child{border-bottom:0}
-.sr .lbl{flex:1;font-size:14px}
-.sr b{color:#6b7587;font-size:14px}
-.ch{width:30px;height:30px;border-radius:99px;display:grid;place-items:center;font-size:16px;flex:0 0 30px}
-.soon{font-size:11px;background:#eef0fb;color:#2c3e8a;padding:2px 8px;border-radius:999px}
-.danger .lbl{color:#d7262e}
-.tg2{width:42px;height:24px;border-radius:999px;background:#cdd6e3;position:relative;flex:0 0 42px}
-.tg2 i{position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}
-.tgon{background:#1f8a4c}
-.tgon i{right:auto;left:2px}
 .g2{border-radius:16px;background:#fff;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 8px rgba(29,78,160,.08)}
 .g2h{background:linear-gradient(180deg,#d9e7fb,#e9f1fc);display:flex;align-items:center;gap:8px;padding:8px 14px;font-weight:bold;color:#0b3a7a;font-size:14px}
 .g2h i{width:26px;height:26px;border-radius:50%;background:#1d6fd6;color:#fff;display:grid;place-items:center;font-style:normal;font-size:13px}
@@ -142,22 +71,6 @@ input,select{width:100%;padding:8px;border:1px solid #cdd6e3;border-radius:10px;
 .r2 .ar{color:#6b7587;font-size:20px}
 .r2 input{border:0;background:transparent;font-size:15px;font-weight:normal;padding:0;height:auto;width:100%;text-align:right;outline:none;color:#1d2b3a}
 .ver{display:inline-block;margin:0 auto;border:1px solid #b9cbe6;border-radius:999px;padding:4px 14px;color:#4a6fa5;font-size:12px;background:#f5f9ff}
-body.dark{background:#121826;color:#e8eefb}
-body.dark .box,body.dark .g2,body.dark .sg,body.dark .pop,body.dark .r2{background:#1b2333!important;color:#e8eefb}
-body.dark .g2h,body.dark .sgh{background:#22304a!important;color:#e8eefb}
-body.dark .r2 .tx,body.dark .sr .lbl{color:#e8eefb}
-body.dark .r2 .ic,body.dark .ch{background:#263454!important}
-body.dark .tw,body.dark table,body.dark td{background:#1b2333!important;color:#e8eefb;border-color:#2c3850!important}
-body.dark th{background:#22427a!important}
-body.dark td.n{background:#263454!important;color:#cfd8ea!important}
-body.dark .month button,body.dark .month select,body.dark .box input,body.dark .box select{background:#222c40!important;color:#e8eefb!important;border-color:#3a4a6b!important}
-body.dark .st{filter:brightness(.9)}
-body.dark #stm{background:#121826!important;color:#e8eefb}
-body.dark .stw,body.dark .scards{background:#1b2333!important}
-body.dark .sc.nt{background:#22304a!important;color:#cfd8ea!important}
-body.dark .tb{background:#22427a}
-body.dark label{color:#aebbd6!important}
-body.dark .dash,body.dark .r2 .tx small{color:#8f9bb5!important}
 #spl{position:fixed;inset:0;z-index:50;background:linear-gradient(160deg,#16294a,#1F3864 50%,#0e1c33);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}
 #spl h1{font-size:28px;margin:10px 0 4px}
 #spl p{margin:0 0 24px;color:#cfe0ff}
@@ -166,6 +79,7 @@ body.dark .dash,body.dark .r2 .tx small{color:#8f9bb5!important}
 </style>
 </head>
 <body>
+
 <div id="spl">
   <div style="font-size:56px">🛡️</div>
   <h1>سجل العمل</h1>
@@ -176,20 +90,27 @@ body.dark .dash,body.dark .r2 .tx small{color:#8f9bb5!important}
 
 <div id="app">
   <div class="top">
-    <div class="l"><button class="hb" onclick="toggleMenu()">☰</button><button class="hb" onclick="panelStatement()">🧾</button></div>
-    <div class="c"><b id="tName"></b></div>
-    <div class="r"><button class="hb" onclick="panelLoc()">🌦️</button><span>شعار 🛡️</span></div>
+    <div class="l"><button class="hb" onclick="toggleMenu()">☰</button></div>
+    <div class="c"><b id="tName">BENKACI ABBES</b></div>
+    <div class="r"><span>شعار 🛡️</span></div>
   </div>
-  <div class="month"><button onclick="mv(-1)">›</button><select id="msel" onchange="pick(this.value)"></select><button onclick="mv(1)">‹</button></div>
+  <div class="month">
+    <button onclick="mv(-1)">›</button>
+    <select id="msel" onchange="pick(this.value)"></select>
+    <button onclick="mv(1)">‹</button>
+  </div>
   <div class="stats">
-    <div class="st c-g"><i>💼</i><small>أيام العمل</small><b id="sW"></b></div>
-    <div class="st c-o"><i>⛱️</i><small>العطل</small><b id="sO"></b></div>
-    <div class="st c-p"><i>🤲</i><small>الأفونس</small><b id="sA"></b></div>
-    <div class="st c-b"><i>🪙</i><small>المقبوض</small><b id="sM"></b></div>
-    <div class="st c-n" onclick="setTarget()"><i>📄</i><small>المستحق</small><b id="sT"></b></div>
-    <div class="st c-r"><i>📈</i><small>المتبقي</small><b id="sR"></b></div>
+    <div class="st c-g"><i>💼</i><small>أيام العمل</small><b id="sW">0</b></div>
+    <div class="st c-o"><i>⛱️</i><small>العطل</small><b id="sO">0</b></div>
+    <div class="st c-p"><i>🤲</i><small>الأفونس</small><b id="sA">0</b></div>
+    <div class="st c-b"><i>🪙</i><small>المقبوض</small><b id="sM">0</b></div>
+    <div class="st c-n" onclick="setTarget()"><i>📄</i><small>المستحق</small><b id="sT">0</b></div>
+    <div class="st c-r"><i>📈</i><small>المتبقي</small><b id="sR">0</b></div>
   </div>
-  <div class="acts"><button class="n" onclick="quick(false)">✗ عطلة اليوم</button><button class="y" onclick="quick(true)">✓ عملت اليوم</button></div>
+  <div class="acts">
+    <button class="n" onclick="quick(false)">✗ عطلة اليوم</button>
+    <button class="y" onclick="quick(true)">✓ عملت اليوم</button>
+  </div>
   <div class="tb">📋 سجل الأيام</div>
   <div class="tw">
     <table>
@@ -200,12 +121,9 @@ body.dark .dash,body.dark .r2 .tx small{color:#8f9bb5!important}
   </div>
 </div>
 
-<div id="stm"></div>
 <div id="bg" onclick="closeAll()"></div>
 <div id="pop" class="pop">
   <div onclick="closeAll()">🏠 الرئيسية</div>
-  <div onclick="panelStats()">📊 الإحصائيات</div>
-  <div onclick="panelReports()">📄 التقارير</div>
   <div onclick="panelSettings()">⚙️ الإعدادات</div>
 </div>
 
@@ -215,9 +133,8 @@ body.dark .dash,body.dark .r2 .tx small{color:#8f9bb5!important}
   <div class="hd"><span id="fT"></span><button onclick="closeAll()">✕</button></div>
   <label>📅 التاريخ</label><input type="date" id="fD">
   <label>💼 العمل</label>
-  <select id="fW" onchange="updPr()"><option value="">—</option><option value="نعم">نعم</option><option value="لا">لا</option></select>
-  <label>📍 المكان (يُحدد تلقائياً)</label><input id="fP" list="plist" oninput="updPr()"><datalist id="plist"></datalist>
-  <div id="fPr" style="font-size:12px;color:#1f8a4c;font-weight:bold;margin-top:4px"></div>
+  <select id="fW"><option value="">—</option><option value="نعم">نعم</option><option value="لا">لا</option></select>
+  <label>📍 المكان</label><input id="fP">
   <label>🪙 أفونس (دج)</label><input id="fA" inputmode="numeric">
   <label>🚗 ديسامو (نص)</label><input id="fB">
   <label>💳 مدفوعات (دج)</label><input id="fM" inputmode="numeric">
@@ -227,36 +144,23 @@ body.dark .dash,body.dark .r2 .tx small{color:#8f9bb5!important}
 <script>
 const $ = id => document.getElementById(id);
 const MO = ['جانفي','فيفري','مارس','أفريل','ماي','جوان','جويلية','أوت','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
-const PL = ['حاسي مسعود','حاسي الرمل','أرار','ورقلة','تمراست','إليزي','تندوف','عين صالح','عين قزام','عين البيضة','برج بوعريريج','لبيرو','طريق'];
-const KEY = 'worklog-app-v4';
-const SEED = [
-["31-08-2026",false,"طريق","","البرج_الحاسي",""],["01-09-2026",true,"حاسي مسعود اونبان","","",""],
-["02-09-2026",false,"طريق","","الحاسي عين صالح",""],["03-09-2026",true,"عين صالح","","عين صالح_ الشانطي",""],
-["04-09-2026",true,"عين صالح","","",""],["05-09-2026",true,"عين صالح","","",""],["06-09-2026",true,"عين صالح","","",""],
-["07-09-2026",true,"عين صالح","","",""],["08-09-2026",true,"عين صالح","","",""],["09-09-2026",true,"عين صالح","","",""],
-["10-09-2026",true,"عين صالح","","",""],["11-09-2026",false,"عين صالح","","",""],["12-09-2026",true,"عين صالح","","",""],
-["13-09-2026",true,"عين صالح",200,"",""],["","","","","",""],["15-09-2026",false,"لبيرو","","",3000],
-["22-09-2026",true,"عين البيضة","","",""],["23-09-2026",true,"عين البيضة","","",""],["24-09-2026",true,"عين البيضة","","",""],
-["25-09-2026",true,"عين البيضة","","",""],["26-09-2026",true,"عين البيضة","","",""],["27-09-2026",true,"عين البيضة","","",""],
-["28-09-2026",true,"عين البيضة","","",""],["29-09-2026",true,"عين البيضة","","",""],["30-09-2026",true,"عين البيضة","","",""],
-["01-10-2026",false,"برج بوعريريج يازيد","","",2000]
-];
+const KEY = 'worklog-app-v5';
 
 function blank() { return Array.from({length:30}, () => ({d:'', w:null, p:'', af:'', dp:'', md:''})); }
-function seedMonth() { const a = blank(); SEED.forEach((r,i) => { if(i>=30) return; const x = a[i]; x.d = r[0].trim(); x.w = r[1]===''?null:r[1]; x.p = r[2]; x.af = r[3]; x.dp = r[4]; x.md = r[5]; }); return a; }
 
-let S;
-try { S = JSON.parse(localStorage.getItem(KEY)); } catch(e) { S = null; }
-if(!S || !S.months) { S = {name:'BENKACI ABBES', cur:'2026-09', months:{'2026-09':seedMonth()}, target:{'2026-09':3700}, splash:true}; }
-function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} }
+let S = JSON.parse(localStorage.getItem(KEY)) || {
+  name: 'BENKACI ABBES',
+  cur: '2026-09',
+  months: {'2026-09': blank()},
+  target: {'2026-09': 3700},
+  splash: true
+};
 
-function blankFor(k) { const y = +k.slice(0,4), m = +k.slice(5,7), n = new Date(y,m,0).getDate(); return Array.from({length:30}, (_,i) => ({d:i<n?String(i+1).padStart(2,'0')+'-'+String(m).padStart(2,'0')+'-'+y:'', w:null, p:'', af:'', dp:'', md:''})); }
-function ensure(k) { if(!S.months[k]) S.months[k] = blankFor(k); return S.months[k]; }
+function save() { localStorage.setItem(KEY, JSON.stringify(S)); }
 function mkey(y,m) { return y+'-'+String(m).padStart(2,'0'); }
+function ensure(k) { if(!S.months[k]) S.months[k] = blank(); return S.months[k]; }
 function E() { return ensure(S.cur); }
-function fmt(v) { return v===''||v==null?'<span class="dash">-</span>':v+' دج'; }
-function today() { const t = new Date(); return String(t.getDate()).padStart(2,'0')+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+t.getFullYear(); }
-function curMonthMatchesToday() { const t = new Date(); return S.cur===mkey(t.getFullYear(), t.getMonth()+1); }
+function fmt(v) { return !v ? '<span class="dash">-</span>' : v + ' دج'; }
 function label(k) { return MO[+k.slice(5)-1]+' '+k.slice(0,4); }
 
 function render() {
@@ -265,61 +169,31 @@ function render() {
   const keys = []; yrs.forEach(y => { for(let m=1; m<=12; m++) keys.push(y+'-'+String(m).padStart(2,'0')); });
   keys.sort();
   $('msel').innerHTML = keys.map(k => `<option value="${k}" ${k===S.cur?'selected':''}>${label(k)}</option>`).join('');
+  
   const rows = E(); let w=0, o=0, a=0, m=0;
   rows.forEach(r => { if(r.w===true) w++; if(r.w===false) o++; a += Number(r.af)||0; m += Number(r.md)||0; });
-  const t = tgt(); const rem = t - (a+m);
-  $('sW').textContent = w; $('sO').textContent = o; $('sA').textContent = a; $('sM').textContent = m; $('sT').textContent = t; $('sR').textContent = rem;
-  $('rows').innerHTML = rows.map((r,i) => `<tr onclick="openForm(${i})"><td class="n">${i+1}</td><td>${r.d||'<span class="dash">-</span>'}</td><td>${r.w===true?'<span class="bd g">نعم</span>':r.w===false?'<span class="bd r">لا</span>':'<span class="dash">-</span>'}</td><td>${r.p||'<span class="dash">-</span>'}</td><td>${fmt(r.af)}</td><td>${r.dp||'<span class="dash">-</span>'}</td><td>${fmt(r.md)}</td></tr>`).join('');
-  $('plist').innerHTML = PL.map(p => `<option value="${p}">`).join('');
-  fit();
+  const t = S.target[S.cur] || 0;
+  $('sW').textContent = w; $('sO').textContent = o; $('sA').textContent = a; $('sM').textContent = m; $('sT').textContent = t; $('sR').textContent = t - (a+m);$('rows').innerHTML = rows.map((r,i) => `<tr onclick="openForm(${i})"><td class="n">${i+1}</td><td>${r.d||'<span class="dash">-</span>'}</td><td>${r.w===true?'<span class="bd g">نعم</span>':r.w===false?'<span class="bd r">لا</span>':'<span class="dash">-</span>'}</td><td>${r.p||'<span class="dash">-</span>'}</td><td>${fmt(r.af)}</td><td>${r.dp||'<span class="dash">-</span>'}</td><td>${fmt(r.md)}</td></tr>`).join('');
 }
 
-function fit() {
-  const tw = document.querySelector('.tw'), tb = tw.querySelector('table'), rows = tb.rows;
-  const n = rows.length - 1; if(n<1) return;
-  const h = tw.clientHeight - rows[0].offsetHeight - 2;
-  const rh = Math.max(9, Math.floor(h/n));
-  for(let i=1; i<rows.length; i++) rows[i].style.height = rh+'px';
-  tb.style.fontSize = Math.max(6, Math.min(12, rh*0.62))+'px';
-}
-window.addEventListener('resize', () => fit());
 function mv(d) { const [y,m] = S.cur.split('-').map(Number); const n = new Date(y, m-1+d, 1); S.cur = mkey(n.getFullYear(), n.getMonth()+1); ensure(S.cur); save(); render(); }
 function pick(k) { S.cur = k; ensure(k); save(); render(); }
 
 function quick(w) {
-  const rows = E(); let i = -1;
-  if(curMonthMatchesToday()) { i = rows.findIndex(r => r.d === today()); }
-  if(i<0) i = rows.findIndex(r => !r.d && r.w === null);
-  if(i<0) { alert('لا يوجد يوم فارغ في هذا الشهر'); return; }
-  rows[i].w = w; if(curMonthMatchesToday() && !rows[i].d) rows[i].d = today();
-  save(); render(); openForm(i);
+  const rows = E(); const i = rows.findIndex(r => r.w === null);
+  if(i<0) { alert('السجل مكتمل لهذا الشهر'); return; }
+  rows[i].w = w; save(); render(); openForm(i);
 }
-
-const CITY = [["برج بوعريريج",36.07,4.76],["عين البيضة",35.8,7.39],["حاسي مسعود",31.68,6.07],["حاسي الرمل",32.93,3.27],["أدرار",27.87,-0.29],["ورقلة",31.95,5.32],["تمنراست",22.79,5.52],["إليزي",26.5,8.48],["تندوف",27.67,-8.15],["عين صالح",27.2,2.48],["عين قزام",19.57,5.77],["تيميمون",29.26,0.23],["جانت",24.55,9.48],["بني عباس",30.13,-2.17],["الجزائر",36.75,3.06]];
-const SAHARA = ["حاسي مسعود","حاسي الرمل","أدرار","ورقلة","تمنراست","إليزي","تندوف","عين صالح","عين قزام","برج باجي مختار","تيميمون","جانت","بني عباس"];
-function rate(r) { let t=0; if(r.w===true && r.p && String(r.p).trim()) { t += SAHARA.some(s => String(r.p).indexOf(s)>=0) ? 200 : 150; } if(r.dp && String(r.dp).trim()) t += 50; return t; }
-function rowsRate(rows) { return rows.reduce((s,r) => s+rate(r), 0); }
-function tgt() { return (S.base[S.cur]||0) + rowsRate(E()); }
-function nearest(la,lo) { let b=null, bd=1e9; CITY.forEach(([n,a,o]) => { const d=(a-la)**2+(o-lo)**2; if(d<bd) { bd=d; b=n; } }); return b; }
-function gpsPlace(cb) { try { navigator.geolocation.getCurrentPosition(p => cb(nearest(p.coords.latitude, p.coords.longitude)), () => cb(null), {timeout:8000, maximumAge:600000}); } catch(e) { cb(null); } }
-function updPr() { const r = {w:$('fW').value==='نعم'?true:false, p:$('fP').value, dp:$('fB').value};$('fPr').textContent = 'السعر التلقائي لليوم: '+rate(r)+' دج'; }
 
 let editIdx = -1;
 function openForm(i) {
   editIdx = i; const r = E()[i];
-  $('fT').textContent = 'اليوم رقم '+(i+1)+' — '+label(S.cur);
-  $('fD').value = r.d ? r.d.split('-').reverse().join('-') : '';
+  $('fT').textContent = 'اليوم رقم '+(i+1);
+  $('fD').value = r.d ? r.d.split('-').reverse().join('-') : new Date().toISOString().slice(0,10);
   $('fW').value = r.w===true?'نعم':r.w===false?'لا':'';
-  $('fP').value = r.p\vert{}\vert{}'';$('fA').value = r.af; $('fB').value = r.dp; $('fM').value = r.md;
-  if(!r.d) { $('fD').value = new Date().toISOString().slice(0,10); }
-  if(!r.p) {
-    const def = S.defPlace || 'برج بوعريريج';
-    if(S.autoLoc===false) { $('fP').value = def; updPr(); }
-    else { $('fP').value = ''; $('fP').placeholder = 'جارٍ تحديد المكان...'; gpsPlace(n => { $('fP').placeholder = ''; if(!$('fP').value) {$('fP').value = n||def; updPr(); } }); }
-  }
-  $('form').classList.add('on');
-  updPr();
+  $('fP').value = r.p||''; $('fA').value = r.af\vert{}\vert{}'';$('fB').value = r.dp||''; $('fM').value = r.md\vert{}\vert{}'';$('form').classList.add('on');
 }
+
 function saveForm() {
   const r = E()[editIdx];
   const v = $('fD').value; r.d = v ? v.split('-').reverse().join('-') : '';
@@ -327,236 +201,43 @@ function saveForm() {
   r.p = $('fP').value.trim(); r.af =$('fA').value.trim(); r.dp = $('fB').value.trim(); r.md =$('fM').value.trim();
   save(); closeAll(); render();
 }
+
 function clearForm() { const r = E()[editIdx]; Object.assign(r, {d:'', w:null, p:'', af:'', dp:'', md:''}); save(); closeAll(); render(); }
-function setTarget() { const v = prompt('المستحق لهذا الشهر (دج) — اتركه كما هو للحساب التلقائي:', tgt()); if(v===null) return; const n = Number(v); if(!isNaN(n) && v.trim()!=='') { S.base[S.cur] = n - rowsRate(E()); save(); render(); } }
+function setTarget() { const v = prompt('أدخل المستحق لهذا الشهر:', S.target[S.cur]||0); if(v!==null) { S.target[S.cur] = Number(v)||0; save(); render(); } }
 
 function toggleMenu() { const p = $('pop'), on = !p.classList.contains('on'); closeAll(); if(on) { p.classList.add('on');$('bg').classList.add('on'); } }
 function closeAll() { ['pop','panel','form'].forEach(id => $(id).classList.remove('on'));$('bg').classList.remove('on'); }
 function openPanel(t,h) { closeAll(); $('pT').textContent = t; $('pB').innerHTML = h; $('panel').classList.add('on');$('bg').classList.add('on'); }
 
-function panelStats() {
-  const rows = E(); const c = {}; rows.forEach(r => { if(r.w===true && r.p) c[r.p] = (c[r.p]||0)+1; });
-  const tot = Object.values(c).reduce((x,y)=>x+y,0)||1;
-  openPanel('الإحصائيات', Object.entries(c).sort((a,b)=>b[1]-a[1]).map(([p,n]) => `<div class="line"><span>${p}</span><b>${n} يوم</b></div><div class="bar"><span style="width:${n/tot*100}%"></span></div>`).join('')||'<p>لا توجد بيانات</p>');
-}
-
-function statementText() {
-  const rows = E(); const lines = ['كشف الحساب — '+label(S.cur), '#\tالتاريخ\tالعمل\tالمكان\tأفونس\tديسامو\tمدفوعات'];
-  rows.forEach((r,i) => lines.push([i+1, r.d||'-', r.w===true?'نعم':r.w===false?'لا':'-', r.p||'-', r.af||'-', r.dp||'-', r.md||'-'].join('\t')));
-  return lines.join('\n');
-}
-
-function fm(v) { return v===''||v==null?'':v+' دج'; }
-function stmData() {
-  const rows = E(); let w=0, o=0, a=0, m=0;
-  rows.forEach(r => { if(r.w===true) w++; if(r.w===false) o++; a += Number(r.af)||0; m += Number(r.md)||0; });
-  const t = tgt();
-  let last = -1; rows.forEach((r,i) => { if(r.d || r.w!==null || r.p || r.af!=='' || r.dp || r.md!=='') last = i; });
-  return {rows, w, o, a, m, t, rem: t-(a+m), last};
-}
-
-function panelStatement() {
-  const s = stmData();
-  const c = (cls,lbl,v,ic) => `<div class="sc ${cls}"><span>${lbl}</span><b>${v}</b><i>${ic}</i></div>`;
-  const trs = s.rows.slice(0, s.last+1).map((r,i) => `<tr class="${r.w===false?'off':''}"><td class="n">${i+1}</td><td>${r.d}</td><td>${r.w===true?'نعم':r.w===false?'لا':''}</td><td>${r.p}</td><td>${fm(r.af)}</td><td>${r.dp}</td><td>${fm(r.md)}</td></tr>`).join('');
-  $('stm').innerHTML = `
-  <div class="sth">كشف الحساب — ${S.name} — ${label(S.cur)}</div>
-  <div class="scards">
-    ${c('g','عمل:',s.w,'💼')}${c('o','عطلة:',s.o,'📅')}${c('p','أفونس:',s.a+' دج','🪙')}
-    ${c('m','المجموع المقبوض:',(s.m+s.a)+' دج','🪙')}${c('b','المقبوض:',s.m+' دج','🪙')}${c('n','المستحق:',s.t+' دج','🪙')}
-    ${c('r','المتبقي:',s.rem+' دج','🎯')}<div class="sc nt">المتبقي = المستحق − (أفونس + مدفوعات)</div>
-  </div>
-  <div class="stw"><table>
-    <colgroup><col style="width:6%"><col style="width:18%"><col style="width:10%"><col style="width:20%"><col style="width:12%"><col style="width:18%"><col style="width:16%"></colgroup>
-    <thead><tr><th>#</th><th>📅 الأيام</th><th>💼 العمل</th><th>📍 المكان</th><th>🪙 أفونس</th><th>🚗 ديسامو</th><th>💳 مدفوعات</th></tr></thead>
-    <tbody>${trs}</tbody>
-  </table></div>
-  <div class="sbar">
-    <button class="b1" onclick="saveImg()">🖼️ حفظ كصورة</button>
-    <button class="b2" onclick="window.print()">🖨️ طباعة</button>
-    <button class="b3" onclick="shareStm()">✈️ ارسال</button>
-    <button class="b4" onclick="copyTxt()">📑 نسخ</button>
-    <button class="back" onclick="closeStm()">← رجوع</button>
-  </div>`;
-  $('stm').classList.add('on');
-  closeAll();
-}
-
-function rr(g,x,y,w,h,r) { g.beginPath(); g.moveTo(x+r,y); g.arcTo(x+w,y,x+w,y+h,r); g.arcTo(x+w,y+h,x,y+h,r); g.arcTo(x,y+h,x,y,r); g.arcTo(x,y,x+w,y,r); g.closePath(); }
-function saveImg() {
-  const s = stmData(), W = 900, RH = 26, n = s.last+1, TY = 210, H = TY + RH*(n+1) + 20;
-  const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const g = cv.getContext('2d');
-  g.fillStyle = '#fff'; g.fillRect(0,0,W,H);
-  g.fillStyle = '#1d4ea0'; g.fillRect(0,0,W,50);
-  g.fillStyle = '#fff'; g.font = 'bold 20px Tahoma'; g.textAlign = 'center'; g.textBaseline = 'middle';
-  g.fillText('كشف الحساب — '+S.name+' — '+label(S.cur), W/2, 25);
-  const cw = (W-60)/3;
-  const cards = [
-    [0,0,'عمل: '+s.w,'#e8f7ee','#1f8a4c'],[1,0,'عطلة: '+s.o,'#fdf0e3','#d9822b'],[2,0,'أفونس: '+s.a+' دج','#f1ecfb','#7b4bb8'],
-    [0,1,'المجموع المقبوض: '+(s.m+s.a)+' دج','#e6f5f0','#1f7a5c'],[1,1,'المقبوض: '+s.m+' دج','#e8f2fd','#1f6fb5'],[2,1,'المستحق: '+s.t+' دج','#eef0fb','#2c3e8a'],
-    [2,2,'المتبقي: '+s.rem+' دج','#fdebec','#d7262e']];
-  cards.forEach(([c,r,t,bg,fg]) => { const x = 20+c*(cw+10), y = 62+r*46; g.fillStyle = bg; rr(g,x,y,cw,38,10); g.fill(); g.fillStyle = fg; g.font = 'bold 15px Tahoma'; g.fillText(t, x+cw/2, y+19); });
-  g.fillStyle = '#f1f4fa'; rr(g,20,154,cw*2+10,38,10); g.fill();
-  g.fillStyle = '#555'; g.font = '14px Tahoma'; g.fillText('المتبقي = المستحق − (أفونس + مدفوعات)', 20+(cw*2+10)/2, 173);
-  const cols = [50,150,90,170,120,160,120], heads = ['#','الأيام','العمل','المكان','أفونس','ديسامو','مدفوعات'], X0 = 20, TW = 860;
-  g.fillStyle = '#1d4ea0'; g.fillRect(X0, TY, TW, RH);
-  g.fillStyle = '#fff'; g.font = 'bold 13px Tahoma';
-  let x = W-20; cols.forEach((w,j) => { g.fillText(heads[j], x-w/2, TY+RH/2); x -= w; });
-  s.rows.slice(0,n).forEach((r,i) => {
-    const y = TY + RH*(i+1), vals = [i+1, r.d, r.w===true?'نعم':r.w===false?'لا':'', r.p, r.af!==''?r.af+' دج':'', r.dp, r.md!==''?r.md+' دج':''];
-    g.fillStyle = r.w===false?'#fde3d6':'#fff'; g.fillRect(X0, y, TW, RH);
-    g.strokeStyle = '#e3e9f3'; g.strokeRect(X0, y, TW, RH);
-    g.fillStyle = '#1d2b3a'; g.font = '13px Tahoma';
-    let xx = W-20; cols.forEach((w,j) => { g.fillText(String(vals[j]), xx-w/2, y+RH/2); xx -= w; });
-  });
-  cv.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'كشف-الحساب.png'; document.body.appendChild(a); a.click(); a.remove(); }, 'image/png');
-}
-function closeStm() { $('stm').classList.remove('on'); }
-function shareStm() { const t = statementText(); if(navigator.share) { navigator.share({title:'كشف الحساب', text:t}).catch(()=>{}); } else copyTxt(); }
-function copyTxt() { const t = statementText(); try { navigator.clipboard.writeText(t).then(()=>alert('تم نسخ الكشف'),()=>alert('تعذّر النسخ')); } catch(e) { alert('تعذّر النسخ'); } }
-
-function panelReports() {
-  const rows = E(); let w=0, a=0, m=0; rows.forEach(r => { if(r.w===true) w++; a += Number(r.af)||0; m += Number(r.md)||0; });
-  const t = tgt(), p = a ? Math.round(m/a*100) : 0;
-  openPanel('التقارير — '+label(S.cur), `<div class="line"><span>أيام العمل</span><b>${w}</b></div><div class="line"><span>الأفونس</span><b>${a} دج</b></div><div class="line"><span>المقبوض</span><b>${m} دج</b></div><div class="line"><span>المستحق</span><b>${t} دج</b></div><div class="line"><span>المتبقي</span><b>${t-(a+m)} دج</b></div><p>نسبة المقبوض من الأفونس: ${p}%</p><div class="bar"><span style="width:${Math.min(p,100)}%"></span></div>`);
-}
-
-const WMO = {0:['صافٍ','☀️'],1:['صافٍ غالباً','🌤️'],2:['غائم جزئياً','⛅'],3:['غائم','☁️'],45:['ضباب','🌫️'],48:['ضباب','🌫️'],51:['رذاذ','🌦️'],53:['رذاذ','🌦️'],55:['رذاذ','🌦️'],61:['مطر خفيف','🌧️'],63:['مطر','🌧️'],65:['مطر غزير','🌧️'],71:['ثلج خفيف','🌨️'],73:['ثلج','🌨️'],75:['ثلج كثيف','🌨️'],80:['زخات مطر','🌦️'],81:['زخات مطر','🌦️'],82:['زخات قوية','⛈️'],95:['عاصفة رعدية','⛈️'],96:['عاصفة رعدية','⛈️'],99:['عاصفة رعدية','⛈️']};
-function panelLoc() {
-  openPanel('الموقع والطقس','<div class="line"><span>📍 الموقع</span><b id="lcN">جارٍ التحديد...</b></div><div id="fc" class="dash" style="padding:8px 0">جارٍ جلب الطقس...</div><div class="row"><button class="p" onclick="panelLoc()">🔄 تحديث</button></div>');
-  const show = (la,lo,name) => {
-    $('lcN').textContent = name;
-    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${la}&longitude=${lo}&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=3`)
-      .then(r => r.json()).then(j => {
-        const days = ['اليوم','غداً','بعد غد'];
-        $('fc').innerHTML = j.daily.time.map((t,i) => { const w = WMO[j.daily.weather_code[i]]||['غير معروف','🌡️']; return `<div class="line"><span>${days[i]} ${w[1]} ${w[0]}</span><b>${Math.round(j.daily.temperature_2m_min[i])}° / ${Math.round(j.daily.temperature_2m_max[i])}°</b></div>`; }).join('');
-      }).catch(() => { $('fc').textContent = 'تعذّر جلب الطقس، تأكد من اتصال الإنترنت'; });
-  };
-  const fallback = () => show(36.07, 4.76, 'برج بوعريريج');
-  try { navigator.geolocation.getCurrentPosition(p => { const la = p.coords.latitude, lo = p.coords.longitude; show(la, lo, nearest(la, lo)); }, fallback, {timeout:8000, maximumAge:600000}); } catch(e) { fallback(); }
-}
-
-function setAuto(v) { S.autoLoc = v; save(); panelSettings(); }
-function setDef() { const v = $('sDP').value.trim(); if(v) { S.defPlace = v; save(); alert('تم حفظ المكان الافتراضي'); } }
-function backupCopy() { const t = JSON.stringify(S); try { navigator.clipboard.writeText(t).then(()=>alert('تم نسخ النسخة الاحتياطية'),()=>alert('تعذّر النسخ')); } catch(e) { alert('تعذّر النسخ'); } }
-function applyTheme() { document.body.classList.toggle('dark', S.theme==='dark'); }
-function themePanel() {
-  const d = S.theme==='dark';
-  openPanel('المظهر', `<div class="row"><button class="${!d?'p':''}" onclick="setTheme('light')">☀️ فاتح</button><button class="${d?'p':''}" onclick="setTheme('dark')">🌙 داكن</button></div><p class="dash" style="margin-top:10px">يُطبَّق الاختيار فوراً ويُحفظ في هذا المتصفح.</p>`);
-}
-function setTheme(t) { S.theme = t; save(); applyTheme(); themePanel(); }
-function ratePanel() {
-  const r = S.rating||0;
-  openPanel('تقييم التطبيق', `<div style="text-align:center;font-size:36px;letter-spacing:6px">${[1,2,3,4,5].map(i=>`<span style="cursor:pointer;color:${i<=r?'#f5b53b':'#cdd6e3'}" onclick="setRating(${i})">★</span>`).join('')}</div><p class="dash" style="text-align:center">${r?'تقييمك الحالي: '+r+' من 5':'اختر عدد النجوم'}</p>`);
-}
-function setRating(n) { S.rating = n; save(); ratePanel(); }
-
-function copyText(t) {
-  const fb = () => { const x = document.createElement('textarea'); x.value = t; document.body.appendChild(x); x.select(); try { document.execCommand('copy'); alert('تم النسخ'); } catch(e) { alert('تعذّر النسخ'); } x.remove(); };
-  try { navigator.clipboard.writeText(t).then(()=>alert('تم النسخ'), fb); } catch(e) { fb(); }
-}
-
-/* --- رابط تحميل التطبيق المباشر --- */
-function shareText() { return 'سجل العمل — حمل تطبيق تنظيم أيام عملك ومستحقاتك المباشر من الرابط التالي:\nhttps://apk.e-droid.net/apk/app4216978-9g6lua.apk?v=1'; }
-function copyShare() { copyText(shareText()); }
-
+/* --- زر مشاركة التطبيق ورابط التحميل المباشر --- */
 function shareApp() {
   const downloadUrl = 'https://apk.e-droid.net/apk/app4216978-9g6lua.apk?v=1';
   if(navigator.share) {
     navigator.share({
       title: 'سجل العمل',
-      text: 'حمل تطبيق سجل العمل ومتابعة الأيام والأجر بسهولة من الرابط التالي:',
+      text: 'حمل تطبيق سجل العمل ومتابعة المستحقات والأيام المباشر:',
       url: downloadUrl
     }).catch(()=>{});
-    return;
+  } else {
+    openPanel('مشاركة التطبيق', `<p style="line-height:1.8">رابط تحميل التطبيق المباشر:<br><a href="${downloadUrl}" target="_blank" style="word-break:break-all;color:#1d4ea0;font-weight:bold">${downloadUrl}</a></p>`);
   }
-  openPanel('مشاركة التطبيق', `<p style="line-height:1.8">تحميل التطبيق وتثبيته مباشرة:<br><a href="${downloadUrl}" target="_blank" style="word-break:break-all;color:#1d4ea0;font-weight:bold">${downloadUrl}</a></p>
-  <div class="row"><a href="https://wa.me/?text=${encodeURIComponent('سجل العمل — حمل التطبيق مباشرة: ' + downloadUrl)}" target="_blank" style="flex:1;height:40px;display:grid;place-items:center;border-radius:12px;background:#25d366;color:#fff;text-decoration:none;font-weight:bold">💬 واتساب</a><button class="p" onclick="copyShare()" style="flex:1">📋 نسخ الرابط</button></div>`);
-}
-
-function aboutAppPage() { showPage('حول التطبيق','<p><b>سجل العمل</b> — الإصدار 4.0</p><p>تطبيق لتسجيل أيام العمل وأماكنها، وحساب المستحق والمقبوض والمتبقي شهرياً، وإصدار كشف حساب قابل للطباعة والمشاركة.</p><p>المطوّر: BENKACI ABBES</p>'); }
-function termsPage() { showPage('شروط الاستخدام','<p>يُستخدم التطبيق لتنظيم سجلاتك الشخصية، والمسؤولية عن دقة البيانات تقع على المستخدم.</p><p>لا تتحمل إدارة التطبيق أي خسارة ناتجة عن فقد البيانات، لذلك يُنصح بحفظ نسخة احتياطية بشكل دوري.</p>'); }
-function saveInfo() {
-  save();
-  try { const b = new Blob([JSON.stringify(S,null,2)], {type:'application/json'}); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'سجل-العمل-'+today()+'.json'; document.body.appendChild(a); a.click(); a.remove(); } catch(e) {}
-  alert('تم حفظ المعلومات في المتصفح، وتم تنزيل نسخة احتياطية');
-}
-function showPage(t,h) { openPanel(t, `<div style="line-height:2;font-size:14px;color:#1d2b3a">${h}</div>`); }
-function aboutPage() { showPage('من نحن','<p>سجل العمل تطبيق يساعدك على تنظيم أيام عملك وأماكنه ومبالغه، ومتابعة المستحق والمقبوض شهراً بشهر.</p><p>يعمل بدون إنترنت، وتبقى بياناتك محفوظة في هاتفك.</p>'); }
-function privacyPage() { showPage('سياسة الخصوصية','<p>بياناتك (الأيام والأماكن والمبالغ) تُحفظ على جهازك فقط داخل المتصفح، ولا تُرسل إلى أي خادم.</p>'); }
-function contactPage() { openPanel('تواصل معنا', `<div style="text-align:center;line-height:1.8"><div style="font-size:34px">📞</div><p style="font-size:18px;font-weight:bold;color:#0b3a7a;direction:ltr;margin:4px 0 12px">0696667506</p><div class="row"><a href="tel:0696667506" style="flex:1;height:40px;display:grid;place-items:center;border-radius:12px;background:#1d4ea0;color:#fff;text-decoration:none;font-weight:bold">📞 اتصال</a><a href="https://wa.me/213696667506" target="_blank" style="flex:1;height:40px;display:grid;place-items:center;border-radius:12px;background:#25d366;color:#fff;text-decoration:none;font-weight:bold">💬 واتساب</a></div></div>`); }
-
-function notifSub() { const n = S.notif||{}; return n.on ? 'مفعّل · '+(n.time||'18:00') : 'متوقف'; }
-function notifPanel() {
-  const n = S.notif || {on:false, time:'18:00'};
-  openPanel('تنبيه يومي للتسجيل', `<div class="sr" style="padding:8px 0"><span class="ch" style="background:#fdf0e3">🔔</span><span class="lbl">تفعيل التنبيه</span><span class="tg2 ${n.on?'tgon':''}" onclick="toggleNotif()"><i></i></span></div>
-  <label>وقت التنبيه</label><input type="time" id="nT" value="${n.time||'18:00'}"><div class="row"><button class="p" onclick="setNotifTime()">💾 حفظ الوقت</button></div>
-  <p class="dash" style="margin-top:10px">يصلك التنبيه إذا كان التطبيق مفتوحاً أو فُتح بعد الوقت المحدد، ولم تُسجَّل بعد أيام اليوم.</p>`);
-}
-
-async function toggleNotif() {
-  const n = S.notif || (S.notif = {on:false, time:'18:00'});
-  if(!n.on) {
-    if(!('Notification' in window)) { alert('تنبيهات المتصفح غير مدعومة مباشرة داخل هذا العرض.'); return; }
-    const p = await Notification.requestPermission();
-    if(p!=='granted') { alert('لم تُمنح إذن التنبيهات'); return; }
-    n.on = true;
-  } else { n.on = false; }
-  save(); notifPanel(); alert(n.on ? 'تم تفعيل التنبيه عند '+(n.time||'18:00') : 'تم إيقاف التنبيه');
-}
-
-function setNotifTime() { S.notif = S.notif||{on:false}; S.notif.time = $('nT').value||'18:00'; save(); alert('تم حفظ وقت التنبيه: '+S.notif.time); notifPanel(); }
-
-function checkNotif() {
-  const n = S.notif;
-  if(!n || !n.on || !('Notification' in window) || Notification.permission!=='granted') return;
-  const now = new Date(), t = today(), hm = String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
-  if(hm < (n.time||'18:00') || n.last === t) return;
-  const rows = ensure(mkey(now.getFullYear(), now.getMonth()+1));
-  const row = rows.find(r => r.d === t);
-  if(row && row.w!==null) { n.last = t; save(); return; }
-  new Notification('سجل العمل', {body:'لا تنسَ تسجيل يوم العمل اليوم'});
-  n.last = t; save();
 }
 
 function panelSettings() {
-  const row = (ic,title,sub,action) => `<div class="r2" onclick="${action}"><span class="ic">${ic}</span><div class="tx">${title}${sub?`<small>${sub}</small>`:''}</div><span class="ar">‹</span></div>`;
   openPanel('الإعدادات', `
   <div class="g2"><div class="g2h"><span>الملف الشخصي</span><i>👤</i></div>
-    <div class="r2"><span class="ic">✏️</span><div class="tx">الاسم<input id="sN" value="${S.name}" onchange="setName()" placeholder="اكتب اسمك"></div></div>
-  </div>
-  <div class="g2"><div class="g2h"><span>عن التطبيق</span><i>ℹ️</i></div>
-    ${row('🧭','من نحن','','aboutPage()')}
-    ${row('🔒','سياسة الخصوصية','','privacyPage()')}
-    ${row('📜','شروط الاستخدام','','termsPage()')}
-    ${row('✉️','تواصل معنا','','contactPage()')}
+    <div class="r2"><span class="ic">✏️</span><div class="tx">الاسم<input id="sN" value="${S.name}" onchange="S.name=this.value;save();render();"></div></div>
   </div>
   <div class="g2"><div class="g2h"><span>التطبيق</span><i>📦</i></div>
-    ${row('ℹ️','حول التطبيق','','aboutAppPage()')}
-    ${row('↗️','قم بمشاركة التطبيق','','shareApp()')}
-    ${row('⭐','تقييم التطبيق','','ratePanel()')}
+    <div class="r2" onclick="shareApp()"><span class="ic">↗️</span><div class="tx">قم بمشاركة التطبيق<small>تحميل APK مباشر</small></div><span class="ar">‹</span></div>
   </div>
-  <div class="g2"><div class="g2h"><span>الترفيه والتخصيص</span><i>🎨</i></div>
-    ${row('🌓','المظهر','تغيير نمط العرض','themePanel()')}
-    ${row('🔔','تنبيه يومي للتسجيل',notifSub(),'notifPanel()')}
-  </div>
-  <button class="p" onclick="saveInfo()" style="width:100%;height:44px;border:0;border-radius:14px;background:linear-gradient(135deg,#1f8a4c,#2fae63);color:#fff;font-size:15px;font-weight:bold;margin-bottom:12px;box-shadow:0 4px 10px rgba(31,138,76,.3);cursor:pointer">💾 حفظ المعلومات</button>
-  <div style="text-align:center;color:#6b7587;font-size:12px;line-height:1.8">
-    سجل العمل — تتبع أيام العمل والمستحقات<br>
-    <span class="ver">الإصدار 4.0</span>
+  <div style="text-align:center;color:#6b7587;font-size:12px;line-height:1.8;margin-top:10px">
+    سجل العمل<br><span class="ver">الإصدار 4.0</span>
   </div>`);
 }
 
-function setName() { const v = $('sN').value.trim(); if(v) { S.name = v; save(); render(); closeAll(); } }
-function startApp() { $('spl').style.display = 'none'; if(S.splash===undefined) S.splash = true; save(); render(); }
+function startApp() { $('spl').style.display = 'none'; render(); }
 
-if(!S.base) S.base = {};
-if(S.target) { Object.keys(S.target).forEach(k => { S.base[k] = S.target[k] - (k==='2026-09'?rowsRate(seedMonth()):0); }); delete S.target; save(); }
-
-setInterval(() => { try { checkNotif(); } catch(e) {} }, 60000);
-try { checkNotif(); } catch(e) {}
-
-applyTheme();
 if(S.splash===false) { $('spl').style.display = 'none'; }
 render();
 </script>
